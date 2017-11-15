@@ -1,4 +1,15 @@
 node_modules
 npm-debug.log
 .floo
+<<<<<<< HEAD
 .flooignore
+=======
+/flooignore
+.env
+
+
+# Local development
+*.env
+*.dev
+.DS_Store
+>>>>>>> 0756aaf742e16c10b6d67756086e21de36a67182
