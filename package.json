@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "wp": "webpack --progress --colors --watch",
+    "wp": "webpack -d --progress --colors --watch",
     "start": "node server/index.js",
     "startdev": "nodemon --inspect server/index.js"
   },
