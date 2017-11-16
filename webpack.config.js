@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-  entry: './client/src/appRender.js',
+  entry: './client/src/components/app.jsx',
   output: {
     path: path.resolve('dist'),
     filename: 'bundle.js'
