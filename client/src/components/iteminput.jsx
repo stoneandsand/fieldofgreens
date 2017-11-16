@@ -1,8 +1,16 @@
 import React from 'react';
 
-let itemInput = (props) => (
+let itemInput = ({input, addNewItem}) => (
 
-  <div>item input goes here</div>
+  <div>
+    <form onSubmit={addNewItem}>
+      <label>
+        Add Image url:
+        <input type="text" value={input} onChange={addNewItem}/>
+      </label>
+      <input type="submit" value="Submit"/>
+    </form>
+  </div>
 
   )
 
