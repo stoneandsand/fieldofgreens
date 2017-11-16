@@ -6,7 +6,6 @@ let mongoose = require('mongoose');
 let db = require('../db/index.js');
 
 app.set('port', (process.env.PORT || 5000));
-console.log(__dirname + '/../')
 
 app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.json());
@@ -19,12 +18,15 @@ app.use(bodyParser.json());
 // POST request for saving new list
 
 app.post('/saveList', function(req, res) {
-console.log('THIS IS THE REQ TO SAVE LIST FROM CLIENT!!!!!', req);
+console.log('THIS IS THE REQ.BODY TO SAVE LIST FROM CLIENT!!!!!', req.body);
 
-  db.saveList('req.body???', function() {
-    res.send('List has been saved!!!')
+  db.saveList(req.body, function(err, result) {
+    if (err) {
+      console.err(err);
+    } else {
+      res.send('List has been saved!!!');
+    }
   })
-
 });
 
 //GET request for getting recall data from exampleRecallData.js
