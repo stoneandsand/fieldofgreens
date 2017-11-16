@@ -26,6 +26,11 @@ import ShoppingList from './shoppingList.jsx';
     this.setState({currentItems: this.state.currentItems});
   }
 
+  deleteItem(index, e) {
+    console.log(index)
+    this.state.currentItems.splice(index, 1);
+    this.setState({currentItems: this.state.currentItems});
+  }
 
   searchFDA() {
     console.log('searchFDA was called');
@@ -39,12 +44,21 @@ import ShoppingList from './shoppingList.jsx';
     console.log('list was saved successfully');
   }
 
+  updateGrosseryListName(e) {
+    this.setState({listName: e.target.value});
+  }
+
+  saveGrosseryListName(e) {
+    e.preventDefault();
+    this.setState({listName: this.state.listName});
+  }
+
   render() {
     return (
       <div>
         <StateDropdown/>
         <ItemInput updateNewItemEntry={this.updateNewItemEntry.bind(this)} newItemEntry={this.state.newitemEntry} addNewItemToList={this.addNewItemToList.bind(this)}/>
-        <CurrentItemList searchfda={this.searchFDA.bind(this)} currentItems={this.state.currentItems}/>
+        <CurrentItemList deleteItem={this.deleteItem.bind(this)} listName={this.state.listName} searchfda={this.searchFDA.bind(this)} currentItems={this.state.currentItems} updateGrosseryListName={this.updateGrosseryListName.bind(this)} saveGrosseryListName={this.saveGrosseryListName.bind(this)} listName={this.state.listName}/>
         <ShoppingList/>
       </div>
     )

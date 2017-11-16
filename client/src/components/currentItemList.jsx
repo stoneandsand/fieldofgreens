@@ -6,11 +6,15 @@ let currentItemList = (props) => (
 
   <div>Current Grossery List</div>
 
-  <div>{props.currentItems.map((singleItem) =>
-    <ItemEntry entry={singleItem.name} key={singleItem.name}/>)
+  <div>{props.listName}</div>
+  <div>{props.currentItems.map((singleItem, i) =>
+    <ItemEntry deleteItem={props.deleteItem} entry={singleItem.name} i={i} key={singleItem.name}/>)
   }</div>
 
   <button type='submit' onClick={props.searchfda}>Search FDA</button>
+
+  <input type="text" value={props.listName} onChange={props.updateGrosseryListName} />
+  <button type='submit' onClick={props.saveGrosseryListName}>Save List</button>
 
 </div>
   )
