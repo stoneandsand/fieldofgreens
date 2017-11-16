@@ -1,12 +1,12 @@
 import React from 'react';
-import shoppingListEntry from './shoppingListEntry.jsx';
+import ShoppingListEntry from './shoppingListEntry.jsx';
 
 let shoppingList = (props) => (
 	<div>
 
 		<div>shoppinglist</div>
 		<div>
-		<shoppingListEntry>shopping list entry in shopping list </shoppingListEntry>
+		<ShoppingListEntry>shopping list entry in shopping list </ShoppingListEntry>
 		</div>
 	</div>
   )

@@ -1,9 +1,9 @@
 import React from 'react';
 import Recalls from './recalls.jsx';
 
-let itemEntry = (props) => (
+let itemEntry = ({entry}) => (
 <div>
-  <div>One Item goes here</div>
+  <div>{entry}</div>
   <div>
     <Recalls />
   </div>

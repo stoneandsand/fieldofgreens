@@ -1,8 +1,12 @@
 import React from 'react';
 
-let itemInput = (props) => (
+let itemInput = ({newItemEntry, updateNewItemEntry, addNewItemToList}) => (
 
-  <div>item input goes here</div>
+  <div>
+    <input type="text" value={newItemEntry} onChange={updateNewItemEntry}/>
+
+    <button id="addItem" onClick={addNewItemToList}>Add New Item</button>
+  </div>
 
   )
 
