@@ -11,14 +11,21 @@ import ShoppingList from './shoppingList.jsx';
     super(props);
     this.state = {
       currentItems: [{name: 'item1'}, {name: 'item2'}],
-      newitemEntry: '',
+      newItemEntry: '',
       listName: ''
     }
   }
 
-  addNewItem(event) {
-    this.setState({newitemEntry: event.target.value})
+  updateNewItemEntry(event) {
+    this.setState({newItemEntry: event.target.value})
   }
+
+  addNewItemToList(e) {
+    e.preventDefault();
+    this.state.currentItems.push({name: this.state.newItemEntry});
+    this.setState({currentItems: this.state.currentItems});
+  }
+
 
   searchFDA() {
     console.log('searchFDA was called');
@@ -36,7 +43,7 @@ import ShoppingList from './shoppingList.jsx';
     return (
       <div>
         <StateDropdown/>
-        <ItemInput addNewItem={this.addNewItem.bind(this)} newitemEntry={this.state.newitemEntry}/>
+        <ItemInput updateNewItemEntry={this.updateNewItemEntry.bind(this)} newItemEntry={this.state.newitemEntry} addNewItemToList={this.addNewItemToList.bind(this)}/>
         <CurrentItemList searchfda={this.searchFDA.bind(this)} currentItems={this.state.currentItems}/>
         <ShoppingList/>
       </div>

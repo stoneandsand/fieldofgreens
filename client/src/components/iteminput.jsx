@@ -1,15 +1,11 @@
 import React from 'react';
 
-let itemInput = ({input, addNewItem}) => (
+let itemInput = ({newItemEntry, updateNewItemEntry, addNewItemToList}) => (
 
   <div>
-    <form onSubmit={addNewItem}>
-      <label>
-        Add Image url:
-        <input type="text" value={input} onChange={addNewItem}/>
-      </label>
-      <input type="submit" value="Submit"/>
-    </form>
+    <input type="text" value={newItemEntry} onChange={updateNewItemEntry}/>
+
+    <button id="addItem" onClick={addNewItemToList}>Add New Item</button>
   </div>
 
   )

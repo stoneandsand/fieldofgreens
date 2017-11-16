@@ -7,7 +7,7 @@ let currentItemList = (props) => (
   <div>Current Grossery List</div>
 
   <div>{props.currentItems.map((singleItem) =>
-    <ItemEntry entry={singleItem.name}/>)
+    <ItemEntry entry={singleItem.name} key={singleItem.name}/>)
   }</div>
 
   <button type='submit' onClick={props.searchfda}>Search FDA</button>

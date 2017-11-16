@@ -23,17 +23,17 @@ let listSchema = mongoose.Schema({
 
 let List = mongoose.model('List', listSchema);
 
-let saveList = (thing) => {
+let saveList = (thing, callback) => {
   let newList = new List({
-    name: thing.name,
-    items: thing.items
-  })
-
-  newList.save((err, list) => {
+    name: thing.body.name,
+    items: thing.body.items
+ })
+  newList.save(function(err, list) {
     if(err) {
       console.log('error', err);
     } else {
-      console.log('List saved!');
+      console.log('(inside save function, success)')
+      callback();
     }
   })
 
