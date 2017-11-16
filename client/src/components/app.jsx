@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StateDropdown from 'stateDropdown.jsx';
+import StateDropdown from './stateDropdown.jsx';
+import ItemInput from './iteminput.jsx';
+import CurrentItemList from './currentItemList.jsx';
+import ShoppingList from './shoppingList.jsx';
 
  class App extends React.Component{
   constructor(props) {
@@ -13,7 +16,10 @@ import StateDropdown from 'stateDropdown.jsx';
   render() {
     return (
       <div>
-        <StateDropdown />
+        <StateDropdown/>
+        <ItemInput/>
+        <CurrentItemList/>
+        <ShoppingList/>
       </div>
     )
   }
