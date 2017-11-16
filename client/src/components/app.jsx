@@ -10,20 +10,30 @@ import ShoppingList from './shoppingList.jsx';
   constructor(props) {
     super(props);
     this.state = {
-      currentItems: [{name: 'item1'}, {name: 'item2'}],
+      state: 'AL',
+      currentItems: [
+        {name: 'item1', recalls: [{recallDescripton: 'listeria'}]},
+        {name: 'item2', recalls: [{recallDescripton: 'nuclear waste'}]}
+      ],
       newItemEntry: '',
-      listName: ''
+      inputListName: '',
+      savedListName: ''
     }
+  }
+  selectState(e) {
+    this.setState({state: e.target.value});
+    console.log('testing')
   }
 
   updateNewItemEntry(event) {
-    this.setState({newItemEntry: event.target.value})
+    this.setState({newItemEntry: event.target.value});
   }
 
   addNewItemToList(e) {
     e.preventDefault();
     this.state.currentItems.push({name: this.state.newItemEntry});
     this.setState({currentItems: this.state.currentItems});
+    console.log(' I got state', this.state.state)
   }
 
   deleteItem(index, e) {
@@ -36,29 +46,63 @@ import ShoppingList from './shoppingList.jsx';
     console.log('searchFDA was called');
     let scope = this.state.currentItems;
     for (var i = 0; i < this.state.currentItems.length; i++) {
+
       axios.get('/searchNewList', {params: {item: scope[i]}})
       .then(function(){
         console.log('list item was saved successfully');
+
+        // assume return object: {
+        //   name: 'item1',
+        //   recalls: [
+        //    {
+        //         recallStates: ['bla'],
+        //         recallDescription: 'bla'
+        //       }
+        //   ]
+        // }
+
       });
     }
     console.log('list was saved successfully');
   }
 
   updateGrosseryListName(e) {
-    this.setState({listName: e.target.value});
+    this.setState({inputListName: e.target.value});
   }
 
   saveGrosseryListName(e) {
     e.preventDefault();
-    this.setState({listName: this.state.listName});
+    this.setState({savedListName: this.state.inputListName});
+    console.log(this.state.savedListName);
+
+    axios.post('/saveList', {
+      listName: this.state.savedListName,
+      items: this.state.currentItems
+    })
+    .then(function (response) {
+      console.log(response);
+      console.log('list was saved');
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   render() {
     return (
       <div>
-        <StateDropdown/>
-        <ItemInput updateNewItemEntry={this.updateNewItemEntry.bind(this)} newItemEntry={this.state.newitemEntry} addNewItemToList={this.addNewItemToList.bind(this)}/>
-        <CurrentItemList deleteItem={this.deleteItem.bind(this)} listName={this.state.listName} searchfda={this.searchFDA.bind(this)} currentItems={this.state.currentItems} updateGrosseryListName={this.updateGrosseryListName.bind(this)} saveGrosseryListName={this.saveGrosseryListName.bind(this)} listName={this.state.listName}/>
+        <StateDropdown selectstate={this.selectState.bind(this)}/>
+        <ItemInput updateNewItemEntry={this.updateNewItemEntry.bind(this)}
+          newItemEntry={this.state.newitemEntry}
+          addNewItemToList={this.addNewItemToList.bind(this)}/>
+        <CurrentItemList
+          deleteItem={this.deleteItem.bind(this)}
+          searchfda={this.searchFDA.bind(this)}
+          currentItems={this.state.currentItems}
+          updateGrosseryListName={this.updateGrosseryListName.bind(this)}
+          saveGrosseryListName={this.saveGrosseryListName.bind(this)}
+          savedListName={this.state.savedListName}
+          inputListName={this.state.inputListName} />
         <ShoppingList/>
       </div>
     )

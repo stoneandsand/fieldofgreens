@@ -1,8 +1,8 @@
 import React from 'react';
 
-let recalls = (props) => (
+let recalls = ({recall}) => (
 
-  <div>recalls</div>
+  <div>{recall.recallDescription}</div>
 
   )
 
