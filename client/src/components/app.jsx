@@ -17,9 +17,16 @@ import ShoppingList from './shoppingList.jsx';
       ],
       newItemEntry: '',
       inputListName: '',
-      savedListName: ''
+      savedListName: '',
+      savedListsfromDB: ['List1', 'List2']
     }
   }
+
+  componentDidMount() {
+    console.log('loaded!')
+    this.getSavedLists();
+  }
+
   selectState(e) {
     this.setState({state: e.target.value});
     console.log('testing')
@@ -72,9 +79,7 @@ import ShoppingList from './shoppingList.jsx';
 
   saveGrosseryListName(e) {
     e.preventDefault();
-
     this.setState({savedListName: this.state.inputListName}, this.submitNewList);
-
   }
 
   submitNewList() {
@@ -91,6 +96,21 @@ import ShoppingList from './shoppingList.jsx';
       });
   }
 
+  getSavedLists() {
+    console.log('saved list');
+
+    axios.get('/getSavedLists')
+    .then(function (data) {
+      console.log(data);
+      this.setState({savedListsfromDB: data.data});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+
+
   render() {
     return (
       <div>
@@ -106,7 +126,7 @@ import ShoppingList from './shoppingList.jsx';
           saveGrosseryListName={this.saveGrosseryListName.bind(this)}
           savedListName={this.state.savedListName}
           inputListName={this.state.inputListName} />
-        <ShoppingList/>
+        <ShoppingList savedLists={this.state.savedListsfromDB}/>
       </div>
     )
   }
