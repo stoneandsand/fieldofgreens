@@ -6,7 +6,9 @@ let shoppingList = (props) => (
 
 		<div>shoppinglist</div>
 		<div>
-		<ShoppingListEntry>shopping list entry in shopping list </ShoppingListEntry>
+			{props.savedLists.map(listEntry => (
+				<ShoppingListEntry listEntry={listEntry}/>
+			))}
 		</div>
 	</div>
   )
