@@ -43,6 +43,11 @@ let findList = (thing, callback) => {
   List.find(thing, callback);
 }
 
+let getAllLists = (callback) => {
+  List.find({}, callback);
+}
 
+
+module.exports.getAllLists = getAllLists;
 module.exports.findList = findList;
 module.exports.saveList = saveList;
