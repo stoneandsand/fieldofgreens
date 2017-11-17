@@ -6,8 +6,7 @@ let itemEntry = ({entry, deleteItem, i}) => (
 <div>
   <div>{entry.name}</div>
   <button onClick={deleteItem.bind(this, i)} >delete</button>
-  <div>
-    <Recalls recall={entry.recalls ? entry.recalls[0].recallDescription : ""}/>
+  <div>{entry.recalls.map((rec, i) => <Recalls key={i} recall={rec}/>)}
   </div>
 </div>
   )
