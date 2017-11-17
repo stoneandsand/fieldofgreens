@@ -25,8 +25,8 @@ let List = mongoose.model('List', listSchema);
 
 let saveList = (thing, callback) => {
   let newList = new List({
-    name: thing.body.name,
-    items: thing.body.items
+    name: thing.name,
+    items: thing.items
  })
   newList.save(function(err, list) {
     if(err) {

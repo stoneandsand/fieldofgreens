@@ -20,7 +20,16 @@ app.use(bodyParser.json());
 app.post('/saveList', function(req, res) {
 console.log('THIS IS THE REQ.BODY TO SAVE LIST FROM CLIENT!!!!!', req.body);
 
-  db.saveList(req.body, function(err, result) {
+  var items = [];
+  for (var x = 0; x < req.body.items.length; x++) {
+    items.push(req.body.items[x].name);
+  }
+  var toSave = {
+    "name": req.body.listName,
+    "items": items
+  };
+
+  db.saveList(toSave, function(err, result) {
     if (err) {
       console.err(err);
     } else {
