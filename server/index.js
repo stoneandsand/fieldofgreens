@@ -42,7 +42,8 @@ console.log('THIS IS THE REQ.BODY TO SAVE LIST FROM CLIENT!!!!!', req.body);
 //FINISHED/WORKING FOR NOW
 app.get('/searchNewList', function(req, res) {
   // console.log('THIS IS THE REQ FOR RECALLS FROM CLIENT!!!!!', req);
-  console.log('THIS IS THE ITEM FROM LIST', JSON.parse(req.query.item).name)
+  console.log('THIS IS THE QUERY FROM CLIENT', req.query)
+
   let keywords = JSON.parse(req.query.item).name.split(' ');
   console.log(keywords);
   // console.log(recalls.exampleRecallData[0]['brand name'])
@@ -60,10 +61,14 @@ app.get('/searchNewList', function(req, res) {
   }
 
   // matches.filter((match) => {
-    // match['distribution_pattern'].indexOf(req.query.state) >= 0 || match['distribution_pattern'].indexOf("Nationwide") >= 0
+  //   match['distribution_pattern'].indexOf(JSON.parse(req.query.state)) >= 0 || match['distribution_pattern'].indexOf("Nationwide") >= 0
 
   // })
 
+
+  matches.unshift(JSON.parse(req.body.item).name)
+
+console.log(matches)
   res.send(matches)
   console.log(matches)
 });
@@ -82,6 +87,24 @@ app.get('/getList', function(req, res) {
 })
 
 
+app.get('/getSavedLists', function(req, res) {
+  db.getAllLists(function(error, results) {
+    if(err) {
+      throw err;
+    } else {
+
+      console.log('THIS EVERY LIST FROM DB', results)
+
+      var justListNames = [];
+
+      for(var key in results) {
+        justListNames.push(results[key]['name'])
+      }
+
+      res.send(justListNames);
+    }
+  });
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
