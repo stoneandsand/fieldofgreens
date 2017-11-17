@@ -47,7 +47,7 @@ import ShoppingList from './shoppingList.jsx';
     let scope = this.state.currentItems;
     for (var i = 0; i < this.state.currentItems.length; i++) {
 
-      axios.get('/searchNewList', {params: {item: scope[i]}})
+      axios.get('/searchNewList', {params: {item: scope[i]}, state: this.state.state})
       .then(function(){
         console.log('list item was saved successfully');
 
@@ -72,20 +72,23 @@ import ShoppingList from './shoppingList.jsx';
 
   saveGrosseryListName(e) {
     e.preventDefault();
-    this.setState({savedListName: this.state.inputListName});
-    console.log(this.state.savedListName);
 
-    axios.post('/saveList', {
-      listName: this.state.savedListName,
-      items: this.state.currentItems
-    })
-    .then(function (response) {
-      console.log(response);
-      console.log('list was saved');
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    this.setState({savedListName: this.state.inputListName}, this.submitNewList);
+
+  }
+
+  submitNewList() {
+     axios.post('/saveList', {
+        listName: this.state.savedListName,
+        items: this.state.currentItems
+      })
+      .then(function (response) {
+        console.log(response);
+        console.log('list was saved');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
