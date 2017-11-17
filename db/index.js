@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/thegrosserylist');
 
 
-var db = mongoose.connection;
+let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('connection success');
@@ -10,10 +10,10 @@ db.once('open', function() {
 
 
 // let userSchema = mongoose.Schema {
-// 	uid_number: Number, Unique, AutoIncrementing
-// 	username: String, Unique
-// 	password: String
-// 	shoppinglists: [List1, List2...]
+//  uid_number: Number, Unique, AutoIncrementing
+//  username: String, Unique
+//  password: String
+//  shoppinglists: [List1, List2...]
 // }
 
 let listSchema = mongoose.Schema({

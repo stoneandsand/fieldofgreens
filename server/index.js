@@ -6,29 +6,37 @@ let mongoose = require('mongoose');
 let db = require('../db/index.js');
 
 app.set('port', (process.env.PORT || 5000));
-
 app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.json());
 
 
+// Helper function for getting data that matches the recalls GET request
+
+let getRecallMatches = (keywordsArray) => {
+  let matches = [];
+  for (let i = 0; i < keywordsArray.length; i++) {
+    for (let k = 0; k < recalls.exampleRecallData.length; k++) {
+      if (recalls.exampleRecallData[k]['product_description'].toUpperCase().includes(keywordsArray[i].toUpperCase()) || recalls.exampleRecallData[k]['brand name'].toUpperCase().includes(keywordsArray[i].toUpperCase())) {
+        matches.push(recalls.exampleRecallData[k]);
+      }
+    }
+  }
+  return matches;
+}
 
 
-
-
-// POST request for saving new list
+// POST request for saving new list to database
 
 app.post('/saveList', function(req, res) {
 console.log('THIS IS THE REQ.BODY TO SAVE LIST FROM CLIENT!!!!!', req.body);
-
-  var items = [];
-  for (var x = 0; x < req.body.items.length; x++) {
+  let items = [];
+  for (let x = 0; x < req.body.items.length; x++) {
     items.push(req.body.items[x].name);
   }
-  var toSave = {
+  let toSave = {
     "name": req.body.listName,
     "items": items
   };
-
   db.saveList(toSave, function(err, result) {
     if (err) {
       console.err(err);
@@ -39,42 +47,23 @@ console.log('THIS IS THE REQ.BODY TO SAVE LIST FROM CLIENT!!!!!', req.body);
 });
 
 //GET request for getting recall data from exampleRecallData.js
-//FINISHED/WORKING FOR NOW
-app.get('/searchNewList', function(req, res) {
-  // console.log('THIS IS THE REQ FOR RECALLS FROM CLIENT!!!!!', req);
-  console.log('THIS IS THE QUERY FROM CLIENT', req.query)
 
+app.get('/searchNewList', function(req, res) {
+  console.log('THIS IS THE QUERY FROM CLIENT', req.query)
   let keywords = JSON.parse(req.query.item).name.split(' ');
   console.log(keywords);
-  // console.log(recalls.exampleRecallData[0]['brand name'])
-  // console.log(recalls.exampleRecallData[0]['product_description'])
-  let matches = [];
-  for (var i = 0; i < keywords.length; i++) {
-    for (var k = 0; k < recalls.exampleRecallData.length; k++) {
 
-      if (recalls.exampleRecallData[k]['product_description'].toUpperCase().includes(keywords[i].toUpperCase()) || recalls.exampleRecallData[k]['brand name'].toUpperCase().includes(keywords[i].toUpperCase())) {
-
-        matches.push(recalls.exampleRecallData[k]);
-
-      }
-    }
-  }
-
-  // matches.filter((match) => {
+  let matches = getRecallMatches(keywords);
+    // matches.filter((match) => {
   //   match['distribution_pattern'].indexOf(JSON.parse(req.query.state)) >= 0 || match['distribution_pattern'].indexOf("Nationwide") >= 0
-
   // })
-
-
-  matches.unshift(JSON.parse(req.body.item).name)
-
-console.log(matches)
-  res.send(matches)
-  console.log(matches)
+  matches.unshift(JSON.parse(req.body.item).name);
+  console.log(matches);
+  res.send(matches);
 });
 
+// GET request for retrieving a single saved list
 
-// GET request for retrieving a saved list
 app.get('/getList', function(req, res) {
   console.log('THIS IS THE REQ TO GET A LIST FROM CLIENT!!!!!', req.query);
   db.findList(req.query.name, function(err, result) {
@@ -86,21 +75,18 @@ app.get('/getList', function(req, res) {
   })
 })
 
+// GET request for retrieving all saved list names for rendering shoppingList component
 
 app.get('/getSavedLists', function(req, res) {
   db.getAllLists(function(error, results) {
     if(err) {
       throw err;
     } else {
-
       console.log('THIS EVERY LIST FROM DB', results)
-
-      var justListNames = [];
-
-      for(var key in results) {
+      let justListNames = [];
+      for(let key in results) {
         justListNames.push(results[key]['name'])
       }
-
       res.send(justListNames);
     }
   });
