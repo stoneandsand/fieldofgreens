@@ -2,7 +2,7 @@ import React from 'react';
 
 let recalls = ({recall}) => (
 
-  <div>{recall}</div>
+  <div>{recall.recallDescripton}</div>
 
   )
 

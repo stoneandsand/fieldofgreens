@@ -6,8 +6,8 @@ let shoppingList = (props) => (
 
 		<div>shoppinglist</div>
 		<div>
-			{props.savedLists.map(listEntry => (
-				<ShoppingListEntry listEntry={listEntry}/>
+			{props.savedLists.map((listEntry, i) => (
+				<ShoppingListEntry key={i} listEntry={listEntry}/>
 			))}
 		</div>
 	</div>
