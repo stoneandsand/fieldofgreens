@@ -11,10 +11,7 @@ import ShoppingList from './shoppingList.jsx';
     super(props);
     this.state = {
       state: 'AL',
-      currentItems: [
-        {name: 'item1', recalls: [{recallDescripton: 'listeria'}]},
-        {name: 'item2', recalls: [{recallDescripton: 'nuclear waste'}]}
-      ],
+      currentItems: [],
       newItemEntry: '',
       inputListName: '',
       savedListName: '',
@@ -38,7 +35,7 @@ import ShoppingList from './shoppingList.jsx';
 
   addNewItemToList(e) {
     e.preventDefault();
-    this.state.currentItems.push({name: this.state.newItemEntry});
+    this.state.currentItems.push({name: this.state.newItemEntry, recalls: ""});
     this.setState({currentItems: this.state.currentItems});
     console.log(' I got state', this.state.state)
   }
@@ -50,27 +47,26 @@ import ShoppingList from './shoppingList.jsx';
   }
 
   searchFDA() {
-    console.log('searchFDA was called');
     let scope = this.state.currentItems;
+    let app = this;
+    let newCurrentItems = [];
+    let promises = [];
     for (var i = 0; i < this.state.currentItems.length; i++) {
-
-      axios.get('/searchNewList', {params: {item: scope[i]}, state: this.state.state})
-      .then(function(){
-        console.log('list item was saved successfully');
-
-        // assume return object: {
-        //   name: 'item1',
-        //   recalls: [
-        //    {
-        //         recallStates: ['bla'],
-        //         recallDescription: 'bla'
-        //       }
-        //   ]
-        // }
-
-      });
+      promises.push(axios.get('/searchNewList', {params: {item: scope[i]}, state: this.state.state}));
     }
-    console.log('list was saved successfully');
+    axios.all(promises).then(function(recallData){
+      recallData.forEach(function(response) {
+        let item = response.data[0];
+        response.data.shift();
+        let value = response.data;
+        let obj = {};
+        obj.recalls = value;
+        obj.name = item;
+        newCurrentItems.push(obj);
+        console.log('state to set', newCurrentItems);
+        app.setState({currentItems: newCurrentItems}, console.log('updated state', app.state));
+      });
+    });
   }
 
   updateGrosseryListName(e) {
@@ -98,14 +94,20 @@ import ShoppingList from './shoppingList.jsx';
 
   getSavedLists() {
     console.log('saved list');
-
+    let app = this;
     axios.get('/getSavedLists')
     .then(function (data) {
-      console.log(data);
-      this.setState({savedListsfromDB: data.data});
+      app.setState({savedListsfromDB: data.data});
     })
     .catch(function (error) {
-      console.log(error);
+    });
+  }
+
+  getSavedListItems(){
+    let app = this;
+    axios.get('/getList', {params: {name: 'thanksgiving'}})
+    .then(function(data){
+      console.log(data);
     });
   }
 
@@ -126,7 +128,7 @@ import ShoppingList from './shoppingList.jsx';
           saveGrosseryListName={this.saveGrosseryListName.bind(this)}
           savedListName={this.state.savedListName}
           inputListName={this.state.inputListName} />
-        <ShoppingList savedLists={this.state.savedListsfromDB}/>
+        <ShoppingList savedLists={this.state.savedListsfromDB} getSavedItems={this.getSavedListItems.bind(this)}/>
       </div>
     )
   }

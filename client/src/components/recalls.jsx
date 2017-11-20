@@ -2,8 +2,9 @@ import React from 'react';
 
 let recalls = ({recall}) => (
 
-  <div>{recall.recallDescripton}</div>
-
+  <div>
+    <div>{recall.reason_for_recall || recall}</div>
+  </div>
   )
 
 export default recalls;
