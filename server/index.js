@@ -50,6 +50,7 @@ console.log('THIS IS THE REQ.BODY TO SAVE LIST FROM CLIENT!!!!!', req.body);
 
 app.get('/searchNewList', function(req, res) {
   console.log('THIS IS THE QUERY FROM CLIENT', req.query)
+  console.log('should be the item =====>', JSON.parse(req.query.item));
   let keywords = JSON.parse(req.query.item).name.split(' ');
   console.log(keywords);
 
@@ -57,8 +58,8 @@ app.get('/searchNewList', function(req, res) {
     // matches.filter((match) => {
   //   match['distribution_pattern'].indexOf(JSON.parse(req.query.state)) >= 0 || match['distribution_pattern'].indexOf("Nationwide") >= 0
   // })
-  matches.unshift(JSON.parse(req.body.item).name);
-  console.log(matches);
+  matches.unshift(JSON.parse(req.query.item).name);
+  console.log('matches ======>', matches);
   res.send(matches);
 });
 
@@ -77,16 +78,18 @@ app.get('/getList', function(req, res) {
 
 // GET request for retrieving all saved list names for rendering shoppingList component
 
+
 app.get('/getSavedLists', function(req, res) {
-  db.getAllLists(function(error, results) {
+  db.getAllLists(function(err, results) {
     if(err) {
-      throw err;
+      console.log('ERROR GETTING SAVED LISTS')
     } else {
       console.log('THIS EVERY LIST FROM DB', results)
       let justListNames = [];
       for(let key in results) {
         justListNames.push(results[key]['name'])
       }
+      console.log(justListNames)
       res.send(justListNames);
     }
   });

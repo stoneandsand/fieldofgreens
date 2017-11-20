@@ -7,7 +7,7 @@ let shoppingList = (props) => (
 		<div>shoppinglist</div>
 		<div>
 			{props.savedLists.map((listEntry, i) => (
-				<ShoppingListEntry key={i} listEntry={listEntry}/>
+				<ShoppingListEntry key={i} listEntry={listEntry} onClick={props.getSavedItems}/>
 			))}
 		</div>
 	</div>
