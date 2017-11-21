@@ -1,7 +1,7 @@
 import React from 'react';
 
 let shoppingListEntry = (props) => (
-  <div>
+  <div onClick={props.onClick.bind(this,props.listEntry)}>
     {props.listEntry}
   </div>
 )

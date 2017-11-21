@@ -19,6 +19,7 @@ import ShoppingList from './shoppingList.jsx';
     }
   }
 
+  //makes get request to
   componentDidMount() {
     console.log('loaded!')
     this.getSavedLists();
@@ -36,8 +37,7 @@ import ShoppingList from './shoppingList.jsx';
   addNewItemToList(e) {
     e.preventDefault();
     this.state.currentItems.push({name: this.state.newItemEntry, recalls: ""});
-    this.setState({currentItems: this.state.currentItems});
-    console.log(' I got state', this.state.state)
+    this.setState({currentItems: this.state.currentItems}, this.searchFDA);
   }
 
   deleteItem(index, e) {
@@ -57,11 +57,12 @@ import ShoppingList from './shoppingList.jsx';
     axios.all(promises).then(function(recallData){
       recallData.forEach(function(response) {
         let item = response.data[0];
-        response.data.shift();
         let value = response.data;
-        let obj = {};
-        obj.recalls = value;
-        obj.name = item;
+        let obj = {
+          recalls: value,
+          name: item
+        };
+        response.data.shift();
         newCurrentItems.push(obj);
         console.log('state to set', newCurrentItems);
         app.setState({currentItems: newCurrentItems}, console.log('updated state', app.state));
@@ -103,11 +104,16 @@ import ShoppingList from './shoppingList.jsx';
     });
   }
 
-  getSavedListItems(){
+  getSavedListItems(listName){
+    console.log('getsavedlistitems has been called in shoppinglistentry');
     let app = this;
-    axios.get('/getList', {params: {name: 'thanksgiving'}})
-    .then(function(data){
-      console.log(data);
+    let newItems = [];
+    axios.get('/getList', {params: {name: listName}})
+    .then(function(response){
+      let mapped = response.data[0].items.map(item => {
+      newItems.push({name: item, recalls: ""});
+      })
+      app.setState({currentItems: newItems}, app.searchFDA);
     });
   }
 

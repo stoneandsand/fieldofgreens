@@ -40,7 +40,7 @@ let saveList = (thing, callback) => {
 }
 
 let findList = (thing, callback) => {
-  List.find(thing, callback);
+  List.find({name:thing}, callback);
 }
 
 let getAllLists = (callback) => {
