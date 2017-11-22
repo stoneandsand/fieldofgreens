@@ -8,3 +8,4 @@ heroku.yml
 node_modules/
 tmp
 vendor/
+!/Users/Arthur/Desktop/HRR27/fieldofgreens/db/realRecallData.js

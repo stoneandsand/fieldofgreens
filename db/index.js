@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/thegrosserylist');
 
-
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('connection success');
 });
-
 
 // let userSchema = mongoose.Schema {
 //  uid_number: Number, Unique, AutoIncrementing
@@ -23,6 +21,7 @@ let listSchema = mongoose.Schema({
 
 let List = mongoose.model('List', listSchema);
 
+// Saves new list to database
 let saveList = (thing, callback) => {
   let newList = new List({
     name: thing.name,
@@ -36,13 +35,14 @@ let saveList = (thing, callback) => {
       callback();
     }
   })
-
 }
 
+// Returns a list and all it's contents to the client
 let findList = (thing, callback) => {
   List.find({name:thing}, callback);
 }
 
+// Returns all saved lists from database to the client
 let getAllLists = (callback) => {
   List.find({}, callback);
 }

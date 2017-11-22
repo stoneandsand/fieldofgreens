@@ -6,6 +6,7 @@ let stateDropdown = (props) => (
 	  <form onChange={props.selectstate}>
 		<label>What state do you live in? </label>
 			<select type='text' name='state'>
+			  <option type='text' name='nada'></option>
 				<option type='text' name='al'>AL</option>
 				<option type='text' name='ak'>AK</option>
 				<option type='text' name='az'>AZ</option>

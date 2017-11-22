@@ -1,8 +1,10 @@
 import React from 'react';
+import Bootstrap from '../../../bootstrap/css/bootstrap.css';
+import Custom from '../../../bootstrap/css/custom.css';
 
 let recalls = ({recall}) => (
 
-  <div>
+  <div className="recalls">
     <div>
       {recall ? 'Product: ' + recall.product_description : ""}
     </div>

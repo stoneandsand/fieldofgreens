@@ -1,7 +1,7 @@
 const express = require ('express');
 let app = express();
 let bodyParser = require('body-parser');
-let recalls = require('../db/exampleRecallData.js');
+let recalls = require('../db/test.js');
 let mongoose = require('mongoose');
 let db = require('../db/index.js');
 
@@ -15,20 +15,28 @@ app.use(bodyParser.json());
 let getRecallMatches = (keywordsArray) => {
   let matches = [];
   for (let i = 0; i < keywordsArray.length; i++) {
-    for (let k = 0; k < recalls.exampleRecallData.length; k++) {
-      if (recalls.exampleRecallData[k]['product_description'].toUpperCase().includes(keywordsArray[i].toUpperCase()) || recalls.exampleRecallData[k]['brand name'].toUpperCase().includes(keywordsArray[i].toUpperCase())) {
-        matches.push(recalls.exampleRecallData[k]);
+    for (let k = 0; k < recalls.recallData.length; k++) {
+      if (recalls.recallData[k]['product_description'].toUpperCase().includes(keywordsArray[i].toUpperCase())) {
+        matches.push(recalls.recallData[k]);
       }
     }
   }
+  console.log('matches before filter ', matches)
+
+  matches = matches.filter(function(match) {
+    return match.status === 'Ongoing'
+
+  })
+  console.log('matches after filter ', matches)
+
   return matches;
 }
-
+ // || recalls.recallData[k]['brand name'].toUpperCase().includes(keywordsArray[i].toUpperCase()
 
 // POST request for saving new list to database
 
 app.post('/saveList', function(req, res) {
-console.log('THIS IS THE REQ.BODY TO SAVE LIST FROM CLIENT!!!!!', req.body);
+
   let items = [];
   for (let x = 0; x < req.body.items.length; x++) {
     items.push(req.body.items[x].name);
@@ -46,27 +54,34 @@ console.log('THIS IS THE REQ.BODY TO SAVE LIST FROM CLIENT!!!!!', req.body);
   })
 });
 
-//GET request for getting recall data from exampleRecallData.js
+//GET request for getting recall data from test.js
 
 app.get('/searchNewList', function(req, res) {
-  console.log('THIS IS THE QUERY FROM CLIENT', req.query)
-  console.log('should be the item =====>', JSON.parse(req.query.item));
+
+  console.log('REQUEST FROM CLIENT', req.query)
+
   let keywords = JSON.parse(req.query.item).name.split(' ');
   console.log(keywords);
 
   let matches = getRecallMatches(keywords);
+  // This commented out section is for filtering the matches to the users set location.
     // matches.filter((match) => {
   //   match['distribution_pattern'].indexOf(JSON.parse(req.query.state)) >= 0 || match['distribution_pattern'].indexOf("Nationwide") >= 0
   // })
+  matches = matches.filter(function(match) {
+    return match['distribution_pattern'].includes(req.query.state) || match['distribution_pattern'].includes('Nationwide');
+  })
   matches.unshift(JSON.parse(req.query.item).name);
   console.log('matches ======>', matches);
   res.send(matches);
 });
 
+
+
 // GET request for retrieving a single saved list
 
 app.get('/getList', function(req, res) {
-  console.log('THIS IS THE REQ TO GET A LIST FROM CLIENT!!!!!', req.query);
+
   db.findList(req.query.name, function(err, result) {
     if(err) {
       throw err;
