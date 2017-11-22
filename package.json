@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "wp": "webpack -d --progress --colors --watch",
     "start": "node server/index.js",
-    "startdev": "nodemon --inspect server/index.js"
+    "startdev": "nodemon --inspect server/index.js",
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "repository": {
     "type": "git",
