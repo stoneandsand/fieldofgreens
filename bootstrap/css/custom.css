@@ -1,0 +1,46 @@
+.navbar {
+  border-bottom: 1px solid #000000
+}
+.new-list-header {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.new-list-name {
+  font-size: 16px;
+  margin-left: 10px;
+}
+/*====== Each item in list ======*/
+.list-item {
+  font-size: 20px;
+  font-weight: bold;
+  align-content: center;
+  border: 1px solid #000000;
+  background-color:#f7f4dc;
+  padding: 5px;
+  margin-bottom: 2.5px;
+  border-radius: 5px;
+}
+
+/*====== Delete Item Button ======*/
+.btn {
+  position: relative;
+}
+
+/*====== Each Individual Recall Item ======*/
+.recalls {
+  border: 1px solid #000000;
+  background-color:#f7f4dc;
+  padding: 5px;
+  margin: 2.5px 20px;
+  border-radius: 5px;
+}
+
+/*====== All Saved Shopping Lists ======*/
+.savedList {
+  border: 1px solid #000000;
+  background-color:#f7f4dc;
+  padding: 5px;
+  margin-bottom: 2.5px;
+  border-radius: 5px;
+}

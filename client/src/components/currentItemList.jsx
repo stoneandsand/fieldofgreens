@@ -3,10 +3,13 @@ import ItemEntry from './itemEntry.jsx';
 
 let currentItemList = (props) => (
 <div>
-
-  <div>Current Grossery List</div>
-
-  <div>{props.savedListName}</div>
+  <div>
+    <span className="new-list-header">
+      Current Grossery List:
+    </span>
+    <span className="new-list-name">{props.savedListName || "list not saved"}
+    </span>
+  </div>
   <div>{props.currentItems.map((singleItem, i) =>
     <ItemEntry
       deleteItem={props.deleteItem}
@@ -15,14 +18,7 @@ let currentItemList = (props) => (
       key={singleItem.name}
     />)
   }</div>
-
-  <button type='submit' onClick={props.searchfda}>Search FDA</button>
-
-  <input type="text" value={props.inputListName} onChange={props.updateGrosseryListName} />
-  <button type='submit' onClick={props.saveGrosseryListName}>Save List</button>
-
 </div>
   )
-
 
 export default currentItemList;
