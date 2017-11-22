@@ -5,7 +5,7 @@ let currentItemList = (props) => (
 <div>
   <div>
     <span className="new-list-header">
-      Current Grossery List!!!:
+      Current Grossery List:
     </span>
     <span className="new-list-name">{props.savedListName || "list not saved"}
     </span>
