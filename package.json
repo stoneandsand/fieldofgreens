@@ -11,7 +11,7 @@
     "wp": "webpack -d --progress --colors --watch",
     "start": "node server/index.js",
     "startdev": "nodemon --inspect server/index.js",
-    "postinstall": "webpack -p --config ./webpack.prod.config.js --progress"
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "repository": {
     "type": "git",
