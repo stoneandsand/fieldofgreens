@@ -268,6 +268,7 @@ th {
   font-style: normal;
   font-weight: normal;
   line-height: 1;
+  color: #3d3d3d;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -1078,7 +1079,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
-  background-color: #f4fffb;
+  background-color: #edefff;
 }
 input,
 button,
@@ -3050,14 +3051,14 @@ fieldset[disabled] a.btn {
 }
 .btn-default {
   color: #333333;
-  background-color: #dd4108;
-  border-color: #cccccc;
+  background-color: #e2e2e2;
+  border-color: #e2e2e2;
 }
 .btn-default:focus,
 .btn-default.focus {
   color: #333333;
   background-color: #e6e6e6;
-  border-color: #8c8c8c;
+  border-color: #e2e2e2;
 }
 .btn-default:hover {
   color: #333333;
@@ -3166,6 +3167,7 @@ fieldset[disabled] .btn-primary.focus {
   color: #ffffff;
   background-color: #5cb85c;
   border-color: #4cae4c;
+  margin-left: 8px;
 }
 .btn-success:focus,
 .btn-success.focus {
@@ -4485,8 +4487,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #E0A950;
-  border-color: #E0A950;
+  background-color: #5bb259;
+  border-color: #5bb259;
 }
 .navbar-default .navbar-brand {
   color: #E0A950;

@@ -7,7 +7,7 @@ let saveList = (props) => (
     <label>
       <input type="text" placeholder="Add List Name Here" value={props.inputListName} onChange={props.updateGrosseryListName}/>
     </label>
-    <input type="submit" value="Save List"/>
+    <input type="submit" class="btn btn-success" value="Save List"/>
   </form>
 
 </div>
