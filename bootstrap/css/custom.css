@@ -1,6 +1,18 @@
-.navbar {
-  border-bottom: 1px solid #000000
+body {
+  background-color: #f3fff2;
+  color: #701b0a;
+  font-family: 'Sans Serif', Open Sans;
 }
+
+.navbar {
+  border-bottom: 0px solid #000000;
+}
+
+.main-title {
+  font-family: 'Satisfy', cursive;
+  color: #ffffff;
+}
+
 .new-list-header {
   font-size: 20px;
   font-weight: bold;
@@ -15,11 +27,12 @@
   font-size: 20px;
   font-weight: bold;
   align-content: center;
-  border: 1px solid #000000;
-  background-color:#f7f4dc;
+  border-bottom: 0px solid #000000;
+  background-color:#f3fff2new-list-header;
   padding: 5px;
   margin-bottom: 2.5px;
   border-radius: 5px;
+  font-family: 'Satisfy', cursive;
 }
 
 /*====== Delete Item Button ======*/
@@ -29,18 +42,27 @@
 
 /*====== Each Individual Recall Item ======*/
 .recalls {
-  border: 1px solid #000000;
-  background-color:#f7f4dc;
+  border-left: 1px solid #c6c6c6;
+  border-bottom: 1px solid #c6c6c6;
+  background-color:#ffffff;
   padding: 5px;
-  margin: 2.5px 20px;
+  margin: 4px 20px;
   border-radius: 5px;
+  font-family: 'Sans Serif', Open Sans;
+  color: #000000;
 }
 
 /*====== All Saved Shopping Lists ======*/
 .savedList {
-  border: 1px solid #000000;
-  background-color:#f7f4dc;
+  border-bottom: 1px solid #c6c6c6;
+  border-top: 1px solid #c6c6c6;
+  background-color:#ffffff;
   padding: 5px;
   margin-bottom: 2.5px;
   border-radius: 5px;
+}
+
+.new-list-header {
+  font-family: 'Satisfy', cursive;
+  font-size: 28px;
 }
