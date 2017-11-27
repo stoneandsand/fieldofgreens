@@ -8,6 +8,7 @@ let recalls = ({recall}) => (
     <div>
       {recall ? 'Product: ' + recall.product_description : ""}
     </div>
+    <br></br>
     <div>
       {recall ? 'Reason For Recall:' + recall.reason_for_recall : ""}
     </div>
