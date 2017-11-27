@@ -1,7 +1,8 @@
 body {
   background-color: #f3fff2;
   color: #701b0a;
-  font-family: 'Sans Serif', Open Sans;
+  /*font-family: 'Sans Serif', Open Sans;*/
+  font-family: 'Nunito', sans-serif;
 }
 
 .navbar {
@@ -25,25 +26,30 @@ body {
 /*====== Each item in list ======*/
 .list-item {
   font-size: 20px;
-  font-weight: bold;
+  font-weight: bolder;
   align-content: center;
   border-bottom: 0px solid #000000;
-  background-color:#f3fff2new-list-header;
-  padding: 5px;
+  background-color:#f3fff2;
+  padding: 3px;
   margin-bottom: 2.5px;
   border-radius: 5px;
-  font-family: 'Satisfy', cursive;
+  font-family: 'Nunito', sans-serif;
 }
 
 /*====== Delete Item Button ======*/
-.btn {
+.btn-success {
+  background-color: #31bc82;
+}
+
+.btn-default{
   position: relative;
+  padding: 4px 6px 2.5px 6px;
 }
 
 /*====== Each Individual Recall Item ======*/
 .recalls {
-  border-left: 1px solid #c6c6c6;
-  border-bottom: 1px solid #c6c6c6;
+  border-left: 2px solid #c6c6c6;
+  border-bottom: 2px solid #c6c6c6;
   background-color:#ffffff;
   padding: 5px;
   margin: 4px 20px;
@@ -54,8 +60,8 @@ body {
 
 /*====== All Saved Shopping Lists ======*/
 .savedList {
-  border-bottom: 1px solid #c6c6c6;
-  border-top: 1px solid #c6c6c6;
+  border-bottom: 2px solid #c6c6c6;
+  border-left: 2px solid #c6c6c6;
   background-color:#ffffff;
   padding: 5px;
   margin-bottom: 2.5px;
@@ -63,6 +69,6 @@ body {
 }
 
 .new-list-header {
-  font-family: 'Satisfy', cursive;
+  font-family: 'Nunito', sans-serif;
   font-size: 28px;
 }

@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.json());
 
 
-// Helper function for getting data that matches the recalls GET request
+// Helper function for getting data that matches the recalls GET request`
 
 let getRecallMatches = (keywordsArray) => {
   let matches = [];
@@ -29,7 +29,7 @@ let getRecallMatches = (keywordsArray) => {
   })
   console.log('matches after filter ', matches)
 
-  return matches;
+  return matches
 }
  // || recalls.recallData[k]['brand name'].toUpperCase().includes(keywordsArray[i].toUpperCase()
 
@@ -73,7 +73,7 @@ app.get('/searchNewList', function(req, res) {
   })
   matches.unshift(JSON.parse(req.query.item).name);
   console.log('matches ======>', matches);
-  res.send(matches);
+  res.send(matches.slice(0, 11));
 });
 
 
