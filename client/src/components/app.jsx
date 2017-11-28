@@ -153,35 +153,37 @@ import SaveList from './savelist.jsx';
           </div>
         </nav>
         <div className="container-fluid">
-          <div className="col-md-3">
+          <div className="col-md-4">
             <ItemInput
             updateNewItemEntry={this.updateNewItemEntry.bind(this)}
             newItemEntry={this.state.newitemEntry}
             onKeyPress={this.onKeyPress.bind(this)}
             addNewItemToList={this.addNewItemToList.bind(this)}/>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-4">
             <StateDropdown
               selectstate={this.selectState.bind(this)}/>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-4">
             <SaveList inputListName={this.state.inputListName} updateGrosseryListName={this.updateGrosseryListName.bind(this)} saveGrosseryListName={this.saveGrosseryListName.bind(this)}/>
           </div>
         </div>
         <div className="row">
-          <div className="col-md-9">
-            <CurrentItemList
-            deleteItem={this.deleteItem.bind(this)}
-            searchfda={this.searchFDA.bind(this)}
-            currentItems={this.state.currentItems}
-            updateGrosseryListName={this.updateGrosseryListName.bind(this)}
-            saveGrosseryListName={this.saveGrosseryListName.bind(this)}
-            savedListName={this.state.savedListName}
-            inputListName={this.state.inputListName} />
+          <div className="col-md-1">
           </div>
-          <div className="col-md-3">
-            <ShoppingList savedLists={this.state.savedListsfromDB} getSavedItems={this.getSavedListItems.bind(this)}/>
-          </div>
+            <div className="col-md-7">
+              <CurrentItemList
+              deleteItem={this.deleteItem.bind(this)}
+              searchfda={this.searchFDA.bind(this)}
+              currentItems={this.state.currentItems}
+              updateGrosseryListName={this.updateGrosseryListName.bind(this)}
+              saveGrosseryListName={this.saveGrosseryListName.bind(this)}
+              savedListName={this.state.savedListName}
+              inputListName={this.state.inputListName} />
+            </div>
+            <div className="col-md-4">
+              <ShoppingList savedLists={this.state.savedListsfromDB} getSavedItems={this.getSavedListItems.bind(this)}/>
+            </div>
         </div>
       </div>
     )
