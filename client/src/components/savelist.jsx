@@ -5,7 +5,7 @@ let saveList = (props) => (
 
     <form className="save-list" onSubmit={props.saveGrosseryListName}>
     <label>
-      <input type="text" placeholder="New List Name" value={props.inputListName} onChange={props.updateGrosseryListName}/>
+      <input type="text" class="item-input" placeholder="New List Name" value={props.inputListName} onChange={props.updateGrosseryListName}/>
     </label>
     <input type="submit" class="btn btn-success" value="Save List"/>
   </form>

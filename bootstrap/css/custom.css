@@ -1,5 +1,9 @@
 body {
   background-color: #f3fff2;
+  background-image: url("https://hdwallsource.com/img/2014/2/farm-wallpaper-16697-17237-hd-wallpapers.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
   color: #701b0a;
   /*font-family: 'Sans Serif', Open Sans;*/
   font-family: 'Nunito', sans-serif;
@@ -29,11 +33,11 @@ body {
   font-weight: bolder;
   align-content: center;
   border-bottom: 0px solid #000000;
-  background-color:#f3fff2;
-  padding: 3px;
-  margin-bottom: 2.5px;
-  border-radius: 5px;
+  background: rgba(255, 255, 255, .7);
+  padding: 1px 10px;
+  margin-bottom: 50px;
   font-family: 'Nunito', sans-serif;
+  margin-left: 2.5px;
 }
 
 /*====== Delete Item Button ======*/
@@ -44,31 +48,33 @@ body {
 .btn-default{
   position: relative;
   padding: 4px 6px 2.5px 6px;
+  margin-right: 3.5px;
+  margin-bottom: 5px;
 }
 
 /*====== Each Individual Recall Item ======*/
 .recalls {
-  border-left: 2px solid #c6c6c6;
-  border-bottom: 2px solid #c6c6c6;
   background-color:#ffffff;
+  background: rgba(255, 255, 255, .7);
   padding: 5px;
   margin: 4px 20px;
-  border-radius: 5px;
   font-family: 'Sans Serif', Open Sans;
   color: #000000;
 }
 
 /*====== All Saved Shopping Lists ======*/
 .savedList {
-  border-bottom: 2px solid #c6c6c6;
-  border-left: 2px solid #c6c6c6;
   background-color:#ffffff;
+  background: rgba(255, 255, 255, .7);
   padding: 5px;
   margin-bottom: 2.5px;
-  border-radius: 5px;
 }
 
 .new-list-header {
   font-family: 'Nunito', sans-serif;
   font-size: 28px;
+}
+
+.item-input {
+   background: rgba(255, 255, 255, .7);
 }
