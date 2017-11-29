@@ -6,9 +6,9 @@ let itemInput = ({newItemEntry, updateNewItemEntry, addNewItemToList, onKeyPress
 
      <form id="add-item" onSubmit={addNewItemToList}>
       <label>
-        <input class="item-input" type="text" placeholder="New Item" value={newItemEntry} onChange={updateNewItemEntry}/>
+        <input className="item-input" type="text" placeholder="New Item" value={newItemEntry} onChange={updateNewItemEntry}/>
       </label>
-      <input type="submit" class="btn btn-success" value="Add Item" />
+      <input type="submit" className="btn btn-success" value="Add Item" />
     </form>
 
   </div>
