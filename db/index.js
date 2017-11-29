@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-let uri = 'mongodb://heroku_zjh1jgx1:u9imk8885hh3m9b76a434chhbi@ds117316.mlab.com:17316/heroku_zjh1jgx1';
-mongoose.connect(uri);
+const DB_URI = process.env.MONGODB_URI ? `${process.env.MONGODB_URI}/fieldofgreens` : 'mongodb://localhost/fieldofgreens';
+mongoose.connect(DB_URI);
 
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
