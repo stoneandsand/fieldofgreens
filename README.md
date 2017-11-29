@@ -8,7 +8,7 @@
 
 Application instructions:
 
-package.json in root folder contains some scripts for you to use in terminal! Type the commands without the quotation marks!!
+package.json in root folder contains some scripts for you to use in terminal. Run these commands in shell.
 
 "npm run wp" will start webpack. Run it once and it will watch for any new changes and automatically transpile to browser-friendly code!
 
