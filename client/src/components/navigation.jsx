@@ -23,9 +23,9 @@ class Navigation extends React.Component {
             </form>
           </div>
           <div className="col-md-4 signUpOrSettings">
-          {
-            this.state.isLoggedIn ? <h3>Settings</h3> : <h3>Sign Up</h3>
-          }
+            {
+              this.state.isLoggedIn ? <h3>Settings</h3> : <h3>Sign Up</h3>
+            }
           </div>
         </div>
       </div>
