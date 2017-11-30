@@ -42,8 +42,7 @@ class App extends React.Component {
     e.preventDefault();
     this.state.currentItems.unshift({ name: this.state.newItemEntry, recalls: '' });
     this.setState({ currentItems: this.state.currentItems }, this.searchFDA);
-    const form = document.getElementById('add-item');
-    form.reset();
+    this.setState({newItemEntry: ''});
   }
 
   onKeyPress(e) {
