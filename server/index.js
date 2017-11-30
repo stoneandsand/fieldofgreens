@@ -3,7 +3,7 @@ let app = express();
 let bodyParser = require('body-parser');
 let recalls = require('../db/test.js');
 let mongoose = require('mongoose');
-let db = require('../db/index.js');
+let db = require('../db/indexUser.js');
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/../'));
@@ -38,6 +38,7 @@ let getRecallMatches = (keywordsArray) => {
 app.post('/saveList', function(req, res) {
 
   let items = [];
+  let userName = req.body.username;
   for (let x = 0; x < req.body.items.length; x++) {
     items.push(req.body.items[x].name);
   }
@@ -45,7 +46,7 @@ app.post('/saveList', function(req, res) {
     "name": req.body.listName,
     "items": items
   };
-  db.saveList(toSave, function(err, result) {
+  db.saveList(userName, toSave, function(err, result) {
     if (err) {
       console.err(err);
     } else {
@@ -82,7 +83,7 @@ app.get('/searchNewList', function(req, res) {
 
 app.get('/getList', function(req, res) {
 
-  db.findList(req.query.name, function(err, result) {
+  db.findList(req.query.username, req.query.name, function(err, result) {
     if(err) {
       throw err;
     } else {
