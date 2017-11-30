@@ -3,7 +3,7 @@ let app = express();
 let bodyParser = require('body-parser');
 let recalls = require('../db/test.js');
 let mongoose = require('mongoose');
-let db = require('../db/indexUser.js');
+let db = require('../db/index.js');
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/../'));
@@ -21,12 +21,10 @@ let getRecallMatches = (keywordsArray) => {
       }
     }
   }
-
   matches = matches.filter(function(match) {
     return match.status === 'Ongoing'
 
   })
-
   return matches
 }
  // || recalls.recallData[k]['brand name'].toUpperCase().includes(keywordsArray[i].toUpperCase()
@@ -45,7 +43,7 @@ app.post('/signup', (req, res) => {
 
 //GET request for getting recall data from test.js
 
-app.get('/api/searchNewList', function(req, res) {
+app.get('/api/search', function(req, res) {
   console.log(req.body);
   //expecting {item: , location: }
   let keywords = JSON.parse(req.body.item).name.split(' ');
@@ -81,34 +79,18 @@ app.post('/api/:username/saveList', function(req, res) {
   });
 });
 
-
+// GET request for retrieving all saved lists names for rendering Saved Shopping List component of a user
+app.get('/api/:username/getSavedLists', (req, res) => {
+  db.getUserLists(req.body.username, (userLists) => {
+    res.send(userLists)
+  });
+});
 
 
 // GET request for retrieving a single saved list
-app.get('/api/:username/:list', function(req, res) {
-  db.findList(req.body.name, (err, result) => {
-    if (err) {
-      console.error(err);
-    } else {
-      res.send(result);
-    }
-  })
-})
-
-// GET request for retrieving all saved lists names for rendering Saved Shopping List component of a user
-app.get('/getSavedLists', function(req, res) {
-  db.getAllLists(function(err, results) {
-    if(err) {
-      console.log('ERROR GETTING SAVED LISTS')
-    } else {
-      console.log('THIS EVERY LIST FROM DB', results)
-      let justListNames = [];
-      for(let key in results) {
-        justListNames.push(results[key]['name'])
-      }
-      console.log(justListNames)
-      res.send(justListNames);
-    }
+app.get('/api/:username/:list', (req, res) => {
+  db.findList(req.body.name, req.body.list, (targetList) => {
+    res.send(targetList);
   });
 });
 
