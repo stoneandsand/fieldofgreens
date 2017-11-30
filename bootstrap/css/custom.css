@@ -1,12 +1,12 @@
 body {
   background-color: #f3fff2;
-  background-image: url("https://hdwallsource.com/img/2014/2/farm-wallpaper-16697-17237-hd-wallpapers.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
   color: #701b0a;
   /*font-family: 'Sans Serif', Open Sans;*/
   font-family: 'Nunito', sans-serif;
+}
+
+.navigation {
+  background-color: #d3d3d3;
 }
 
 .navbar {
