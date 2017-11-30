@@ -2,10 +2,6 @@
   background-color: #d3d3d3;
 }
 
-.new-list-name {
-  font-size: 16px;
-  margin-left: 10px;
-}
 /*====== Each item in list ======*/
 .list-item {
   font-size: 20px;
