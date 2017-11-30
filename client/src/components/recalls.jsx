@@ -1,6 +1,4 @@
 import React from 'react';
-import Bootstrap from '../../../bootstrap/css/bootstrap.css';
-import Custom from '../../../bootstrap/css/custom.css';
 
 const recalls = ({ recall }) => (
   <div className="recalls">

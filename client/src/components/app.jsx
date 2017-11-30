@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Bootstrap from '../../../bootstrap/css/bootstrap.css';
 import StateDropdown from './stateDropdown.jsx';
 import ItemInput from './iteminput.jsx';
 import CurrentItemList from './currentItemList.jsx';
 import ShoppingList from './shoppingList.jsx';
 import SaveList from './savelist.jsx';
-import Navigation from './navigation.jsx'
+import Navigation from './navigation.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -141,27 +140,28 @@ class App extends React.Component {
     return (
       <div>
         <Navigation />
-        <div className="container-fluid">
-          <div className="col-md-4">
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+            <StateDropdown
+              selectstate={this.selectState.bind(this)}
+              />
             <ItemInput
               updateNewItemEntry={this.updateNewItemEntry.bind(this)}
               newItemEntry={this.state.newitemEntry}
               onKeyPress={this.onKeyPress.bind(this)}
               addNewItemToList={this.addNewItemToList.bind(this)}
-            />
+              />
+            </div>
           </div>
-          <div className="col-md-4">
-            <StateDropdown
-              selectstate={this.selectState.bind(this)}
-            />
-          </div>
-          <div className="col-md-4">
-            <SaveList inputListName={this.state.inputListName} updateGrosseryListName={this.updateGrosseryListName.bind(this)} saveGrosseryListName={this.saveGrosseryListName.bind(this)} />
+          <div className="row">
+            <div className="col-12">
+              <SaveList inputListName={this.state.inputListName} updateGrosseryListName={this.updateGrosseryListName.bind(this)} saveGrosseryListName={this.saveGrosseryListName.bind(this)} />
+            </div>
           </div>
         </div>
         <div className="row">
-          <div className="col-md-1" />
-          <div className="col-md-7">
+          <div className="col-8">
             <CurrentItemList
               deleteItem={this.deleteItem.bind(this)}
               searchfda={this.searchFDA.bind(this)}
