@@ -10,3 +10,5 @@ dist/bundle.js
 *.env
 *.dev
 .DS_Store
+*~
+*.tern-port
