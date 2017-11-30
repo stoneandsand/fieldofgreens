@@ -85,12 +85,12 @@ class App extends React.Component {
   }
 
   // sets state for inputListName when user types in list name into input
-  updateGrosseryListName(e) {
+  updateGroceryListName(e) {
     this.setState({ inputListName: e.target.value });
   }
 
-  // sets state savedListName to what was set in updateGrosseryListName, also calls submitNewList
-  saveGrosseryListName(e) {
+  // sets state savedListName to what was set in updateGroceryListName, also calls submitNewList
+  saveGroceryListName(e) {
     e.preventDefault();
     this.setState({ savedListName: this.state.inputListName }, this.submitNewList);
     this.state.inputListName = '';
@@ -159,7 +159,7 @@ class App extends React.Component {
             <div className="col-12 col-md-auto">
               <ShoppingList savedLists={this.state.savedListsfromDB} getSavedListItems={this.getSavedListItems.bind(this)} />
               <div>
-                <SaveList inputListName={this.state.inputListName} updateGrosseryListName={this.updateGrosseryListName.bind(this)} saveGrosseryListName={this.saveGrosseryListName.bind(this)} />
+                <SaveList inputListName={this.state.inputListName} updateGroceryListName={this.updateGroceryListName.bind(this)} saveGroceryListName={this.saveGroceryListName.bind(this)} />
               </div>
             </div>
           </div>
@@ -170,8 +170,8 @@ class App extends React.Component {
               deleteItem={this.deleteItem.bind(this)}
               searchfda={this.searchFDA.bind(this)}
               currentItems={this.state.currentItems}
-              updateGrosseryListName={this.updateGrosseryListName.bind(this)}
-              saveGrosseryListName={this.saveGrosseryListName.bind(this)}
+              updateGroceryListName={this.updateGroceryListName.bind(this)}
+              saveGroceryListName={this.saveGroceryListName.bind(this)}
               savedListName={this.state.savedListName}
               inputListName={this.state.inputListName}
                />}
