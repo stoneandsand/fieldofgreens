@@ -7,6 +7,7 @@ import ItemInput from './iteminput.jsx';
 import CurrentItemList from './currentItemList.jsx';
 import ShoppingList from './shoppingList.jsx';
 import SaveList from './savelist.jsx';
+import Navigation from './navigation.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -141,13 +142,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-default navbar-fixed-top">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <h1 className="main-title">The Grossery List</h1>
-            </div>
-          </div>
-        </nav>
+        <Navigation />
         <div className="container-fluid">
           <div className="col-md-4">
             <ItemInput
