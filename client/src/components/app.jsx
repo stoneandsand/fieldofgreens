@@ -41,15 +41,8 @@ class App extends React.Component {
   addNewItemToList(e) {
     e.preventDefault();
     this.state.currentItems.unshift({ name: this.state.newItemEntry, recalls: '' });
-    this.setState({ currentItems: this.state.currentItems }, this.searchFDA);
     this.setState({newItemEntry: ''});
-  }
-
-  onKeyPress(e) {
-    console.log('on keypress');
-    if (e.keycode === 13) {
-      this.addNewItemToList(e);
-    }
+    this.setState({ currentItems: this.state.currentItems }, this.searchFDA);
   }
 
   // deletes item from list when "delete" is clicked next to item
