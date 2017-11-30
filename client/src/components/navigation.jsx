@@ -1,5 +1,6 @@
 import React from 'react';
 import ItemInput from './iteminput.jsx';
+import StateDropdown from './stateDropdown.jsx';
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -15,13 +16,16 @@ class Navigation extends React.Component {
     return (
       <div className="container-fluid navigation">
         <div className="row">
-          <div className="col-md-4 loginOrOut">
+          <div className="col-md-3 loginOrOut">
             <h1>The Grossery List</h1>
           </div>
-          <div className="col-md-4 search">
+          <div className="col-md-3 search">
             <ItemInput />
           </div>
-          <div className="col-md-4 signUpOrSettings">
+          <div className="col-md-3 dropdown">
+            <StateDropdown />
+          </div>
+          <div className="col-md-3 signUpOrSettings">
             {
               this.state.isLoggedIn ? isLoggedIn : isNotLoggedIn
             }
