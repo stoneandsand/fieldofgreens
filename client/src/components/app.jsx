@@ -36,7 +36,6 @@ class App extends React.Component {
     this.setState({ newItemEntry: e.target.value });
   }
 
-
   // adds new item to current list when "Add New Item" is clicked
   addNewItemToList(e) {
     e.preventDefault();
@@ -45,7 +44,6 @@ class App extends React.Component {
     const form = document.getElementById('add-item');
     form.reset();
   }
-
 
   onKeyPress(e) {
     console.log('on keypress');
@@ -139,7 +137,6 @@ class App extends React.Component {
         app.setState({ currentItems: newItems, savedListName: listName }, app.searchFDA);
       });
   }
-
 
   render() {
     return (
