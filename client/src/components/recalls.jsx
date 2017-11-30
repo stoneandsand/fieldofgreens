@@ -3,7 +3,6 @@ import Bootstrap from '../../../bootstrap/css/bootstrap.css';
 import Custom from '../../../bootstrap/css/custom.css';
 
 const recalls = ({ recall }) => (
-
   <div className="recalls">
     <div>
       {recall ? `Product: ${recall.product_description}` : ''}
