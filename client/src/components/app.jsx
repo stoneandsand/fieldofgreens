@@ -116,10 +116,9 @@ class App extends React.Component {
   // list of lists renders on page
   getSavedLists() {
     console.log('saved list');
-    const app = this;
     axios.get('/getSavedLists')
       .then((data) => {
-        app.setState({ savedListsfromDB: data.data });
+        this.setState({ savedListsfromDB: data.data });
       })
       .catch((error) => {
       });
@@ -128,14 +127,13 @@ class App extends React.Component {
   // when a saved list's list name is clicked, items of that list become currentItems and render on page
   getSavedListItems(listName) {
     console.log('getsavedlistitems has been called in shoppinglistentry');
-    const app = this;
     const newItems = [];
     axios.get('/getList', { params: { name: listName } })
       .then((response) => {
         const mapped = response.data[0].items.map((item) => {
           newItems.push({ name: item, recalls: '' });
         });
-        app.setState({ currentItems: newItems, savedListName: listName }, app.searchFDA);
+        this.setState({ currentItems: newItems, savedListName: listName }, this.searchFDA);
       });
   }
 
