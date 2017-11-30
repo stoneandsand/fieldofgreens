@@ -5,9 +5,9 @@ const currentItemList = props => (
   <div>
     <div>
       <span className="new-list-header">
-      Current List:
+        Recalls:
       </span>
-      <span className="new-list-name">{props.savedListName || 'list not saved'}
+      <span className="new-list-name">{props.savedListName}
       </span>
     </div>
     <div>{props.currentItems.map((singleItem, i) =>
