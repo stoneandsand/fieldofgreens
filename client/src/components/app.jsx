@@ -144,25 +144,23 @@ class App extends React.Component {
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto">
-            <StateDropdown
-              selectstate={this.selectState.bind(this)}
-              />
-            <ItemInput
-              updateNewItemEntry={this.updateNewItemEntry.bind(this)}
-              newItemEntry={this.state.newitemEntry}
-              onKeyPress={this.onKeyPress.bind(this)}
-              addNewItemToList={this.addNewItemToList.bind(this)}
-              />
+              <StateDropdown
+                selectstate={this.selectState.bind(this)}
+                />
+              <ItemInput
+                updateNewItemEntry={this.updateNewItemEntry.bind(this)}
+                newItemEntry={this.state.newitemEntry}
+                onKeyPress={this.onKeyPress.bind(this)}
+                addNewItemToList={this.addNewItemToList.bind(this)}
+                />
             </div>
           </div>
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto">
               <ShoppingList savedLists={this.state.savedListsfromDB} getSavedListItems={this.getSavedListItems.bind(this)} />
-            </div>
-          </div>
-          <div className="row justify-content-md-center">
-            <div className="col-12 col-md-auto">
-              <SaveList inputListName={this.state.inputListName} updateGrosseryListName={this.updateGrosseryListName.bind(this)} saveGrosseryListName={this.saveGrosseryListName.bind(this)} />
+              <div>
+                <SaveList inputListName={this.state.inputListName} updateGrosseryListName={this.updateGrosseryListName.bind(this)} saveGrosseryListName={this.saveGrosseryListName.bind(this)} />
+              </div>
             </div>
           </div>
         </div>
@@ -176,7 +174,7 @@ class App extends React.Component {
               saveGrosseryListName={this.saveGrosseryListName.bind(this)}
               savedListName={this.state.savedListName}
               inputListName={this.state.inputListName}
-            />
+              />
           </div>
         </div>
       </div>
