@@ -2,7 +2,7 @@ import React from 'react';
 
 const itemInput = ({newItemEntry, updateNewItemEntry, addNewItemToList, onKeyPress,}) => (
   <div>
-    <form id="form-group" onSubmit={addNewItemToList}>
+    <form className="form-group" onSubmit={addNewItemToList}>
       <div className="input-group">
       <input className="form-control" type="text" placeholder="New Item" value={newItemEntry} onChange={updateNewItemEntry} />
       <span className="input-group-btn">
