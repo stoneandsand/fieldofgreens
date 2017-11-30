@@ -21,20 +21,47 @@ let getRecallMatches = (keywordsArray) => {
       }
     }
   }
-  console.log('matches before filter ', matches)
 
   matches = matches.filter(function(match) {
     return match.status === 'Ongoing'
 
   })
-  console.log('matches after filter ', matches)
 
   return matches
 }
  // || recalls.recallData[k]['brand name'].toUpperCase().includes(keywordsArray[i].toUpperCase()
 
-// POST request for saving new list to database
+app.post('/signup', (req, res) => {
+  console.log(req.body);
+  //expecting {username: '', password: ''}
+  db.signup(req.body, () => {}
 
+  );
+});
+
+//GET request for getting recall data from test.js
+
+app.get('/api/searchNewList', function(req, res) {
+  console.log(req.body);
+  //expecting {item: , location: }
+  let keywords = JSON.parse(req.body.item).name.split(' ');
+  console.log(keywords);
+
+  let matches = getRecallMatches(keywords);
+  // This commented out section is for filtering the matches to the users set location.
+    // matches.filter((match) => {
+  //   match['distribution_pattern'].indexOf(JSON.parse(req.query.state)) >= 0 || match['distribution_pattern'].indexOf("Nationwide") >= 0
+  // })
+  matches = matches.filter(function(match) {
+    return match['distribution_pattern'].includes(req.query.state) || match['distribution_pattern'].includes('Nationwide');
+  })
+  matches.unshift(JSON.parse(req.query.item).name);
+  console.log('matches ======>', matches);
+  res.send(matches.slice(0, 11));
+});
+
+
+// POST request for saving new list to database
 app.post('/saveList', function(req, res) {
 
   let items = [];
@@ -54,34 +81,11 @@ app.post('/saveList', function(req, res) {
   })
 });
 
-//GET request for getting recall data from test.js
-
-app.get('/searchNewList', function(req, res) {
-
-  console.log('REQUEST FROM CLIENT', req.query)
-
-  let keywords = JSON.parse(req.query.item).name.split(' ');
-  console.log(keywords);
-
-  let matches = getRecallMatches(keywords);
-  // This commented out section is for filtering the matches to the users set location.
-    // matches.filter((match) => {
-  //   match['distribution_pattern'].indexOf(JSON.parse(req.query.state)) >= 0 || match['distribution_pattern'].indexOf("Nationwide") >= 0
-  // })
-  matches = matches.filter(function(match) {
-    return match['distribution_pattern'].includes(req.query.state) || match['distribution_pattern'].includes('Nationwide');
-  })
-  matches.unshift(JSON.parse(req.query.item).name);
-  console.log('matches ======>', matches);
-  res.send(matches.slice(0, 11));
-});
 
 
 
 // GET request for retrieving a single saved list
-
 app.get('/getList', function(req, res) {
-
   db.findList(req.query.name, function(err, result) {
     if(err) {
       throw err;
@@ -91,9 +95,7 @@ app.get('/getList', function(req, res) {
   })
 })
 
-// GET request for retrieving all saved list names for rendering shoppingList component
-
-
+// GET request for retrieving all saved lists names for rendering Saved Shopping List component of a user
 app.get('/getSavedLists', function(req, res) {
   db.getAllLists(function(err, results) {
     if(err) {
