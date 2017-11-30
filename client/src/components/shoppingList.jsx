@@ -12,7 +12,7 @@ const shoppingList = props => (
       </div>
     <div>
       {props.savedLists.map((listEntry, i) => (
-        <ShoppingListEntry key={i} listEntry={listEntry} onClick={props.getSavedItems} />
+        <p key={i} onClick={props.getSavedListItems.bind(null, listEntry)}>{listEntry}</p>
       ))}
     </div>
   </div>
