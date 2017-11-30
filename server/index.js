@@ -43,23 +43,26 @@ app.post('/signup', (req, res) => {
 
 //GET request for getting recall data from test.js
 
-app.get('/api/search', function(req, res) {
+app.get('/api/search', (req, res) => {
   console.log(req.body);
   //expecting {item: , location: }
-  let keywords = JSON.parse(req.body.item).name.split(' ');
-  console.log(keywords);
+  res.send(`server received ${req.body}`);
+  // for testing purposes since this endpoint is not working currently
 
-  let matches = getRecallMatches(keywords);
-  // This commented out section is for filtering the matches to the users set location.
-    // matches.filter((match) => {
-  //   match['distribution_pattern'].indexOf(JSON.parse(req.query.state)) >= 0 || match['distribution_pattern'].indexOf("Nationwide") >= 0
+
+  // let keywords = JSON.parse(req.body.item).name.split(' ');
+  // console.log(keywords);
+  // let matches = getRecallMatches(keywords);
+  // // This commented out section is for filtering the matches to the users set location.
+  //   // matches.filter((match) => {
+  // //   match['distribution_pattern'].indexOf(JSON.parse(req.query.state)) >= 0 || match['distribution_pattern'].indexOf("Nationwide") >= 0
+  // // })
+  // matches = matches.filter(function(match) {
+  //   return match['distribution_pattern'].includes(req.body.state) || match['distribution_pattern'].includes('Nationwide');
   // })
-  matches = matches.filter(function(match) {
-    return match['distribution_pattern'].includes(req.body.state) || match['distribution_pattern'].includes('Nationwide');
-  })
-  matches.unshift(JSON.parse(req.body.item).name);
-  console.log('matches ======>', matches);
-  res.send(matches.slice(0, 11));
+  // matches.unshift(JSON.parse(req.body.item).name);
+  // console.log('matches ======>', matches);
+  // res.send(matches.slice(0, 11));
 });
 
 
