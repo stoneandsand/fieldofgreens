@@ -166,7 +166,7 @@ class App extends React.Component {
         </div>
         <div className="row justify-content-md-center">
           <div className="col-12 col-md-auto">
-            <CurrentItemList
+            {this.state.currentItems.length > 0 && <CurrentItemList
               deleteItem={this.deleteItem.bind(this)}
               searchfda={this.searchFDA.bind(this)}
               currentItems={this.state.currentItems}
@@ -174,7 +174,7 @@ class App extends React.Component {
               saveGrosseryListName={this.saveGrosseryListName.bind(this)}
               savedListName={this.state.savedListName}
               inputListName={this.state.inputListName}
-              />
+               />}
           </div>
         </div>
       </div>
