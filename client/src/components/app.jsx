@@ -158,12 +158,12 @@ class App extends React.Component {
               newItemEntry={this.state.newitemEntry}
               onKeyPress={this.onKeyPress.bind(this)}
               addNewItemToList={this.addNewItemToList.bind(this)}
-              />
+            />
           </div>
           <div className="col-md-4">
             <StateDropdown
               selectstate={this.selectState.bind(this)}
-              />
+            />
           </div>
           <div className="col-md-4">
             <SaveList inputListName={this.state.inputListName} updateGrosseryListName={this.updateGrosseryListName.bind(this)} saveGrosseryListName={this.saveGrosseryListName.bind(this)} />
@@ -180,7 +180,7 @@ class App extends React.Component {
               saveGrosseryListName={this.saveGrosseryListName.bind(this)}
               savedListName={this.state.savedListName}
               inputListName={this.state.inputListName}
-              />
+            />
           </div>
           <div className="col-md-4">
             <ShoppingList savedLists={this.state.savedListsfromDB} getSavedItems={this.getSavedListItems.bind(this)} />
