@@ -173,7 +173,7 @@ class App extends React.Component {
             />
           </div>
           <div className="col-md-4">
-            <ShoppingList savedLists={this.state.savedListsfromDB} getSavedItems={this.getSavedListItems.bind(this)} />
+            <ShoppingList savedLists={this.state.savedListsfromDB} getSavedListItems={this.getSavedListItems.bind(this)} />
           </div>
         </div>
       </div>
