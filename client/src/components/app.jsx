@@ -5,7 +5,7 @@ import StateDropdown from './stateDropdown.jsx';
 import ItemInput from './iteminput.jsx';
 import CurrentItemList from './currentItemList.jsx';
 import ShoppingList from './shoppingList.jsx';
-import SaveList from './savelist.jsx';
+import SaveList from './saveList.jsx';
 import Navigation from './navigation.jsx';
 
 class App extends React.Component {
