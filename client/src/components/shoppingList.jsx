@@ -1,5 +1,4 @@
 import React from 'react';
-import ShoppingListEntry from './shoppingListEntry.jsx';
 
 const shoppingList = props => (
   <div>
