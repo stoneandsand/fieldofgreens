@@ -1,6 +1,6 @@
 import React from 'react';
 
-const itemInput = ({newItemEntry, updateNewItemEntry, addNewItemToList, onKeyPress,}) => (
+const itemInput = ({newItemEntry, updateNewItemEntry, addNewItemToList, }) => (
   <div>
     <form className="form-group" onSubmit={addNewItemToList}>
       <div className="input-group">
