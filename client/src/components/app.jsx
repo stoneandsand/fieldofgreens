@@ -135,23 +135,7 @@ class App extends React.Component {
         <Navigation />
         <div className="container">
           <div className="row justify-content-md-center">
-            <div className="col-12 col-md-auto">
-              <div className="mb-4">
-              <StateDropdown
-                selectstate={this.selectState.bind(this)}
-                />
-              </div>
-              <div className="mb-4">
-              <ItemInput
-                updateNewItemEntry={this.updateNewItemEntry.bind(this)}
-                newItemEntry={this.state.newitemEntry}
-                addNewItemToList={this.addNewItemToList.bind(this)}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="row justify-content-md-center">
-            <div className="col-12 col-md-auto">
+            <div className="col-12 col-md-auto mt-4">
               <ShoppingList savedLists={this.state.savedListsfromDB} getSavedListItems={this.getSavedListItems.bind(this)} />
               <div>
                 <SaveList inputListName={this.state.inputListName} updateGroceryListName={this.updateGroceryListName.bind(this)} saveGroceryListName={this.saveGroceryListName.bind(this)} />
