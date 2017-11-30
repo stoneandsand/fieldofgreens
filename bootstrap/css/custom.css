@@ -4,15 +4,16 @@
 }
 
 .loginOrOut {
-
+  text-align: left;
 }
 
 .search {
-
+  padding-top: 10px;
+  text-align: center;
 }
 
 .signUpOrSettings {
-
+  text-align: right;
 }
 
 /*====== Each item in list ======*/
