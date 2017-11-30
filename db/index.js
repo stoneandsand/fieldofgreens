@@ -39,9 +39,10 @@ const signup = (data, callback) => {
 const getUserLists = (user, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
-      console.error('')
+      console.error(err)
     } else {
       if (!userEntry) {
+        console.log('no user found');
         callback([]);
       } else {
         callback(userEntry.lists);
@@ -73,12 +74,12 @@ const saveList = (user, list, callback) => {
 };
 
 // Returns a list of a user and runs callback on its contents to the client
-const findList = (user, list, callback) => {
+const findList = (user, id, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
       console.error(err);
     } else {
-      let targetList = userEntry.lists.filter(listEntry => listEntry.name === list).pop();
+      let targetList = userEntry.lists.filter(listEntry => listEntry._id.toString() === id).pop();
       if (targetList) {
         callback(targetList);
       } else {

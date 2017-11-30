@@ -16,7 +16,7 @@ let getRecallMatches = (keywordsArray) => {
   let matches = [];
   for (let i = 0; i < keywordsArray.length; i++) {
     for (let k = 0; k < recalls.recallData.length; k++) {
-      if (recalls.recallData[k]['product_description'].toUpperCase().includes(keywordsArray[i].toUpperCase())) {
+      if (recalls.recallData[k]['product_description'].toUpperCase().includes(keywordsArray[i].toUpperCase()) && recalls.recallData[k]['report_date'] > '20160427') {
         matches.push(recalls.recallData[k]);
       }
     }
@@ -67,32 +67,36 @@ app.get('/api/search', (req, res) => {
 
 
 // POST request for saving new list to database
-app.post('/api/:username/saveList', function(req, res) {
-
+app.post('/api/users/:username/lists', function(req, res) {
+  // expecting {username: '', items: ['a'], listName: ''}
   let items = [];
-  for (let x = 0; x < req.body.items.length; x++) {
-    items.push(req.body.items[x].name);
+  for (let item of req.body.items) {
+    items.push(item);
   }
   let list = {
     name: req.body.listName,
     items: items
   };
-  db.saveList(req.params.username, list, (updatedLists) => {
+  console.log(list);
+  db.saveList(req.body.username, list, (updatedLists) => {
+    console.log(updatedLists);
     res.send(updatedLists);
   });
 });
 
 // GET request for retrieving all saved lists names for rendering Saved Shopping List component of a user
-app.get('/api/:username/getSavedLists', (req, res) => {
-  db.getUserLists(req.body.username, (userLists) => {
+app.get('/api/users/:username/lists', (req, res) => {
+  db.getUserLists(req.params.username, (userLists) => {
+    console.log(userLists);
     res.send(userLists)
   });
 });
 
 
 // GET request for retrieving a single saved list
-app.get('/api/:username/:list', (req, res) => {
-  db.findList(req.body.name, req.body.list, (targetList) => {
+app.get('/api/users/:username/lists/:id', (req, res) => {
+  db.findList(req.params.username, req.params.id, (targetList) => {
+    console.log(targetList);
     res.send(targetList);
   });
 });
