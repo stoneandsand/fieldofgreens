@@ -3,7 +3,7 @@ import React from 'react';
 const stateDropdown = props => (
   <div>
     <form onChange={props.selectstate}>
-      <label>What state do you live in? </label>
+      <label>Select location</label>
       <select type="text" name="state">
         <option type="text" name="nada" />
         <option type="text" name="al">AL</option>
