@@ -141,8 +141,8 @@ class App extends React.Component {
       <div>
         <Navigation />
         <div className="container">
-          <div className="row">
-            <div className="col-12">
+          <div className="row justify-content-md-center">
+            <div className="col-12 col-md-auto">
             <StateDropdown
               selectstate={this.selectState.bind(this)}
               />
@@ -154,14 +154,19 @@ class App extends React.Component {
               />
             </div>
           </div>
-          <div className="row">
-            <div className="col-12">
+          <div className="row justify-content-md-center">
+            <div className="col-12 col-md-auto">
+              <ShoppingList savedLists={this.state.savedListsfromDB} getSavedListItems={this.getSavedListItems.bind(this)} />
+            </div>
+          </div>
+          <div className="row justify-content-md-center">
+            <div className="col-12 col-md-auto">
               <SaveList inputListName={this.state.inputListName} updateGrosseryListName={this.updateGrosseryListName.bind(this)} saveGrosseryListName={this.saveGrosseryListName.bind(this)} />
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-8">
+        <div className="row justify-content-md-center">
+          <div className="col-12 col-md-auto">
             <CurrentItemList
               deleteItem={this.deleteItem.bind(this)}
               searchfda={this.searchFDA.bind(this)}
@@ -171,9 +176,6 @@ class App extends React.Component {
               savedListName={this.state.savedListName}
               inputListName={this.state.inputListName}
             />
-          </div>
-          <div className="col-md-4">
-            <ShoppingList savedLists={this.state.savedListsfromDB} getSavedListItems={this.getSavedListItems.bind(this)} />
           </div>
         </div>
       </div>
