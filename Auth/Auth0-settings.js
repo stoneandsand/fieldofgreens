@@ -2,7 +2,7 @@ export const AUTH_SETTINGS = {
   domain: 'field-of-greens.auth0.com',
   clientId:'',
   callbackUrl: 'http://localhost:5000:callback',
-  options{
+  options: {
     languageDictionary: {
       title: "fieldOfGreens"
     },
