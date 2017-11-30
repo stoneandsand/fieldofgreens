@@ -17,7 +17,7 @@ class App extends React.Component {
       newItemEntry: '',
       inputListName: '',
       savedListName: '',
-      savedListsfromDB: ['List1', 'List2'],
+      savedListsfromDB: [],
     };
   }
 
