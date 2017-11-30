@@ -144,15 +144,19 @@ class App extends React.Component {
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto">
+              <div className="mb-4">
               <StateDropdown
                 selectstate={this.selectState.bind(this)}
                 />
+              </div>
+              <div className="mb-4">
               <ItemInput
                 updateNewItemEntry={this.updateNewItemEntry.bind(this)}
                 newItemEntry={this.state.newitemEntry}
                 onKeyPress={this.onKeyPress.bind(this)}
                 addNewItemToList={this.addNewItemToList.bind(this)}
                 />
+              </div>
             </div>
           </div>
           <div className="row justify-content-md-center">
