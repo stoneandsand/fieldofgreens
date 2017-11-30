@@ -23,7 +23,8 @@ class App extends React.Component {
 
   // makes get request to get saved shopping lists when component mounts
   componentDidMount() {
-    this.getSavedLists();
+    // should only run if user logged in
+    // this.getSavedLists();
   }
 
   // sets state for state(location) when item selected in dropdown
@@ -66,7 +67,7 @@ class App extends React.Component {
     const newCurrentItems = [];
     const promises = [];
     for (let i = 0; i < this.state.currentItems.length; i++) {
-      promises.push(axios.get('/searchNewList', { params: { item: scope[i], state: app.state.state } }));
+      promises.push(axios.get('/api/search', { params: { item: scope[i], state: app.state.state } }));
     }
     axios.all(promises).then((recallData) => {
       recallData.forEach((response) => {
@@ -80,7 +81,7 @@ class App extends React.Component {
         newCurrentItems.push(obj);
         app.setState({ currentItems: newCurrentItems });
       });
-    });
+    })
   }
 
   // sets state for inputListName when user types in list name into input
@@ -100,7 +101,7 @@ class App extends React.Component {
   // calls getSavedList to get latest list of lists from database to render newest list
   submitNewList() {
     const app = this;
-    axios.post('/saveList', {
+    axios.post(`/api/${username}/saveList`, {
       listName: app.state.savedListName,
       items: app.state.currentItems,
     })
@@ -115,7 +116,7 @@ class App extends React.Component {
   // list of lists renders on page
   getSavedLists() {
     console.log('saved list');
-    axios.get('/getSavedLists')
+    axios.get(`/api/${username}/getSavedLists`)
       .then((data) => {
         this.setState({ savedListsfromDB: data.data });
       })
@@ -127,7 +128,7 @@ class App extends React.Component {
   getSavedListItems(listName) {
     console.log('getsavedlistitems has been called in shoppinglistentry');
     const newItems = [];
-    axios.get('/getList', { params: { name: listName } })
+    axios.get(`/api/${username}/${list}`, { params: { name: listName } })
       .then((response) => {
         const mapped = response.data[0].items.map((item) => {
           newItems.push({ name: item, recalls: '' });
