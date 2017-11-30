@@ -9,13 +9,13 @@ class Navigation extends React.Component {
   }
 
   render() {
+    const isLoggedIn = <h3><span id="logout">Logout</span> <span id="settings">Settings</span></h3>
+    const isNotLoggedIn = <h3><span id="login">Login</span> <span id="signup">Signup</span></h3>
     return (
       <div className="container-fluid navigation">
         <div className="row">
           <div className="col-md-4 loginOrOut">
-            {
-              this.state.isLoggedIn ? <h1>Logout</h1> : <h1>Login</h1>
-            }
+            <h1>The Grossery List</h1>
           </div>
           <div className="col-md-4 search">
             <form>
@@ -24,7 +24,7 @@ class Navigation extends React.Component {
           </div>
           <div className="col-md-4 signUpOrSettings">
             {
-              this.state.isLoggedIn ? <h3>Settings</h3> : <h3>Sign Up</h3>
+              this.state.isLoggedIn ? isLoggedIn : isNotLoggedIn
             }
           </div>
         </div>
