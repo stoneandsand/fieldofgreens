@@ -1,7 +1,7 @@
 import React from 'react';
 
 const stateDropdown = props => (
-  <div>
+  <div className="stateDropdown">
     <form onChange={props.selectstate}>
       <label>Select location</label>
       <select type="text" name="state">
