@@ -34,9 +34,13 @@ let getRecallMatches = (keywordsArray) => {
 app.post('/signup', (req, res) => {
   console.log(req.body);
   //expecting {username: '', password: ''}
-  db.signup(req.body, () => {}
-
-  );
+  db.signup(req.body, (username) => {
+    if (username) {
+      res.send(username);
+    } else {
+      res.send(null);
+    }
+  });
 });
 
 //GET request for getting recall data from test.js
@@ -53,42 +57,38 @@ app.get('/api/searchNewList', function(req, res) {
   //   match['distribution_pattern'].indexOf(JSON.parse(req.query.state)) >= 0 || match['distribution_pattern'].indexOf("Nationwide") >= 0
   // })
   matches = matches.filter(function(match) {
-    return match['distribution_pattern'].includes(req.query.state) || match['distribution_pattern'].includes('Nationwide');
+    return match['distribution_pattern'].includes(req.body.state) || match['distribution_pattern'].includes('Nationwide');
   })
-  matches.unshift(JSON.parse(req.query.item).name);
+  matches.unshift(JSON.parse(req.body.item).name);
   console.log('matches ======>', matches);
   res.send(matches.slice(0, 11));
 });
 
 
 // POST request for saving new list to database
-app.post('/saveList', function(req, res) {
+app.post('/api/:username/saveList', function(req, res) {
 
   let items = [];
   for (let x = 0; x < req.body.items.length; x++) {
     items.push(req.body.items[x].name);
   }
-  let toSave = {
-    "name": req.body.listName,
-    "items": items
+  let list = {
+    name: req.body.listName,
+    items: items
   };
-  db.saveList(toSave, function(err, result) {
-    if (err) {
-      console.err(err);
-    } else {
-      res.send('List has been saved!!!');
-    }
-  })
+  db.saveList(req.params.username, list, (updatedLists) => {
+    res.send(updatedLists);
+  });
 });
 
 
 
 
 // GET request for retrieving a single saved list
-app.get('/getList', function(req, res) {
-  db.findList(req.query.name, function(err, result) {
-    if(err) {
-      throw err;
+app.get('/api/:username/:list', function(req, res) {
+  db.findList(req.body.name, (err, result) => {
+    if (err) {
+      console.error(err);
     } else {
       res.send(result);
     }
@@ -113,5 +113,5 @@ app.get('/getSavedLists', function(req, res) {
 });
 
 app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+  console.log('Server running on port', app.get('port'));
 });
