@@ -1,24 +1,25 @@
 import React from 'react';
 import ItemEntry from './itemEntry.jsx';
 
-let currentItemList = (props) => (
-<div>
+const currentItemList = props => (
   <div>
-    <span className="new-list-header">
+    <div>
+      <span className="new-list-header">
       Current List:
-    </span>
-    <span className="new-list-name">{props.savedListName || "list not saved"}
-    </span>
-  </div>
-  <div>{props.currentItems.map((singleItem, i) =>
-    <ItemEntry
+      </span>
+      <span className="new-list-name">{props.savedListName || 'list not saved'}
+      </span>
+    </div>
+    <div>{props.currentItems.map((singleItem, i) =>
+    (<ItemEntry
       deleteItem={props.deleteItem}
       entry={singleItem}
       i={i}
       key={singleItem.name}
-    />)
-  }</div>
-</div>
-  )
+    />))
+  }
+    </div>
+  </div>
+);
 
 export default currentItemList;
