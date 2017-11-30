@@ -1,6 +1,6 @@
 export const AUTH_SETTINGS = {
   domain: 'field-of-greens.auth0.com',
-  clientId:'',
+  clientId:'cx8oFJZb3bPmXbNq51tV3hKDu5BP1Bct',
   callbackUrl: 'http://localhost:5000:callback',
   options: {
     languageDictionary: {
