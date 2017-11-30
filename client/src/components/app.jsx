@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Bootstrap from '../../../bootstrap/css/bootstrap.css';
 import StateDropdown from './stateDropdown.jsx';
 import ItemInput from './iteminput.jsx';
 import CurrentItemList from './currentItemList.jsx';

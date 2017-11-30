@@ -1,6 +1,5 @@
 import React from 'react';
 import Recalls from './recalls.jsx';
-import Bootstrap from '../../../bootstrap/css/bootstrap.css';
 
 const itemEntry = ({ entry, deleteItem, i }) => (
   <div>
