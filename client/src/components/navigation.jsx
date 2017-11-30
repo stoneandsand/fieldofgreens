@@ -7,7 +7,9 @@ class Navigation extends React.Component {
 
   render() {
     return (
-      <h1>test</h1>
+      <div className="container-fluid navigation">
+        <h1>test</h1>
+      </div>
     );
   }
 }
