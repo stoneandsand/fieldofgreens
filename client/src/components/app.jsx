@@ -145,7 +145,6 @@ class App extends React.Component {
               <ItemInput
                 updateNewItemEntry={this.updateNewItemEntry.bind(this)}
                 newItemEntry={this.state.newitemEntry}
-                onKeyPress={this.onKeyPress.bind(this)}
                 addNewItemToList={this.addNewItemToList.bind(this)}
                 />
               </div>
