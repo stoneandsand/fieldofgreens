@@ -25,3 +25,24 @@ Complete API integration to openFDA recall list
 Scrub data from said API integration
 
 ************************************
+
+RESTful API Endpoints:
+| METHOD   | URL                              | REQ                     | RES                     |
+|:---------|:---------------------------------|:------------------------|:------------------------|
+| GET      | /                                |                         | html                    |
+| POST     | /login                           |                         |                         |
+| POST     | /signup                          |                         |                         |
+| GET      | /api/users/:username/lists/:id   | list                    | {name: '', items: []}   |
+| POST     | /api/users/:username/lists       | {name: '', items: []}   | {name: '', items: []}   |
+| GET      | /api/users/:username/lists       |                         | array                   |
+| GET      | /api/search                      | {name: 'string'}        | array                   |
+| GET      | /api/users/:username/allergies   |                         | array                   |
+| GET      | /api/users/:username/likes       |                         | array                   |
+| GET      | /api/users/:username/dislikes    |                         | array                   |
+| POST     | /api/users/:username/allergies   | {item: ''}              | array                   |
+| POST     | /api/users/:username/likes       | {item: ''}              | array                   |
+| POST     | /api/users/:username/dislikes    | {item: ''}              | array                   |
+| POST     | /api/users/:username/delete      | {name: '', type:''}     | array                   |
+| :------- | :------------------------------- | :---------------------- | :---------------------- |
+
+
