@@ -136,7 +136,7 @@ class App extends React.Component {
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto mt-4">
-              <ListManager savedLists={this.state.savedListsfromDB} getSavedListItems={this.getSavedListItems.bind(this)} inputListName={this.state.inputListName} updateGroceryListName={this.updateGroceryListName.bind(this)} saveGroceryListName={this.saveGroceryListName.bind(this)} />
+              <ListManager currentItems={this.state.currentItems} getSavedListItems={this.getSavedListItems.bind(this)} inputListName={this.state.inputListName} saveGroceryListName={this.saveGroceryListName.bind(this)} savedLists={this.state.savedListsfromDB} updateGroceryListName={this.updateGroceryListName.bind(this)}/>
             </div>
           </div>
         </div>
