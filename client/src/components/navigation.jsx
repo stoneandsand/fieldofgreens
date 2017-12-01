@@ -16,7 +16,6 @@ class Navigation extends React.Component {
   }
 
   render() {
-    console.log('Navigation props: ',this.props)
     const isLoggedIn = <h3><span id="logout" onClick={this.props.logout}>Logout</span> <span id="settings">Settings</span></h3>;
     const isNotLoggedIn = <h3 onClick={this.login}>Login/SignUp</h3>;
     return (
