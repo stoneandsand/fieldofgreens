@@ -67,7 +67,7 @@ app.post('/api/users/:username/lists', (req, res) => {
     items,
   };
   console.log(list);
-  db.saveList(req.body.username, list, (updatedLists) => {
+  db.saveList(req.body.username, list, (err, updatedLists) => {
     console.log(updatedLists);
     res.send(updatedLists);
   });
@@ -75,7 +75,7 @@ app.post('/api/users/:username/lists', (req, res) => {
 
 // GET request for retrieving all saved lists names for a user
 app.get('/api/users/:username/lists', (req, res) => {
-  db.getUserLists(req.params.username, (userLists) => {
+  db.getUserLists(req.params.username, (err, userLists) => {
     console.log(userLists);
     res.send(userLists);
   });
@@ -84,7 +84,7 @@ app.get('/api/users/:username/lists', (req, res) => {
 // GET request for retrieving a single saved list
 app.get('/api/users/:username/lists/:id', (req, res) => {
   // each saved list should have a _id property
-  db.findList(req.params.username, req.params.id, (targetList) => {
+  db.findList(req.params.username, req.params.id, (err, targetList) => {
     console.log(targetList);
     res.send(targetList);
   });
@@ -92,21 +92,21 @@ app.get('/api/users/:username/lists/:id', (req, res) => {
 
 app.get('/api/users/:username/allergies', (req, res) => {
   // retrieve user's allergy list
-  db.findAllergies(req.params.username, (allergyList) => {
+  db.findAllergies(req.params.username, (err, allergyList) => {
     res.send(allergyList);
   });
 });
 
 app.get('/api/users/:username/likes', (req, res) => {
   // retrieve user's like list
-  db.findLikes(req.params.username, (likeList) => {
+  db.findLikes(req.params.username, (err, likeList) => {
     res.send(likeList);
   });
 });
 
 app.get('/api/users/:username/dislikes', (req, res) => {
   // retrieve user's dislike list
-  db.findDislikes(req.params.username, (dislikeList) => {
+  db.findDislikes(req.params.username, (err, dislikeList) => {
     res.send(dislikeList);
   });
 });
@@ -114,28 +114,28 @@ app.get('/api/users/:username/dislikes', (req, res) => {
 app.post('/api/users/:username/allergies', (req, res) => {
   console.log(req.body.item);
   // Expecting {item: 'apple'} item in POST request
-  db.addAllergies(req.params.username, req.body.item, (updatedAllergyList) => {
+  db.addAllergies(req.params.username, req.body.item, (err, updatedAllergyList) => {
     res.send(updatedAllergyList);
   });
 });
 
 app.post('/api/users/:username/likes', (req, res) => {
   // Expecting {item: 'apple'} item in POST request
-  db.addLikes(req.params.username, req.body.item, (updatedLikeList) => {
+  db.addLikes(req.params.username, req.body.item, (err, updatedLikeList) => {
     res.send(updatedLikeList);
   });
 });
 
 app.post('/api/users/:username/dislikes', (req, res) => {
   // Expecting {item: 'apple'} item in POST request
-  db.addAllergies(req.params.username, req.body.item, (updatedDislikeList) => {
+  db.addAllergies(req.params.username, req.body.item, (err, updatedDislikeList) => {
     res.send(updatedDislikeList);
   });
 });
 
 app.post('/api/users/:username/delete', (req, res) => {
   // Expecting {name: 'apple', type: 'allergies'}
-  db.removeItem(req.params.username, req.body, (updatedList) => {
+  db.removeItem(req.params.username, req.body, (err, updatedList) => {
     res.send(updatedList);
   });
 });
