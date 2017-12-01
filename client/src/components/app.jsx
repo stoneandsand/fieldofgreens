@@ -6,6 +6,9 @@ import ItemInput from './iteminput.jsx';
 import RecallList from './recallList.jsx';
 import ListManager from './listManager.jsx';
 import Navigation from './navigation.jsx';
+import Auth from './../../../Auth/Auth.js'
+
+const auth = new Auth();
 
 class App extends React.Component {
   constructor(props) {
@@ -120,7 +123,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navigation addNewItemToList={this.addNewItemToList} isLoggedIn={this.state.isLoggedIn} location={this.state.state} newItemEntry={this.state.newItemEntry} selectState={this.selectState} updateNewItemEntry={this.updateNewItemEntry} />
+        <Navigation addNewItemToList={this.addNewItemToList} isLoggedIn={this.state.isLoggedIn} location={this.state.state} newItemEntry={this.state.newItemEntry} selectState={this.selectState} updateNewItemEntry={this.updateNewItemEntry} auth={auth} />
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto mt-4">
