@@ -94,20 +94,6 @@ class App extends React.Component {
       });
   }
 
-  // makes get request to '/getSavedLists' API endpoint to retrieve names of saved lsits
-  // list of lists renders on page
-  getSavedLists() {
-    console.log('saved list');
-    axios.get(`/api/${username}/getSavedLists`)
-      .then((data) => {
-        // FIX FIX FIX
-        // this.setState({ savedListsfromDB: data.data });
-        // FIX FIX FIX
-      })
-      .catch((error) => {
-      });
-  }
-
   // when a saved list's list name is clicked, items of that list become currentItems and render on page
   getSavedListItems(listName) {
     console.log('getsavedlistitems has been called in shoppinglistentry');
