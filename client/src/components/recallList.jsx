@@ -1,7 +1,7 @@
 import React from 'react';
 import ItemEntry from './itemEntry.jsx';
 
-const currentItemList = props => (
+const recallList = props => (
   <div className="card mb-4">
     <div>
       <h4 className="card-header">
@@ -13,14 +13,14 @@ const currentItemList = props => (
     <div className="card-body">
       {props.currentItems.map((singleItem, i) =>
     (<ItemEntry
-      deleteItem={props.deleteItem}
-      entry={singleItem}
-      i={i}
-      key={singleItem.name}
+         deleteItem={props.deleteItem}
+         entry={singleItem}
+         i={i}
+         key={`recallList-${i}`}
     />))
   }
   </div>
   </div>
 );
 
-export default currentItemList;
+export default recallList;
