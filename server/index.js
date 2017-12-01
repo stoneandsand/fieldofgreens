@@ -41,23 +41,20 @@ app.post('/signup', (req, res) => {
   });
 });
 
-//GET request for getting recall data from test.js
-
+//GET request for getting recall data from data.js
 app.get('/api/search', (req, res) => {
+  // expecting {item: 'cheese cake', location: 'CA'}
   console.log('REQUEST FROM CLIENT', req.body)
 
   let keywords = JSON.parse(req.body.item).name.split(' ');
   console.log(keywords);
 
   let matches = getRecallMatches(keywords);
-  // This commented out section is for filtering the matches to the users set location.
-    // matches.filter((match) => {
-  //   match['distribution_pattern'].indexOf(JSON.parse(req.query.state)) >= 0 || match['distribution_pattern'].indexOf("Nationwide") >= 0
-  // })
+
   matches = matches.filter(function(match) {
-    return match['distribution_pattern'].includes(req.query.state) || match['distribution_pattern'].includes('Nationwide');
+    return match['distribution_pattern'].includes(req.body.location) || match['distribution_pattern'].includes('Nationwide');
   })
-  matches.unshift(JSON.parse(req.query.item).name);
+  matches.unshift(JSON.parse(req.body.item).name);
   console.log('matches ======>', matches);
   res.send(matches.slice(0, 11));
 });
@@ -65,7 +62,7 @@ app.get('/api/search', (req, res) => {
 
 // POST request for saving new list to database
 app.post('/api/users/:username/lists', function(req, res) {
-  // expecting {username: '', items: ['a'], listName: ''}
+  // expecting {username: '', items: ['apples', 'oranges'], listName: 'fruits'}
   let items = [];
   for (let item of req.body.items) {
     items.push(item);
@@ -91,6 +88,7 @@ app.get('/api/users/:username/lists', (req, res) => {
 
 // GET request for retrieving a single saved list
 app.get('/api/users/:username/lists/:id', (req, res) => {
+  // each saved list should have a _id property
   db.findList(req.params.username, req.params.id, (targetList) => {
     console.log(targetList);
     res.send(targetList);

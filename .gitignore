@@ -4,7 +4,7 @@ dist/bundle.js
 .floo
 /flooignore
 .env
-
+server/config.js
 
 # Local development
 *.env
