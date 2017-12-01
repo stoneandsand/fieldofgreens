@@ -28,6 +28,18 @@ class App extends React.Component {
     // should only run if user logged in
     // this.getSavedLists();
   }
+  
+  // Updates currentItems with contents of selected saved list.
+  getSavedListItems(listName) {
+    const newItems = [];
+    axios.get(`/api/${username}/${list}`, { params: { name: listName } })
+      .then((response) => {
+        const mapped = response.data[0].items.map((item) => {
+          newItems.push({ name: item, recalls: '' });
+        });
+        this.setState({ currentItems: newItems }, this.searchFDA);
+      });
+  }  
 
   // sets state for state(location) when item selected in dropdown
   selectState(e) {
@@ -85,7 +97,7 @@ class App extends React.Component {
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto mt-4">
-              <ListManager currentItems={this.state.currentItems} />
+              <ListManager currentItems={this.state.currentItems} getSavedListItems={this.getSavedListItems.bind(this)} />
             </div>
           </div>
         </div>
