@@ -20,8 +20,8 @@ class Navigation extends React.Component {
   }
 
   render() {
-    const isLoggedIn = <h3><span id="logout" onClick={this.props.logout}>Logout</span> <span id="settings">Settings</span></h3>
-    const isNotLoggedIn = <h3 onClick={this.login}>Login/SignUp</h3>
+    const isLoggedIn = <h3><span id="logout" onClick={this.props.logout}>Logout</span> <span id="settings">Settings</span></h3>;
+    const isNotLoggedIn = <h3 onClick={this.login}>Login/SignUp</h3>;
     return (
       <div className="container-fluid navigation">
         <div className="row top">
