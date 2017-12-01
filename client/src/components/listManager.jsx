@@ -1,7 +1,7 @@
 import React from 'react';
 import SaveList from './saveList.jsx';
 
-const shoppingList = props => (
+const listManager = props => (
   <div className="card mb-4">
     <br />
     <div className="savedList">
@@ -22,4 +22,4 @@ const shoppingList = props => (
   </div>
 );
 
-export default shoppingList;
+export default listManager;
