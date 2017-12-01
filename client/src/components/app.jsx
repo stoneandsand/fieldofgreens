@@ -21,6 +21,7 @@ class App extends React.Component {
     };
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
     this.addNewItemToList = this.addNewItemToList.bind(this);
+    this.selectState = this.selectState.bind(this);
   }
 
   // makes get request to get saved shopping lists when component mounts
@@ -28,7 +29,7 @@ class App extends React.Component {
     // should only run if user logged in
     // this.getSavedLists();
   }
-  
+
   // Updates currentItems with contents of selected saved list.
   getSavedListItems(listName) {
     const newItems = [];
@@ -39,7 +40,7 @@ class App extends React.Component {
         });
         this.setState({ currentItems: newItems }, this.searchFDA);
       });
-  }  
+  }
 
   // sets state for state(location) when item selected in dropdown
   selectState(e) {
