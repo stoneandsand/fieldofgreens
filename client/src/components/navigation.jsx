@@ -1,6 +1,9 @@
 import React from 'react';
 import ItemInput from './iteminput.jsx';
 import StateDropdown from './stateDropdown.jsx';
+import Auth0Lock from 'auth0-lock';
+import axios from 'axios';
+const Lock = require('../../../Auth/Auth.js').Lock;
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -8,11 +11,17 @@ class Navigation extends React.Component {
     this.state = {
       isLoggedIn: false,
     }
+
+    this.login = this.login.bind(this);
+  }
+
+  login() {
+    Lock.show();
   }
 
   render() {
-    const isLoggedIn = <h3><span id="logout">Logout</span> <span id="settings">Settings</span></h3>
-    const isNotLoggedIn = <h3>Login/SignUp</h3>
+    const isLoggedIn = <h3><span id="logout" onClick={this.props.logout}>Logout</span> <span id="settings">Settings</span></h3>
+    const isNotLoggedIn = <h3 onClick={this.login}>Login/SignUp</h3>
     return (
       <div className="container-fluid navigation">
         <div className="row top">
@@ -25,7 +34,7 @@ class Navigation extends React.Component {
           <div className="col-md-4 signUpOrSettings">
             <StateDropdown />
             {
-              this.state.isLoggedIn ? isLoggedIn : isNotLoggedIn
+              this.state.isLoggedIn ? isLoggedIn : isNotLoggedIn;
             }
           </div>
         </div>
