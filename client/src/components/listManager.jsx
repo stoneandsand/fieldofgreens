@@ -28,8 +28,6 @@ class ListManager extends React.Component {
     this.state.inputListName = '';
   }
   
-
-
   render() {
     return (
       <div className="card mb-4">
@@ -52,4 +50,4 @@ class ListManager extends React.Component {
   }
 }
 
-export default listManager;
+export default ListManager;
