@@ -3,6 +3,7 @@
 
 import React from 'react';
 import CurrentItems from './currentItems.jsx';
+import LoadSavedLists from './loadSavedLists.jsx';
 import SaveList from './saveList.jsx';
 
 const listManager = props => (
@@ -14,16 +15,12 @@ const listManager = props => (
           <b>Saved Shopping Lists</b>
         </h4>
       </div>
-    <div className="card-body">
-      {props.savedLists.map((listEntry, i) => (
-        <p key={i} onClick={props.getSavedListItems.bind(null, listEntry)}>{listEntry}</p>
-      ))}
-    <div>
-    <CurrentItems/>
-    <SaveList inputListName={props.inputListName} updateGroceryListName={props.GroceryListName} saveGroceryListName={props.saveGroceryListName} />
+      <div className="card-body">
+        <LoadSavedLists />
+        <CurrentItems/>
+        <SaveList inputListName={props.inputListName} updateGroceryListName={props.GroceryListName} saveGroceryListName={props.saveGroceryListName} />
+      </div>
     </div>
-    </div>
-  </div>
   </div>
 );
 
