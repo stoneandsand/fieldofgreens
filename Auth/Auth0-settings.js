@@ -1,7 +1,7 @@
 export const AUTH_SETTINGS = {
   domain: 'field-of-greens.auth0.com',
   clientId:'cx8oFJZb3bPmXbNq51tV3hKDu5BP1Bct',
-  callbackUrl: 'http://localhost:5000:callback',
+  callbackUrl: 'http://localhost:3000/callback',
   options: {
     languageDictionary: {
       title: "fieldOfGreens"
@@ -10,7 +10,7 @@ export const AUTH_SETTINGS = {
       primaryColor: '#71d839',
       socialButtonStyle:'small'
     },
-    allowedConnections: ['facebook', 'linkedin', 'Username-Password-Authentication'],
+    allowedConnections: [/*'Username-Password-Authentication', */'facebook'],
     allowLogin: true,
     loginAfterSignUp: true,
     closable: true,
