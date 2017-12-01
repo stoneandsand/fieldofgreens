@@ -23,7 +23,7 @@ export default class Auth {
     lock.on('authenticated', this.setSession);
     lock.on('authorization_error', (err) => {
       console.log('error of: 'err);
-      //history.replace('login');
+      history.replace('/login');
     })
   }
 
