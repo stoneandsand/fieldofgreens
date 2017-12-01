@@ -14,10 +14,7 @@ class App extends React.Component {
       state: '',
       currentItems: [],
       newItemEntry: '',
-      inputListName: '',
       isLoggedIn: false,
-      savedListName: '',
-      savedListsfromDB: [],
     };
   }
 
@@ -76,32 +73,19 @@ class App extends React.Component {
     });
   }
 
-  // sets state for inputListName when user types in list name into input
-  updateGroceryListName(e) {
-    this.setState({ inputListName: e.target.value });
-  }
-
-  // sets state savedListName to what was set in updateGroceryListName, also calls submitNewList
-  saveGroceryListName(e) {
-    e.preventDefault();
-    this.setState({ savedListName: this.state.inputListName }, this.submitNewList);
-    this.state.inputListName = '';
-  }
-
   // called when "Save List" is clicked with a list name
   // makes post request to '/saveList' API endpoint and saves list name & items to database
   // calls getSavedList to get latest list of lists from database to render newest list
-  submitNewList() {
-    const app = this;
+  submitNewList(listName) {
     let username = 'bob';
     axios.post(`/api/users/${username}/lists`, {
-      listName: app.state.savedListName,
-      items: app.state.currentItems,
+      listName: listName,
+      items: this.state.currentItems,
     })
       .then((response) => {
         console.log(response);
         console.log('list was saved');
-        app.getSavedLists();
+        this.getSavedLists();
       });
   }
 
@@ -111,7 +95,9 @@ class App extends React.Component {
     console.log('saved list');
     axios.get(`/api/${username}/getSavedLists`)
       .then((data) => {
-        this.setState({ savedListsfromDB: data.data });
+        // FIX FIX FIX
+        // this.setState({ savedListsfromDB: data.data });
+        // FIX FIX FIX
       })
       .catch((error) => {
       });
@@ -126,7 +112,7 @@ class App extends React.Component {
         const mapped = response.data[0].items.map((item) => {
           newItems.push({ name: item, recalls: '' });
         });
-        this.setState({ currentItems: newItems, savedListName: listName }, this.searchFDA);
+        this.setState({ currentItems: newItems }, this.searchFDA);
       });
   }
 
@@ -137,21 +123,13 @@ class App extends React.Component {
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto mt-4">
-              <ListManager currentItems={this.state.currentItems} getSavedListItems={this.getSavedListItems.bind(this)} inputListName={this.state.inputListName} saveGroceryListName={this.saveGroceryListName.bind(this)} savedLists={this.state.savedListsfromDB} updateGroceryListName={this.updateGroceryListName.bind(this)}/>
+              <ListManager currentItems={this.state.currentItems} getSavedListItems={this.getSavedListItems.bind(this)} />
             </div>
           </div>
         </div>
         <div className="row justify-content-md-center">
           <div className="col-12 col-md-auto">
-            {this.state.currentItems.length > 0 && <RecallList
-              deleteItem={this.deleteItem.bind(this)}
-              searchfda={this.searchFDA.bind(this)}
-              currentItems={this.state.currentItems}
-              updateGroceryListName={this.updateGroceryListName.bind(this)}
-              saveGroceryListName={this.saveGroceryListName.bind(this)}
-              savedListName={this.state.savedListName}
-              inputListName={this.state.inputListName}
-               />}
+            {this.state.currentItems.length > 0 && <RecallList deleteItem={this.deleteItem.bind(this)} searchfda={this.searchFDA.bind(this)} currentItems={this.state.currentItems} updateGroceryListName={this.updateGroceryListName.bind(this)} saveGroceryListName={this.saveGroceryListName.bind(this)}/>}
           </div>
         </div>
       </div>
