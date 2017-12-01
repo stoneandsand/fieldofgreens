@@ -16,16 +16,14 @@ class Navigation extends React.Component {
     return (
       <div className="container-fluid navigation">
         <div className="row top">
-          <div className="col-md-3 loginOrOut">
+          <div className="col-md-4 loginOrOut">
             <h1>The Grossery List</h1>
           </div>
-          <div className="col-md-3 search">
+          <div className="col-md-4 search">
             <ItemInput />
           </div>
-          <div className="col-md-3 dropDown">
+          <div className="col-md-4 signUpOrSettings">
             <StateDropdown />
-          </div>
-          <div className="col-md-3 signUpOrSettings">
             {
               this.state.isLoggedIn ? isLoggedIn : isNotLoggedIn
             }
