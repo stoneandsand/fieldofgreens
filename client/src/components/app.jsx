@@ -16,6 +16,7 @@ class App extends React.Component {
       newItemEntry: '',
       isLoggedIn: false,
     };
+    this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
   }
 
   // makes get request to get saved shopping lists when component mounts
