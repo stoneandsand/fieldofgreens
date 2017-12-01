@@ -4,7 +4,7 @@ import axios from 'axios';
 import StateDropdown from './stateDropdown.jsx';
 import ItemInput from './iteminput.jsx';
 import CurrentItemList from './currentItemList.jsx';
-import ShoppingList from './shoppingList.jsx';
+import ListManager from './listManager.jsx';
 import Navigation from './navigation.jsx';
 
 class App extends React.Component {
@@ -136,7 +136,7 @@ class App extends React.Component {
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto mt-4">
-              <ShoppingList savedLists={this.state.savedListsfromDB} getSavedListItems={this.getSavedListItems.bind(this)} />
+              <ListManager savedLists={this.state.savedListsfromDB} getSavedListItems={this.getSavedListItems.bind(this)} />
             </div>
           </div>
         </div>
