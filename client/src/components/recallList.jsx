@@ -7,8 +7,6 @@ const recallList = props => (
       <h4 className="card-header">
         Recalls:
       </h4>
-      <span className="new-list-name">{props.savedListName}
-      </span>
     </div>
     <div className="card-body">
       {props.currentItems.map((singleItem, i) =>
