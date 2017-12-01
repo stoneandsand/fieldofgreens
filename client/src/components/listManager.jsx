@@ -49,19 +49,6 @@ class ListManager extends React.Component {
         this.getSavedLists();
       });
   }
-
-  // when a saved list's list name is clicked, items of that list become currentItems and render on page
-  getSavedListItems(listName) {
-    console.log('getsavedlistitems has been called in shoppinglistentry');
-    const newItems = [];
-    axios.get(`/api/${username}/${list}`, { params: { name: listName } })
-      .then((response) => {
-        const mapped = response.data[0].items.map((item) => {
-          newItems.push({ name: item, recalls: '' });
-        });
-        this.setState({ currentItems: newItems }, this.searchFDA);
-      });
-  }  
   
   render() {
     return (
