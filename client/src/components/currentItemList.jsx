@@ -2,15 +2,16 @@ import React from 'react';
 import ItemEntry from './itemEntry.jsx';
 
 const currentItemList = props => (
-  <div>
+  <div className="card mb-4">
     <div>
-      <span className="new-list-header">
+      <h4 className="card-header">
         Recalls:
-      </span>
+      </h4>
       <span className="new-list-name">{props.savedListName}
       </span>
     </div>
-    <div>{props.currentItems.map((singleItem, i) =>
+    <div className="card-body">
+      {props.currentItems.map((singleItem, i) =>
     (<ItemEntry
       deleteItem={props.deleteItem}
       entry={singleItem}
@@ -18,7 +19,7 @@ const currentItemList = props => (
       key={singleItem.name}
     />))
   }
-    </div>
+  </div>
   </div>
 );
 
