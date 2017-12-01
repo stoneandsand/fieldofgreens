@@ -1,6 +1,6 @@
 # fieldofgreens
 
-> The Grossery List
+> Field of Greens
 
 ## How To Start This App
 
@@ -10,11 +10,11 @@ Application instructions:
 
 package.json in root folder contains some scripts for you to use in terminal. Run these commands in shell.
 
-"npm run wp" will start webpack. Run it once and it will watch for any new changes and automatically transpile to browser-friendly code!
+"npm run wp" runs webpack with --watch to automatically transpile on updates.
 
 "npm run start" will start the server to accept incoming clients and also allow you to monitor the server in terminal.
 
-Thank you for your interest in The Grossery List!
+The server is set to run on port 5000 locally: localhost:5000
 
 ************************************
 Future Goals:
@@ -27,8 +27,9 @@ Scrub data from said API integration
 ************************************
 
 RESTful API Endpoints:
+|----------+----------------------------------+-------------------------+-------------------------|
 | METHOD   | URL                              | REQ                     | RES                     |
-|:---------|:---------------------------------|:------------------------|:------------------------|
+|----------+----------------------------------+-------------------------+-------------------------|
 | GET      | /                                |                         | html                    |
 | POST     | /login                           |                         |                         |
 | POST     | /signup                          |                         |                         |
@@ -43,6 +44,42 @@ RESTful API Endpoints:
 | POST     | /api/users/:username/likes       | {item: ''}              | array                   |
 | POST     | /api/users/:username/dislikes    | {item: ''}              | array                   |
 | POST     | /api/users/:username/delete      | {name: '', type:''}     | array                   |
-| :------- | :------------------------------- | :---------------------- | :---------------------- |
+|----------+----------------------------------+-------------------------+-------------------------|
 
+************************************
+
+* Directory Structure
++ client/
+  - src/
+    - components /
+      - app.jsx
+      - currentItems.jsx
+      - itemEntry.jsx
+      - iteminput.jsx
+      - listManager.jsx
+      - loadSavedLists.jsx
+      - login.jsx
+      - navigation.jsx
+      - recallList.jsx
+      - recalls.jsx
+      - saveList.jsx
+      - stateDropdown.jsx
++ db/
+  - index.js
+  - schemas.jsx
+  - data.js
++ dist/
+  - bundle.js
++ node_modules/
++ server/
+  - index.js
++ .babelrc
++ .env
++ .eslintrc
++ .gitignore
++ index.html
++ package-lock.json
++ package.json
++ README.org
++ webpack.config.js
 
