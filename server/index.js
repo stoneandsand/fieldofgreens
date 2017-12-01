@@ -14,17 +14,17 @@ app.use(bodyParser.json());
 
 const getRecallMatches = (keywordsArray) => {
   let matches = [];
-  for (let i = 0; i < keywordsArray.length; i + 1) {
-    for (let k = 0; k < recalls.recallData.length; k + 1) {
-      if (recalls.recallData[k].product_description.toUpperCase().includes(keywordsArray[i].toUpperCase()) && recalls.recallData[k].report_date > '20160427') {
-        matches.push(recalls.recallData[k]);
+  for (let keyword of keywordsArray) {
+    for (let recall of recalls.recallData) {
+      if (recall.product_description.toUpperCase().includes(keyword.toUpperCase()) && recall.report_date > '20170101') {
+        matches.push(recall);
       }
     }
   }
   matches = matches.filter(match => match.status === 'Ongoing');
   return matches;
 };
-// || recalls.recallData[k]['brand name'].toUpperCase().includes(keywordsArray[i].toUpperCase()
+
 
 app.post('/signup', (req, res) => {
   console.log(req.body);
