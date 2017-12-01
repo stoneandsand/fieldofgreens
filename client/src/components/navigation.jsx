@@ -15,14 +15,14 @@ class Navigation extends React.Component {
     const isNotLoggedIn = <h3><span id="login">Login</span> or <span id="signup">Signup</span></h3>
     return (
       <div className="container-fluid navigation">
-        <div className="row">
+        <div className="row top">
           <div className="col-md-3 loginOrOut">
             <h1>The Grossery List</h1>
           </div>
           <div className="col-md-3 search">
             <ItemInput />
           </div>
-          <div className="col-md-3 dropdown">
+          <div className="col-md-3">
             <StateDropdown />
           </div>
           <div className="col-md-3 signUpOrSettings">
