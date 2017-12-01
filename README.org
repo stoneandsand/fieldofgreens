@@ -49,6 +49,15 @@ RESTful API Endpoints:
 ************************************
 
 * Directory Structure
++ Auth/
+  - Auth.js
+  - Auth0-settings.js
+  - history.js
++ bootstrap/
+  - css/
+  - fonts/
+  - js/
+  - config.json
 + client/
   - src/
     - components /
