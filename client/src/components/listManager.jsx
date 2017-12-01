@@ -15,7 +15,7 @@ const shoppingList = props => (
         <p key={i} onClick={props.getSavedListItems.bind(null, listEntry)}>{listEntry}</p>
       ))}
     <div>
-    <SaveList inputListName={this.state.inputListName} updateGroceryListName={this.updateGroceryListName.bind(this)} saveGroceryListName={this.saveGroceryListName.bind(this)} />
+    <SaveList inputListName={props.inputListName} updateGroceryListName={props.GroceryListName} saveGroceryListName={props.saveGroceryListName} />
     </div>
     </div>
   </div>
