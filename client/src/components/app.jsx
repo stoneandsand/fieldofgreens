@@ -5,7 +5,6 @@ import StateDropdown from './stateDropdown.jsx';
 import ItemInput from './iteminput.jsx';
 import CurrentItemList from './currentItemList.jsx';
 import ShoppingList from './shoppingList.jsx';
-import SaveList from './saveList.jsx';
 import Navigation from './navigation.jsx';
 
 class App extends React.Component {
@@ -73,7 +72,7 @@ class App extends React.Component {
         newCurrentItems.push(obj);
         app.setState({ currentItems: newCurrentItems });
       });
-    })
+    });
   }
 
   // sets state for inputListName when user types in list name into input
@@ -93,7 +92,8 @@ class App extends React.Component {
   // calls getSavedList to get latest list of lists from database to render newest list
   submitNewList() {
     const app = this;
-    axios.post(`/api/${username}/saveList`, {
+    let username = 'bob';
+    axios.post(`/api/users/${username}/lists`, {
       listName: app.state.savedListName,
       items: app.state.currentItems,
     })
@@ -137,9 +137,6 @@ class App extends React.Component {
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto mt-4">
               <ShoppingList savedLists={this.state.savedListsfromDB} getSavedListItems={this.getSavedListItems.bind(this)} />
-              <div>
-                <SaveList inputListName={this.state.inputListName} updateGroceryListName={this.updateGroceryListName.bind(this)} saveGroceryListName={this.saveGroceryListName.bind(this)} />
-              </div>
             </div>
           </div>
         </div>
