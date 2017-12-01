@@ -139,7 +139,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navigation selectState={this.selectState} location={this.state.state} addNewItemToList={this.addNewItemToList} isLoggedIn={this.state.isLoggedIn} />
+        <Navigation newItemEntry={this.state.newItemEntry} selectState={this.selectState} location={this.state.state} addNewItemToList={this.addNewItemToList} isLoggedIn={this.state.isLoggedIn} />
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto mt-4">
