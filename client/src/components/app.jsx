@@ -15,6 +15,7 @@ class App extends React.Component {
       currentItems: [],
       newItemEntry: '',
       inputListName: '',
+      isLoggedIn: false,
       savedListName: '',
       savedListsfromDB: [],
     };
