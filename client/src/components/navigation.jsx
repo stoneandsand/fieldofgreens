@@ -29,7 +29,7 @@ class Navigation extends React.Component {
             <ItemInput />
           </div>
           <div className="col-md-4 signUpOrSettings">
-            <StateDropdown selectState={this.props.selectState} />
+            <StateDropdown location={this.props.location} selectState={this.props.selectState} />
             {
               this.props.isLoggedIn ? isLoggedIn : isNotLoggedIn
             }
