@@ -129,7 +129,7 @@ class App extends React.Component {
         </div>
         <div className="row justify-content-md-center">
           <div className="col-12 col-md-auto">
-            {this.state.currentItems.length > 0 && <RecallList deleteItem={this.deleteItem.bind(this)} searchfda={this.searchFDA.bind(this)} currentItems={this.state.currentItems} updateGroceryListName={this.updateGroceryListName.bind(this)} saveGroceryListName={this.saveGroceryListName.bind(this)}/>}
+            {this.state.currentItems.length > 0 && <RecallList deleteItem={this.deleteItem.bind(this)} currentItems={this.state.currentItems} />}
           </div>
         </div>
       </div>
