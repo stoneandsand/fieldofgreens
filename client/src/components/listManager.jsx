@@ -15,8 +15,6 @@ class ListManager extends React.Component {
     };
   }
 
-  // makes get request to '/getSavedLists' API endpoint to retrieve names of saved lsits
-  // list of lists renders on page
   getSavedLists() {
     axios.get(`/api/${username}/getSavedLists`)
       .then((data) => {
@@ -26,14 +24,12 @@ class ListManager extends React.Component {
       });
   }
 
-    // sets state savedListName to what was set in updateGroceryListName, also calls submitNewList
   saveNewListName(e) {
     e.preventDefault();
     this.props.submitNewList(this.newListName);
     this.setState({newListName: ''});
   }
 
-  // sets state for newListName when user types in list name into input
   updateNewListName(e) {
     this.setState({ newListName: e.target.value });
   }
@@ -65,8 +61,7 @@ class ListManager extends React.Component {
         });
         this.setState({ currentItems: newItems }, this.searchFDA);
       });
-  }
-  
+  }  
   
   render() {
     return (
