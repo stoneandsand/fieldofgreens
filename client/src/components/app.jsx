@@ -132,7 +132,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navigation selectState={this.selectState} location={this.state.state} />
+        <Navigation selectState={this.selectState} location={this.state.state} addNewItemToList={this.addNewItemToList} />
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto mt-4">
