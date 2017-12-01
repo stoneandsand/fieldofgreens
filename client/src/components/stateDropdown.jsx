@@ -4,15 +4,22 @@ class stateDropdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'State',
+      value: '',
     }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
   render() {
+    console.log(this.state.value)
     return (
       <div className="stateDropdown">
         <form onChange={this.props.selectstate}>
-          <select type="text" name="state">
+          <select type="text" name="state" value={this.state.value} onChange={this.handleChange} >
+            <option type="text" name="State">Select State</option>
             <option type="text" name="al">AL</option>
             <option type="text" name="ak">AK</option>
             <option type="text" name="az">AZ</option>
