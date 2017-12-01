@@ -26,7 +26,7 @@ class Navigation extends React.Component {
             <h1>The Grossery List</h1>
           </div>
           <div className="col-md-4 search">
-            <ItemInput newItemEntry={this.props.newItemEntry} addNewItemToList={this.props.addNewItemToList} />
+            <ItemInput addNewItemToList={this.props.addNewItemToList} newItemEntry={this.props.newItemEntry} updatedNewItemEntry={this.props.updateNewItemEntries} />
           </div>
           <div className="col-md-4 signUpOrSettings">
             <StateDropdown location={this.props.location} selectState={this.props.selectState} />
