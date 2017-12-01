@@ -12,7 +12,7 @@ const listManager = props => (
     <div className="savedList">
       <div>
         <h4 className="card-header">
-          <b>Saved Shopping Lists</b>
+          <b>List Manager</b>
         </h4>
       </div>
       <div className="card-body">
