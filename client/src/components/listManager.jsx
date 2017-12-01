@@ -10,23 +10,34 @@ class ListManager extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputListName: '',
-      savedListName: '',
+      newListName: '',
       savedLists: [],
     };
   }
 
-  // sets state for inputListName when user types in list name into input
-  updateGroceryListName(e) {
-    this.setState({ inputListName: e.target.value });
+  // makes get request to '/getSavedLists' API endpoint to retrieve names of saved lsits
+  // list of lists renders on page
+  getSavedLists() {
+    axios.get(`/api/${username}/getSavedLists`)
+      .then((data) => {
+        this.setState({ savedLists: data.data });
+      })
+      .catch((error) => {
+      });
   }
 
-  // sets state savedListName to what was set in updateGroceryListName, also calls submitNewList
-  saveGroceryListName(e) {
+    // sets state savedListName to what was set in updateGroceryListName, also calls submitNewList
+  saveNewListName(e) {
     e.preventDefault();
-    this.setState({ savedListName: this.state.inputListName }, this.submitNewList);
-    this.state.inputListName = '';
+    this.props.submitNewList(this.newListName);
+    this.setState({newListName: ''});
   }
+
+  // sets state for newListName when user types in list name into input
+  updateNewListName(e) {
+    this.setState({ newListName: e.target.value });
+  }
+
   
   render() {
     return (
@@ -42,7 +53,7 @@ class ListManager extends React.Component {
             {this.state.savedLists.length > 0 && <LoadSavedLists getSavedListItems={this.getSavedListItems} savedLists={this.state.savedLists}/>}
             {this.state.savedLists.length > 0 && <hr/>}
             <CurrentItems currentItems={this.props.currentItems}/>
-            <SaveList inputListName={this.inputListName} updateGroceryListName={this.GroceryListName} saveGroceryListName={this.saveGroceryListName} />
+            <SaveList newListName={this.newListName} updateNewListName={this.updateNewListName} saveNewListName={this.saveNewListName} />
           </div>
         </div>
       </div>
