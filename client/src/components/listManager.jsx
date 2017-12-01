@@ -10,9 +10,25 @@ class ListManager extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      inputListName: '',
+      savedListName: '',
+      savedListsfromDB: [],
     };
   }
+
+  // sets state for inputListName when user types in list name into input
+  updateGroceryListName(e) {
+    this.setState({ inputListName: e.target.value });
+  }
+
+  // sets state savedListName to what was set in updateGroceryListName, also calls submitNewList
+  saveGroceryListName(e) {
+    e.preventDefault();
+    this.setState({ savedListName: this.state.inputListName }, this.submitNewList);
+    this.state.inputListName = '';
+  }
+  
+
 
   render() {
     return (
