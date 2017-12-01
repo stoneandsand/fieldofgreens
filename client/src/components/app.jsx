@@ -85,7 +85,7 @@ class App extends React.Component {
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto mt-4">
-              <ListManager currentItems={this.state.currentItems} getSavedListItems={this.getSavedListItems.bind(this)} />
+              <ListManager currentItems={this.state.currentItems} />
             </div>
           </div>
         </div>
