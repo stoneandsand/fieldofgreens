@@ -8,7 +8,7 @@ const itemEntry = ({ entry, deleteItem, i }) => (
   </button>
     <span className="list-item">{entry.name}</span>
     <div>
-      {entry.recalls === '' ? <Recalls recall={false} /> : entry.recalls.map((rec, i) => <Recalls key={i} recall={rec} />)}
+        {/*entry.recalls === '' ? <Recalls recall={false} /> : entry.recalls.map((rec, i) => <Recalls key={`recallListEntry${i}`} recall={rec} />)*/}
     </div>
   </div>
 );
