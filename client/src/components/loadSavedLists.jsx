@@ -4,9 +4,9 @@ import React from 'react';
 
 const loadSavedLists = props => (
   <div>
-          {props.savedLists.map((listEntry, i) => (
-        <p key={i} onClick={props.getSavedListItems.bind(null, listEntry)}>{listEntry}</p>
-      ))}
+    {props.savedLists.map((listEntry, i) => (
+      <p key={i} onClick={props.getSavedListItems.bind(null, listEntry)}>{listEntry}</p>
+    ))}
   </div>
 );
 
