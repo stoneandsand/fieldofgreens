@@ -40,8 +40,9 @@ class App extends React.Component {
   // adds new item to current list when "Add New Item" is clicked
   addNewItemToList(e) {
     e.preventDefault();
-    this.state.currentItems.unshift({ name: this.state.newItemEntry, recalls: '' });
-    this.setState({newItemEntry: ''});
+    let updatedCurrentItems = this.state.currentItems.unshift({ name: this.state.newItemEntry, recalls: [] });
+    this.setState({ currentItems: updatedCurrentItems });
+    this.setState({ newItemEntry: '' });
     this.setState({ currentItems: this.state.currentItems }, this.searchFDA);
   }
 
@@ -55,11 +56,10 @@ class App extends React.Component {
   // makes get request for each item to '/searchNewList' API endpoint
   searchFDA() {
     const scope = this.state.currentItems;
-    const app = this;
     const newCurrentItems = [];
     const promises = [];
     for (let i = 0; i < this.state.currentItems.length; i++) {
-      promises.push(axios.get('/api/search', { params: { item: scope[i], state: app.state.state } }));
+      promises.push(axios.get('/api/search', { params: { item: scope[i], state: this.state.state } }));
     }
     axios.all(promises).then((recallData) => {
       recallData.forEach((response) => {
@@ -71,7 +71,7 @@ class App extends React.Component {
         };
         response.data.shift();
         newCurrentItems.push(obj);
-        app.setState({ currentItems: newCurrentItems });
+        this.setState({ currentItems: newCurrentItems });
       });
     });
   }
