@@ -34,7 +34,7 @@ class Navigation extends React.Component {
           <div className="col-md-4 signUpOrSettings">
             <StateDropdown />
             {
-              this.state.isLoggedIn ? isLoggedIn : isNotLoggedIn;
+              this.state.isLoggedIn ? isLoggedIn : isNotLoggedIn
             }
           </div>
         </div>
