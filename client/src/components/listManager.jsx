@@ -38,6 +38,35 @@ class ListManager extends React.Component {
     this.setState({ newListName: e.target.value });
   }
 
+  // called when "Save List" is clicked with a list name
+  // makes post request to '/saveList' API endpoint and saves list name & items to database
+  // calls getSavedList to get latest list of lists from database to render newest list
+  submitNewList(listName) {
+    let username = 'bob';
+    axios.post(`/api/users/${username}/lists`, {
+      listName: listName,
+      items: this.state.currentItems,
+    })
+      .then((response) => {
+        console.log(response);
+        console.log('list was saved');
+        this.getSavedLists();
+      });
+  }
+
+  // when a saved list's list name is clicked, items of that list become currentItems and render on page
+  getSavedListItems(listName) {
+    console.log('getsavedlistitems has been called in shoppinglistentry');
+    const newItems = [];
+    axios.get(`/api/${username}/${list}`, { params: { name: listName } })
+      .then((response) => {
+        const mapped = response.data[0].items.map((item) => {
+          newItems.push({ name: item, recalls: '' });
+        });
+        this.setState({ currentItems: newItems }, this.searchFDA);
+      });
+  }
+  
   
   render() {
     return (
