@@ -3,9 +3,6 @@ import React from 'react';
 class stateDropdown extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: '',
-    }
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -14,10 +11,11 @@ class stateDropdown extends React.Component {
   }
 
   render() {
+    console.log('stateDropdown: ',this.props);
     return (
       <div className="stateDropdown">
         <form onChange={this.props.selectstate}>
-          <select type="text" name="state" value={this.state.value} onChange={this.handleChange} >
+          <select type="text" name="state" value={this.props.location} onChange={this.handleChange} >
             <option type="text" name="State">Select State</option>
             <option type="text" name="al">AL</option>
             <option type="text" name="ak">AK</option>
