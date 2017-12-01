@@ -11,7 +11,6 @@ class stateDropdown extends React.Component {
   }
 
   render() {
-    console.log('stateDropdown: ',this.props);
     return (
       <div className="stateDropdown">
         <form onChange={this.props.selectstate}>
