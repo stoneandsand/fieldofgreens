@@ -8,10 +8,6 @@ const Lock = require('../../../Auth/Auth.js').Lock;
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoggedIn: false,
-    }
-
     this.login = this.login.bind(this);
   }
 
@@ -20,6 +16,7 @@ class Navigation extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const isLoggedIn = <h3><span id="logout" onClick={this.props.logout}>Logout</span> <span id="settings">Settings</span></h3>;
     const isNotLoggedIn = <h3 onClick={this.login}>Login/SignUp</h3>;
     return (
@@ -34,7 +31,7 @@ class Navigation extends React.Component {
           <div className="col-md-4 signUpOrSettings">
             <StateDropdown />
             {
-              this.state.isLoggedIn ? isLoggedIn : isNotLoggedIn
+              this.props.isLoggedIn ? isLoggedIn : isNotLoggedIn
             }
           </div>
         </div>
