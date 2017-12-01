@@ -1,4 +1,8 @@
+// Component to load saved lists, display current items, and save current items into a new list.
+// The saved lists dropdown should only show if a user is logged in.
+
 import React from 'react';
+import CurrentItems from './currentItems.jsx';
 import SaveList from './saveList.jsx';
 
 const listManager = props => (
@@ -15,6 +19,7 @@ const listManager = props => (
         <p key={i} onClick={props.getSavedListItems.bind(null, listEntry)}>{listEntry}</p>
       ))}
     <div>
+    <CurrentItems/>
     <SaveList inputListName={props.inputListName} updateGroceryListName={props.GroceryListName} saveGroceryListName={props.saveGroceryListName} />
     </div>
     </div>
