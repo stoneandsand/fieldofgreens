@@ -1,7 +1,6 @@
 import React from 'react';
 
 const itemInput = props => {
-  console.log('intemInput props: ',props);
   return (
   <div>
     <form className="form-group" onSubmit={props.addNewItemToList}>
