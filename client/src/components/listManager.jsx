@@ -17,7 +17,7 @@ const listManager = props => (
       </div>
       <div className="card-body">
         {props.savedLists.length > 0 && <LoadSavedLists getSavedListItems={props.getSavedListItems} savedLists={props.savedLists}/>}
-        <CurrentItems/>
+        <CurrentItems currentItems={props.currentItems}/>
         <SaveList inputListName={props.inputListName} updateGroceryListName={props.GroceryListName} saveGroceryListName={props.saveGroceryListName} />
       </div>
     </div>
