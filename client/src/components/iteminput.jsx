@@ -1,6 +1,8 @@
 import React from 'react';
 
-const itemInput = props => (
+const itemInput = props => {
+  console.log('intemInput props: ',props);
+  return (
   <div>
     <form className="form-group" onSubmit={props.addNewItemToList}>
       <div className="input-group">
@@ -11,6 +13,7 @@ const itemInput = props => (
       </div>
     </form>
   </div>
-);
+  )
+}
 
 export default itemInput;
