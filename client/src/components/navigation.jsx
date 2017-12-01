@@ -11,6 +11,31 @@ class Navigation extends React.Component {
     this.login = this.login.bind(this);
   }
 
+  componentWillMount() {
+    this.props.auth.handleAuthentication();
+    Lock.on('authenticated', (authStatus)=> {
+      console.log('auth status: ', authStatus);
+
+      if (!authResult.accessToken) {return};
+
+      Lock.getUserInfo(authResult.accessToken, (err, profile)=> {
+        console.log('err',err, 'profile',profile);
+
+        axios.post('http://localhost:5000/signup',profile)
+        .then( (success)=>{
+          console.log('user data', success);
+          window.location.reload();
+        })
+        .catch((err)=>{
+          console.log('error',err);
+        });
+      })
+    })
+    Lock.on('authorization_error', (err)=>{
+      console.log('auth error found: ', err);
+    });
+  }
+
   login() {
     Lock.show();
   }
