@@ -8,12 +8,16 @@
 
 .search {
   padding-top: 10px;
-  text-align: center;
 }
 
 .signUpOrSettings {
   padding-top: 8px;
   text-align: right;
+}
+
+.stateDropdown {
+  float: left;
+  margin-top: 11px;
 }
 
 /*====== Each item in list ======*/
