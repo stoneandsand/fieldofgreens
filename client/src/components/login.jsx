@@ -32,19 +32,22 @@ class Login extends Component {
              })
              })
       })
-    }
-      )
+    });
+
+    Lock.on('authorization_error', (err) => {
+      console.log('auth err: ' + err);
+    });
+    Lock.show();
   }
 
   login () {
-    this.props.auth.login()
-  }
-
-  logout() {
-    this.props.auth.logout()
+    Lock.show();
   }
 
   render() {
-    const {}
+    const { Authed } = this.props.auth;
+
+    return (
+      )
   }
 }
