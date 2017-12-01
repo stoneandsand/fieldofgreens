@@ -38,14 +38,12 @@ class ListManager extends React.Component {
   // makes post request to '/saveList' API endpoint and saves list name & items to database
   // calls getSavedList to get latest list of lists from database to render newest list
   submitNewList(listName) {
-    let username = 'bob';
+    let username = 'bob'; // FIX FIX FIX
     axios.post(`/api/users/${username}/lists`, {
       listName: listName,
-      items: this.state.currentItems,
+      items: this.props.currentItems,
     })
       .then((response) => {
-        console.log(response);
-        console.log('list was saved');
         this.getSavedLists();
       });
   }
