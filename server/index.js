@@ -60,11 +60,11 @@ app.post('/api/users/:username/lists', (req, res) => {
   // expecting {username: '', items: ['apples', 'oranges'], listName: 'fruits'}
   const items = [];
   for (const item of req.body.items) {
-    items.push(item);
+    items.push(item.name);
   }
   const list = {
     name: req.body.listName,
-    items,
+    items: items,
   };
   console.log(list);
   db.saveList(req.body.username, list, (err, updatedLists) => {
