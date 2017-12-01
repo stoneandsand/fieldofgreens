@@ -12,7 +12,7 @@ class ListManager extends React.Component {
     this.state = {
       inputListName: '',
       savedListName: '',
-      savedListsfromDB: [],
+      savedLists: [],
     };
   }
 
@@ -39,10 +39,10 @@ class ListManager extends React.Component {
             </h4>
           </div>
           <div className="card-body">
-            {props.savedLists.length > 0 && <LoadSavedLists getSavedListItems={props.getSavedListItems} savedLists={props.savedLists}/>}
-            {props.savedLists.length > 0 && <hr/>}
-            <CurrentItems currentItems={props.currentItems}/>
-            <SaveList inputListName={props.inputListName} updateGroceryListName={props.GroceryListName} saveGroceryListName={props.saveGroceryListName} />
+            {this.state.savedLists.length > 0 && <LoadSavedLists getSavedListItems={this.getSavedListItems} savedLists={this.state.savedLists}/>}
+            {this.state.savedLists.length > 0 && <hr/>}
+            <CurrentItems currentItems={this.props.currentItems}/>
+            <SaveList inputListName={this.inputListName} updateGroceryListName={this.GroceryListName} saveGroceryListName={this.saveGroceryListName} />
           </div>
         </div>
       </div>
