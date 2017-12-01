@@ -98,18 +98,21 @@ app.get('/api/users/:username/lists/:id', (req, res) => {
 });
 
 app.get('/api/users/:username/allergies', (req, res) => {
+  //retrieve user's allergy list
   db.findAllergies(req.params.username, (allergyList) => {
     res.send(allergyList);
   });
 });
 
 app.get('/api/users/:username/likes', (req, res) => {
+  //retrieve user's like list
   db.findLikes(req.params.username, (likeList) => {
     res.send(likeList);
   });
 });
 
 app.get('/api/users/:username/dislikes', (req, res) => {
+  //retrieve user's dislike list
   db.findDislikes(req.params.username, (dislikeList) => {
     res.send(dislikeList);
   });
@@ -120,22 +123,29 @@ app.post('/api/users/:username/allergies', (req, res) => {
   //Expecting {item: 'apple'} item in POST request
   db.addAllergies(req.params.username, req.body.item, (updatedAllergyList) => {
     res.send(updatedAllergyList);
-  })
+  });
 });
 
 app.post('/api/users/:username/likes', (req, res) => {
-  //Expecting string item in POST request
+  //Expecting {item: 'apple'} item in POST request
   db.addLikes(req.params.username, req.body.item, (updatedLikeList) => {
     res.send(updatedLikeList);
-  })
+  });
 });
 
 app.post('/api/users/:username/dislikes', (req, res) => {
-  //Expecting string item in POST request
+  //Expecting {item: 'apple'} item in POST request
   db.addAllergies(req.params.username, req.body.item, (updatedDislikeList) => {
     res.send(updatedDislikeList);
-  })
+  });
 });
+
+app.post('/api/users/:username/delete', (req, res) => {
+  //Expecting {name: 'apple', type: 'allergies'}
+  db.removeItem(req.params.username, req.body, (updatedList) => {
+    res.send(updatedList)
+  });
+})
 
 app.listen(app.get('port'), function() {
   console.log('Server running on port', app.get('port'));

@@ -186,16 +186,37 @@ const addDislikes = (user, item, callback) => {
   });
 };
 
-//TODO FOR ADDING ITEM TO AN EXISTING LIST
-const addItemToList = (user, item, list, callback) => {
+const removeItem = (user, item, callback) => {
+  console.log(item);
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
       console.error(err);
     } else {
-
+      if (item.type === 'lists') { //lists
+        userEntry[item.type] = userEntry[item.type].filter(entry => entry.name !== item.name);
+        userEntry.save((err, updatedEntry) => {
+          if (err) {
+            console.error(err);
+            callback([]);
+          } else {
+            callback(updatedEntry[item.type]);
+          }
+        });
+      } else { // allergies, likes, dislikes
+        userEntry[item.type] = userEntry[item.type].filter(entry => entry !== item.name);
+        // TODO: Investigate Error: MongoError: E11000 duplicate key error collection: fieldofgreens.users index: allergies_1 dup key: { : undefined }
+        userEntry.save((err, updatedEntry) => {
+          if (err) {
+            console.error(err);
+            callback([]);
+          } else {
+            callback(updatedEntry[item.type]);
+          }
+        });
+      }
     }
   })
-};
+}
 
 module.exports.signup = signup;
 module.exports.getUserLists = getUserLists;
@@ -207,3 +228,4 @@ module.exports.findLikes = findLikes;
 module.exports.addLikes = addLikes;
 module.exports.findDislikes = findDislikes;
 module.exports.addDislikes = addDislikes;
+module.exports.removeItem = removeItem;
