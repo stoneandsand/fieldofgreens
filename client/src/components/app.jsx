@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import StateDropdown from './stateDropdown.jsx';
 import ItemInput from './iteminput.jsx';
-import CurrentItemList from './currentItemList.jsx';
+import RecallList from './recallList.jsx';
 import ListManager from './listManager.jsx';
 import Navigation from './navigation.jsx';
 
@@ -142,7 +142,7 @@ class App extends React.Component {
         </div>
         <div className="row justify-content-md-center">
           <div className="col-12 col-md-auto">
-            {this.state.currentItems.length > 0 && <CurrentItemList
+            {this.state.currentItems.length > 0 && <RecallList
               deleteItem={this.deleteItem.bind(this)}
               searchfda={this.searchFDA.bind(this)}
               currentItems={this.state.currentItems}
