@@ -22,7 +22,7 @@ class Navigation extends React.Component {
           <div className="col-md-3 search">
             <ItemInput />
           </div>
-          <div className="col-md-3">
+          <div className="col-md-3 dropDown">
             <StateDropdown />
           </div>
           <div className="col-md-3 signUpOrSettings">
