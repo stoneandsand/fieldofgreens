@@ -4,15 +4,13 @@ import { AUTH_SETTINGS } from './Auth0-settings.js';
 
 const lock = new Auth0Lock(AUTH_SETTINGS.clientId, AUTH_SETTINGS.domain, AUTH_SETTINGS.options);
 
-
 export default class Auth {
   constructor() {
-  this.login = this.login.bind(this);
-  this.logout = this.logout.bind(this);
-  this.handleAuth = this.handleAuth.bind(this);
-  this.isAuthenticated = this.isAuthenticated.bind(this);
-  this.setSession = this.setSession.bind(this);
-
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+    this.handleAuth = this.handleAuth.bind(this);
+    this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.setSession = this.setSession.bind(this);
   }
 
   login (email, password, cb) {
@@ -22,28 +20,28 @@ export default class Auth {
   handleAuth () {
     lock.on('authenticated', this.setSession);
     lock.on('authorization_error', (err) => {
-      console.log('error of: 'err);
+      console.log(`error of: ${err}`);
       history.replace('/login');
-    })
+    });
   }
 
   setSession (authInfo) {
     if (authInfo && authInfo.accessToken && authInfo.idToken) {
       lock.getUserInfo(authInfo.Token, (err, profile) => {
         if (err) {
-          console.log('error : ' + err);
+          console.log(`error: ${err}`);
         }
         localStorage.setItem('profile', JSON.stringify(profile));
         localStorage.setItem('accessToken',authInfo.accessToken);
         localStorage.setItem('idToken', authInfo.idToken);
-      })
+      });
     }
   }
 
   logout () {
     console.log('logged out');
 
-    localStorage.removeItem('profile')
+    localStorage.removeItem('profile');
     localStorage.removeItem('accessToken');
     localStorage.removeItem('idToken');
   }
@@ -53,4 +51,4 @@ export default class Auth {
   }
 }
 
-module.exports.Lock = lock
+module.exports.Lock = lock;
