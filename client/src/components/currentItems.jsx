@@ -3,6 +3,7 @@
 import React from 'react';
 
 const currentItems = props => {
+  return <h1>test</h1>
   /*return (
   <div>
     <p><b>Current Items:</b></p>
