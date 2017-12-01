@@ -40,9 +40,15 @@ class App extends React.Component {
   // adds new item to current list when "Add New Item" is clicked
   addNewItemToList(e) {
     e.preventDefault();
+<<<<<<< HEAD
     let updatedCurrentItems = this.state.currentItems.unshift({ name: this.state.newItemEntry, recalls: [] });
     this.setState({ currentItems: updatedCurrentItems });
     this.setState({ newItemEntry: '' });
+=======
+    var unshiftedCurrentItems = this.state.currentItems.unshift({name: this.state.newItemEntry});
+    this.setState({currentItems: unshiftedCurrentItems, recalls: ''});
+    this.setState({newItemEntry: ''});
+>>>>>>> Refactor addnewItemToList to use setState properly
     this.setState({ currentItems: this.state.currentItems }, this.searchFDA);
   }
 
