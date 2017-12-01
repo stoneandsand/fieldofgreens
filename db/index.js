@@ -20,9 +20,9 @@ const signup = (data, callback) => {
         });
         newUser.save((err, newUserEntry) => {
           if (err) {
-            console.error(err);
+            console.error(err, null);
           } else {
-            callback(newUserEntry.username);
+            callback(null, newUserEntry.username);
           }
         });
       } else {
@@ -40,9 +40,9 @@ const getUserLists = (user, callback) => {
     } else {
       if (!userEntry) {
         console.log('no user found');
-        callback([]);
+        callback(err, []);
       } else {
-        callback(userEntry.lists);
+        callback(null, userEntry.lists);
       }
     }
   });
@@ -61,9 +61,9 @@ const saveList = (user, list, callback) => {
       userEntry.save((err, updatedEntry) => {
         if (err) {
           console.error(err);
-          callback([]);
+          callback(err, []);
         } else {
-          callback(updatedEntry.lists);
+          callback(null, updatedEntry.lists);
         }
       });
     }
@@ -75,12 +75,13 @@ const findList = (user, id, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
       console.error(err);
+      callback(err, {});
     } else {
       let targetList = userEntry.lists.filter(listEntry => listEntry._id.toString() === id).pop();
       if (targetList) {
-        callback(targetList);
+        callback(null, targetList);
       } else {
-        callback(null);
+        callback(null, {});
       }
     }
   });
@@ -89,13 +90,14 @@ const findList = (user, id, callback) => {
 const findAllergies = (user, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
-      console.error(err)
+      console.error(err);
+      callback(err, []);
     } else {
       if (!userEntry) {
         console.log('no user found');
-        callback([]);
+        callback(null, []);
       } else {
-        callback(userEntry.allergies);
+        callback(null, userEntry.allergies);
       }
     }
   });
@@ -105,15 +107,16 @@ const addAllergies = (user, item, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
       console.error(err);
+      callback(err, []);
     } else {
       console.log(item);
       userEntry.allergies.push(item);
       userEntry.save((err, updatedEntry) => {
         if (err) {
           console.error(err);
-          callback([]);
+          callback(err, []);
         } else {
-          callback(updatedEntry.allergies);
+          callback(null, updatedEntry.allergies);
         }
       });
     }
@@ -124,12 +127,13 @@ const findLikes = (user, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
       console.error(err)
+      callback(err, []);
     } else {
       if (!userEntry) {
         console.log('no user found');
-        callback([]);
+        callback(null, []);
       } else {
-        callback(userEntry.likes);
+        callback(null, userEntry.likes);
       }
     }
   });
@@ -139,14 +143,15 @@ const addLikes = (user, item, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
       console.error(err);
+      callback(err, []);
     } else {
       userEntry.likes.push(item);
       userEntry.save((err, updatedEntry) => {
         if (err) {
           console.error(err);
-          callback([]);
+          callback(err, []);
         } else {
-          callback(updatedEntry.likes);
+          callback(null, updatedEntry.likes);
         }
       });
     }
@@ -157,12 +162,13 @@ const findDislikes = (user, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
       console.error(err)
+      callback(err, []);
     } else {
       if (!userEntry) {
         console.log('no user found');
-        callback([]);
+        callback(err, []);
       } else {
-        callback(userEntry.dislikes);
+        callback(null, userEntry.dislikes);
       }
     }
   });
@@ -172,14 +178,15 @@ const addDislikes = (user, item, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
       console.error(err);
+      callback(err, []);
     } else {
       userEntry.dislikes.push(item);
       userEntry.save((err, updatedEntry) => {
         if (err) {
           console.error(err);
-          callback([]);
+          callback(err, []);
         } else {
-          callback(updatedEntry.dislikes);
+          callback(null, updatedEntry.dislikes);
         }
       });
     }
@@ -191,15 +198,16 @@ const removeItem = (user, item, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
       console.error(err);
+      callback(err, []);
     } else {
       if (item.type === 'lists') { //lists
         userEntry[item.type] = userEntry[item.type].filter(entry => entry.name !== item.name);
         userEntry.save((err, updatedEntry) => {
           if (err) {
             console.error(err);
-            callback([]);
+            callback(err, []);
           } else {
-            callback(updatedEntry[item.type]);
+            callback(null, updatedEntry[item.type]);
           }
         });
       } else { // allergies, likes, dislikes
@@ -208,9 +216,9 @@ const removeItem = (user, item, callback) => {
         userEntry.save((err, updatedEntry) => {
           if (err) {
             console.error(err);
-            callback([]);
+            callback(err, []);
           } else {
-            callback(updatedEntry[item.type]);
+            callback(null, updatedEntry[item.type]);
           }
         });
       }
