@@ -50,17 +50,25 @@ class ListManager extends React.Component {
 
   render() {
     return (
-      <div className="card mb-4">
-        <div className="listManager">
-          <h4 className="card-header">
-            <b>List Manager</b>
-          </h4>
+      <div className="row">
+        <div className="col-1">
         </div>
-        <div className="card-body">
-          {this.state.savedLists.length > 0 && <SavedListsLoader getSavedListItems={this.props.getSavedListItems} savedLists={this.state.savedLists}/>}
-          {this.state.savedLists.length > 0 && <hr/>}
-          <CurrentListItemsDisplay currentItems={this.props.currentItems}/>
-          <CurrentListSaver newListName={this.newListName} updateNewListName={this.updateNewListName.bind(this)} saveNewList={this.saveNewList.bind(this)} />
+        <div className="col-10">
+          <div className="card w-100 mb-4">
+            <div className="listManager">
+              <h4 className="card-header">
+                <b>List Manager</b>
+              </h4>
+            </div>
+            <div className="card-body">
+              {this.state.savedLists.length > 0 && <SavedListsLoader getSavedListItems={this.props.getSavedListItems} savedLists={this.state.savedLists}/>}
+              {this.state.savedLists.length > 0 && <hr/>}
+              <CurrentListItemsDisplay currentItems={this.props.currentItems}/>
+              <CurrentListSaver newListName={this.newListName} updateNewListName={this.updateNewListName.bind(this)} saveNewList={this.saveNewList.bind(this)} />
+            </div>
+          </div>
+        </div>
+        <div className="col-1">
         </div>
       </div>
     );
