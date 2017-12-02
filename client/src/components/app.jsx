@@ -15,9 +15,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      state: '',
+      location: '',
       currentItems: [{name: 'apple', recalls:[]}, {name: 'banana', recalls:[]}],
-      currentItems: [],
+      // currentItems: [],
       newItemEntry: '',
       isLoggedIn: false,
       settingsView: false,
@@ -31,7 +31,7 @@ class App extends React.Component {
   componentDidMount() {
     // should only run if user logged in
     // this.getSavedLists();
-    this.searchNewItem();
+    this.searchNewItem('kiwi');
   }
 
   // Updates currentItems with contents of selected saved list.
@@ -73,28 +73,21 @@ class App extends React.Component {
   }
 
   searchNewItem(item) {
-    // let newItem = {name: this.state.newItemEntry, recalls: []}
-    // let newItem = {name: 'bananas', recalls: []};
-    console.log('SEARCHING');
-    axios.get(`/api/search/${item}`)
+    // DEFAULTS FOR TESTING
+    if (!this.state.location) { this.state.location = 'CA'; } // FIX FIX FIX
+    if (!item) { item = 'kiwi'; } // FIX FIX FIX
+    axios.get(`/api/search/${this.state.location}/${item}`)
       .then((res) => {
         // Should send back an array of objects (recalls);
         console.log(res.data);
         let currentItems = this.state.currentItems;
-        let newItem = {name: item, recalls: res.data};
+        let newItem = {name: item, recalls: res.data}; // EXAMPLE: {name: 'bananas', recalls: []};
         currentItems.unshift(newItem);
         this.setState({currentItems: currentItems});
       })
       .catch((err) => {
         console.error(err);
       });
-    // axios.get('/api/users/abc/lists')
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
   }
 
   // called when new items are added to the list, whether by user input or retreival of existent list from database
