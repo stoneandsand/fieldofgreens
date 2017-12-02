@@ -35,7 +35,7 @@ class ListManager extends React.Component {
       listName: this.state.newListName,
       items: this.props.currentItems,
     })
-      .then(response => {
+      .then(res => {
         this.setState({newListName: ''});
         // this.props.getSavedLists();
       }).catch(err => {
