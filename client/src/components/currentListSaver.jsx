@@ -1,6 +1,6 @@
 import React from 'react';
 
-const saveList = props => (
+const currentListSaver = props => (
   <div>
     <form className="form-group" onSubmit={props.saveNewList}>
       <div className="input-group">
@@ -12,5 +12,5 @@ const saveList = props => (
     </form>
   </div>
 );
-export default saveList;
+export default currentListSaver;
 
