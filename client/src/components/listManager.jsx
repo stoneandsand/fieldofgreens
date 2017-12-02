@@ -12,7 +12,8 @@ class ListManager extends React.Component {
     super(props);
     this.state = {
       newListName: '',
-      savedLists: [],
+      savedLists: ['test'], // FIX FIX FIX
+      // savedLists: [], 
     };
   }
 
