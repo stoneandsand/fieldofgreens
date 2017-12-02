@@ -29,18 +29,12 @@ class App extends React.Component {
     this.addNewItemToList = this.addNewItemToList.bind(this);
     this.getSavedLists = this.getSavedLists.bind(this);
     this.selectLocation = this.selectLocation.bind(this);
-<<<<<<< 18f2db161bd1c0483667acb76d00b403e67d7d36
     this.getSettings = this.getSettings.bind(this);
     this.addAllergy = this.addAllergy.bind(this);
     this.addLike = this.addLike.bind(this);
     this.addDislike = this.addDislike.bind(this);
-<<<<<<< 3d1f18e716ff86acd4d9993e434398ab5f44d76f
     this.addLocation = this.addLocation.bind(this);
-=======
-=======
     this.toggleLogin = this.toggleLogin.bind(this);
->>>>>>> logout redirects back to page
->>>>>>> logout redirects back to page
   }
 
   // Makes get request to get saved shopping lists when component mounts
