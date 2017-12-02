@@ -26,11 +26,15 @@ class App extends React.Component {
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
     this.addNewItemToList = this.addNewItemToList.bind(this);
     this.selectLocation = this.selectLocation.bind(this);
+    this.getSettings = this.getSettings.bind(this);
   }
 
   // Makes get request to get saved shopping lists when component mounts
   componentDidMount() {
-    if (this.state.isLoggedIn || true) { this.searchNewItem(); } // FIX FIX FIX
+    this.searchAllItems();
+    this.getSettings();
+    // if (this.state.isLoggedIn || true) { this.searchNewItem(); }
+    // FIX FIX FIX
   }
 
   //  TO BE  REPLACED BY SEARCHNEWITEM
@@ -74,31 +78,29 @@ class App extends React.Component {
     this.setState({ currentItems: currentItems });
   }
 
+  getSettings() {
+    let username = this.state.username || 'abc';
+    axios.get(`api/users/${username}/settings`)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   // called when new items are added to the list, whether by user input or retreival of existent list from database
   // makes get request for each item to '/searchNewList' API endpoint
   searchAllItems() {
-    const currentItems = this.state.currentItems;
-    const newCurrentItems = [];
-    const promises = [];
-    for (let i = 0; i < this.state.currentItems.length; i++) {
-      promises.push(axios.get('/api/search', { item: currentItems[i], location: this.state.location }));
-    }
-    axios.all(promises).then((recallData) => {
-      recallData.forEach(res => {
-        const itemName = res.data[0];
-        const itemRecalls = res.data;
-        const newItem = {
-          name: itemName,
-          recalls: itemRecalls,
-        };
-        res.data.shift();
-        newCurrentItems.push(newItem);
-        this.setState({ currentItems: newCurrentItems });
-      });
-    }).catch(err => {
-      console.error(err);
+    let currentItems = this.state.currentItems;
+    this.setState({
+      currentItems: [],
     });
-  }
+    let location = this.state.location || 'CA';
+    for (let item of currentItems) {
+      this.searchNewItem(item.name);
+    }
+  };
 
   searchNewItem(item) {
     // DEFAULTS FOR TESTING
@@ -119,7 +121,7 @@ class App extends React.Component {
         // alert(`We're very sorry. There was an error searching for your item.`); FIX FIX FIX
       });
   }
-  
+
   render() {
     var settingsView = (
       <Settings location={this.state.state} selectLocation={this.selectLocation} />
