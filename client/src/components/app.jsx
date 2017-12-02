@@ -28,6 +28,7 @@ class App extends React.Component {
   componentDidMount() {
     // should only run if user logged in
     // this.getSavedLists();
+    this.searchNewItem();
   }
 
   // Updates currentItems with contents of selected saved list.
@@ -55,9 +56,10 @@ class App extends React.Component {
   // adds new item to current list when "Add New Item" is clicked
   addNewItemToList(e) {
     e.preventDefault();
-    let updatedCurrentItems = this.state.currentItems.unshift({ name: this.state.newItemEntry, recalls: [] });
-    this.setState({ currentItems: updatedCurrentItems });
+    this.state.currentItems.unshift({ name: this.state.newItemEntry, recalls: [] });
     this.setState({ newItemEntry: '' });
+    console.log(this.state.currentItems);
+    // this.setState({ currentItems: updatedCurrentItems }, this.searchFDA);
     this.setState({ currentItems: this.state.currentItems }, this.searchFDA);
   }
 
@@ -67,6 +69,25 @@ class App extends React.Component {
     this.setState({ currentItems: this.state.currentItems });
   }
 
+  searchNewItem() {
+    // let newItem = {name: this.state.newItemEntry, recalls: []}
+    let newItem = {name: 'bananas', recalls: []};
+    axios.post('/api/search', newItem)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    // axios.get('/api/users/abc/lists')
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
+  }
+
   // called when new items are added to the list, whether by user input or retreival of existent list from database
   // makes get request for each item to '/searchNewList' API endpoint
   searchFDA() {
@@ -74,7 +95,7 @@ class App extends React.Component {
     const newCurrentItems = [];
     const promises = [];
     for (let i = 0; i < this.state.currentItems.length; i++) {
-      promises.push(axios.get('/api/search', { params: { item: scope[i], state: this.state.state } }));
+      promises.push(axios.get('/api/search', { item: scope[i], state: this.state.state }));
     }
     axios.all(promises).then((recallData) => {
       recallData.forEach((response) => {

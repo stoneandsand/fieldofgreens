@@ -7,7 +7,9 @@ const db = require('../db/index.js');
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(`${__dirname}/../`));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
 
 
 // Helper function for getting data that matches the recalls GET request`
@@ -39,19 +41,20 @@ app.post('/signup', (req, res) => {
 });
 
 // GET request for getting recall data from data.js
-app.get('/api/search', (req, res) => {
+app.post('/api/search', (req, res) => {
   // expecting {item: 'cheese cake', location: 'CA'}
   console.log('REQUEST FROM CLIENT', req.body);
 
-  const keywords = JSON.parse(req.body.item).name.split(' ');
-  console.log(keywords);
+  // const keywords = JSON.parse(req.query.item).name.split(' ');
+  // console.log(keywords);
 
-  let matches = getRecallMatches(keywords);
+  // let matches = getRecallMatches(keywords);
 
-  matches = matches.filter(match => match.distribution_pattern.includes(req.body.location) || match.distribution_pattern.includes('Nationwide'));
-  matches.unshift(JSON.parse(req.body.item).name);
-  console.log('matches ======>', matches);
-  res.send(matches.slice(0, 11));
+  // matches = matches.filter(match => match.distribution_pattern.includes(req.query.state) || match.distribution_pattern.includes('Nationwide'));
+  // matches.unshift(JSON.parse(req.query.item).name);
+  // console.log('matches ======>', matches);
+  // res.send(matches.slice(0, 11));
+  res.send('API SEARCH');
 });
 
 
