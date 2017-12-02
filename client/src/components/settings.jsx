@@ -21,7 +21,12 @@ class Settings extends React.Component {
             <div className="card-body">
               <div className="form-group">
                 <label>Allergies</label>
-                <input type="test" className="form-control" id="allergies" placeholder="peanuts" />
+                <div className="input-group">
+                  <input type="test" className="form-control" id="allergies" placeholder="peanuts" />
+                  <span className="input-group-btn">
+                    <input type="submit" className="btn btn-success" value="Add Item" />
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -29,7 +34,12 @@ class Settings extends React.Component {
             <div className="card-body">
               <div className="form-group">
                 <label>Likes</label>
-                <input type="test" className="form-control" id="likes" placeholder="Kale" />
+                <div className="input-group">
+                  <input type="test" className="form-control" id="likes" placeholder="Kale" />
+                  <span className="input-group-btn">
+                    <input type="submit" className="btn btn-success" value="Add Item" />
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -37,7 +47,12 @@ class Settings extends React.Component {
             <div className="card-body">
               <div className="form-group">
                 <label>Dislikes</label>
-                <input type="test" className="form-control" id="dislikes" placeholder="Chicken" />
+                <div className="input-group">
+                  <input type="test" className="form-control" id="dislikes" placeholder="Chicken" />
+                  <span className="input-group-btn">
+                    <input type="submit" className="btn btn-success" value="Add Item" />
+                  </span>
+                </div>
               </div>
             </div>
           </div>
