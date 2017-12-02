@@ -30,15 +30,18 @@ app.post('/signup', (req, res) => {
   console.log(req.body, 'user_id');
   // expecting {username: '', password: ''}
   res.send('req.body');
+  let user = {
+    username = req.body.name,
+    email = req.body.email,
+  }
 
-
-  // db.signup(user, (username) => {
-  //   if (username) {
-  //     res.send(username);
-  //   } else {
-  //     res.send(null);
-  //   }
-  // });
+  db.signup(user, (username) => {
+    if (username) {
+      res.send(username);
+    } else {
+      res.send(null);
+    }
+  });
 });
 
 // GET request for getting recall data from data.js
