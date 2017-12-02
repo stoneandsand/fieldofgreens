@@ -52,7 +52,6 @@ app.get('/api/search/:location/:item', (req, res) => {
   let matches = getRecallMatches(keywords);
 
   matches = matches.filter(match => match.distribution_pattern.includes(req.params.state));
-  // console.log('matches ======>', matches);
   res.send(matches.slice(0, 10));
 });
 // || match.distribution_pattern.includes('Nationwide')
@@ -92,25 +91,11 @@ app.get('/api/users/:username/lists/:id', (req, res) => {
   });
 });
 
-app.get('/api/users/:username/allergies', (req, res) => {
-  // retrieve user's allergy list
-  db.findAllergies(req.params.username, (err, allergyList) => {
-    res.send(allergyList);
-  });
-});
-
-app.get('/api/users/:username/likes', (req, res) => {
-  // retrieve user's like list
-  db.findLikes(req.params.username, (err, likeList) => {
-    res.send(likeList);
-  });
-});
-
-app.get('/api/users/:username/dislikes', (req, res) => {
-  // retrieve user's dislike list
-  db.findDislikes(req.params.username, (err, dislikeList) => {
-    res.send(dislikeList);
-  });
+app.get('/api/users/:username/settings', (req, res) => {
+  db.findSettings(req.params.username, (err, settings) => {
+  //should send {allergies: [], likes: [], dislikes: [], location: ''}
+    res.send(settings);
+  })
 });
 
 app.post('/api/users/:username/allergies', (req, res) => {
@@ -132,6 +117,12 @@ app.post('/api/users/:username/dislikes', (req, res) => {
   // Expecting {item: 'apple'} item in POST request
   db.addAllergies(req.params.username, req.body.item, (err, updatedDislikeList) => {
     res.send(updatedDislikeList);
+  });
+});
+
+app.post('/api/users/:username/location', (req, res) => {
+  db.addLocation(req.params.username, req.body.location, (err, location) => {
+    res.send(location)
   });
 });
 
