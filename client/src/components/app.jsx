@@ -20,7 +20,6 @@ class App extends React.Component {
       likes: [],
       dislikes: [],
       currentItems: [{name: 'apple', recalls:[]}, {name: 'banana', recalls:[]}],
-      // currentItems: [],
       newItemEntry: '',
       isLoggedIn: false,
       settingsView: false,
@@ -28,15 +27,18 @@ class App extends React.Component {
     };
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
     this.addNewItemToList = this.addNewItemToList.bind(this);
+    this.getSavedLists = this.getSavedLists.bind(this);
     this.selectLocation = this.selectLocation.bind(this);
     this.getSettings = this.getSettings.bind(this);
     this.addAllergy = this.addAllergy.bind(this);
     this.addLike = this.addLike.bind(this);
     this.addDislike = this.addDislike.bind(this);
+    this.addLocation = this.addLocation.bind(this);
   }
 
   // Makes get request to get saved shopping lists when component mounts
   componentDidMount() {
+    this.getSavedLists();
     this.searchAllItems();
     this.getSettings();
     // if (this.state.isLoggedIn || true) { this.searchNewItem(); }
@@ -50,13 +52,25 @@ class App extends React.Component {
     this.setState({ newItemEntry: '' }, this.searchNewItem(this.state.newItemEntry));
   }
 
+  getSavedLists() {
+    let username = this.state.username || 'abc';
+    axios.get(`/api/users/${username}/lists`)
+      .then(res => {
+        console.log(res.data); //user's lists
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   // Updates currentItems with contents of selected saved list.
   getSavedListItems(listName) {
     const savedListItems = [];
-    axios.get(`/api/users/${this.state.username}/lists/${list}`)
+    let username = this.state.username || 'abc';
+    axios.get(`/api/users/${username}/lists/5a20910146823c815f63af66`)
       .then(res => {
-        console.log(res);
-        const mapped = res.data[0].items.map((item) => {
+        console.log(res.data);
+        const mapped = res.data.items.map((item) => {
           savedListItems.push({ name: item, recalls: [] });
         });
         console.log(mapped);
@@ -130,20 +144,59 @@ class App extends React.Component {
 
   addAllergy(event) {
     event.preventDefault();
+    axios.post(`/api/users/${username}/allergies`, {item: event.target.value})
+      .then(res => {
+        this.setState({
+          allergies: res.data,
+        })
+      })
+      .catch(err => {
+        console.error(err);
+      });
     const joined = this.state.allergies.push(event.target.value);
     this.setState({allergies: joined});
   }
 
   addLike(event) {
     event.preventDefault();
+    axios.post(`/api/users/${username}/likes`, {item: event.target.value})
+      .then(res => {
+        this.setState({
+          likes: res.data,
+        })
+      })
+      .catch(err => {
+        console.error(err);
+      });
     const joined = this.state.likes.push(event.target.value);
     this.setState({likes: joined});
   }
 
   addDislike(event) {
     event.preventDefault();
+    axios.post(`/api/users/${username}/dislikes`, {item: event.target.value})
+      .then(res => {
+        this.setState({
+          dislikes: res.data,
+        })
+      })
+      .catch(err => {
+        console.error(err);
+      });
     const joined = this.state.dislikes.push(event.target.value);
     this.setState({dislikes: joined});
+  }
+
+  addLocation() {
+    axios.post(`/api/users/${username}/location`, this.state.location)
+      .then(res => {
+        this.setState({
+          location: res.data,
+        })
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   render() {
