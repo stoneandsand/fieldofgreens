@@ -44,7 +44,7 @@ export default class Auth {
 
   logout () {
     console.log('logged out');
-    window.location.replace('https://field-of-greens.auth0.com/v2/logout');
+    window.location.replace('https://field-of-greens.auth0.com/v2/logout?returnTo=http://localhost:5000');
     // localStorage.removeItem('profile')
     // localStorage.removeItem('accessToken');
     // localStorage.removeItem('idToken');
