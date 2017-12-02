@@ -16,7 +16,7 @@ const signup = (data, callback) => {
       if (!userEntry) {
         let newUser = new User({
           username: data.username,
-          password: data.password,
+          email: data.email,
         });
         newUser.save((err, newUserEntry) => {
           if (err) {
