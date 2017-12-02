@@ -55,6 +55,9 @@ class App extends React.Component {
         });
         console.log(mapped);
         this.setState({ currentItems: savedListItems }, this.searchFDA);
+      }).catch((err) => {
+        console.error(err);
+        alert(`We're very sorry, ${username}. There was an error fetching your list.`);
       });
   }
 
