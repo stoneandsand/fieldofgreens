@@ -20,6 +20,7 @@ class App extends React.Component {
       currentItems: [],
       newItemEntry: '',
       isLoggedIn: false,
+      settingsView: false,
     };
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
     this.addNewItemToList = this.addNewItemToList.bind(this);
