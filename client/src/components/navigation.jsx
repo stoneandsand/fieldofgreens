@@ -8,7 +8,8 @@ const Lock = require('../../../Auth/Auth.js').Lock;
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
-    this.login = this.login.bind(this);
+    this.logoutFunc = this.logoutFunc.bind(this);
+    this.setAuthenticatedStatus = this.setAuthenticatedStatus.bind(this);
   }
 
   componentWillMount() {
@@ -20,14 +21,14 @@ class Navigation extends React.Component {
 
       Lock.getUserInfo(authStatus.accessToken, (err, profile)=> {
         console.log('err',err, 'profile',profile);
-
         axios.post('http://localhost:5000/signup', profile)
           .then( (success)=>{
             console.log('user data', success);
-            this.props.toggleLogin(true);
+            localStorage.setItem('authenticated', true);
           })
           .catch((err)=>{
             console.log('error',err);
+            localStorage.removeItem('authenticated');
           });
       });
     });
@@ -37,13 +38,28 @@ class Navigation extends React.Component {
     });
   }
 
-  login() {
-    Lock.show();
+  componentDidMount() {
+    this.setAuthenticatedStatus();
   }
+
+  logoutFunc() {
+    localStorage.removeItem('authenticated');
+    this.setAuthenticatedStatus();
+    this.props.auth.logout();
+  }
+
+  setAuthenticatedStatus() {
+    if (localStorage.getItem('authenticated') ) {
+      this.props.toggleLogin(true);
+    } else {
+      this.props.toggleLogin(false);
+    }
+  }
+
 
   render() {
 
-    const isLoggedIn = <h3><span id="logout" onClick={this.props.auth.logout}>Logout</span> <span id="settings">Settings</span></h3>;
+    const isLoggedIn = <h3><span id="logout" onClick={this.logoutFunc}>Logout</span> <span id="settings">Settings</span></h3>;
     const isNotLoggedIn = <h3 onClick={this.props.auth.login}>Login/SignUp</h3>;
     return (
       <div className="container-fluid navigation">
