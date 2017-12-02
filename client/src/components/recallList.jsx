@@ -3,22 +3,20 @@ import RecallListItem from './recallListItem.jsx';
 
 const recallList = props => (
   <div className="card mb-4">
-    <div>
+    <div className="recallList">
       <h4 className="card-header">
-        Recalls:
+        <b>Recalls</b>
       </h4>
     </div>
     <div className="card-body">
       {props.currentItems.map((item, i) =>
-    (<RecallListItem
-         deleteItem={props.deleteItem}
-         item={item}
-         i={i}
-         key={`recallListItem-${i}`}
-    />))
-  }
+                              <div key={`recallListItem-${i}`}>
+                                  <RecallListItem deleteItem={props.deleteItem} item={item} i={i} />
+                                    {i < props.currentItems.length - 1 && <hr/>}
+                                </div>
+                             )}
   </div>
-  </div>
+    </div>
 );
 
 export default recallList;
