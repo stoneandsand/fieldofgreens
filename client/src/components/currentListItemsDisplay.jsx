@@ -3,16 +3,17 @@
 
 import React from 'react';
 
-const currentItems = props =>
+const currentListItemsDisplay = props =>
       (
         <div>
           <p><b>Current Items: </b>
             {props.currentItems.map((item, i) => {
               return (
                 <span key={`currentItems-${i}`}>{item.name}{props.currentItems.length <= 1 ? '.' : i < props.currentItems.length - 1 ? ', ' : '.'}</span>
-              )})}
+              );
+            })}
         </p>
           </div>
       );
 
-export default currentItems;
+export default currentListItemsDisplay;
