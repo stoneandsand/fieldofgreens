@@ -27,11 +27,9 @@ class App extends React.Component {
     this.selectState = this.selectState.bind(this);
   }
 
-  // makes get request to get saved shopping lists when component mounts
+  // Makes get request to get saved shopping lists when component mounts
   componentDidMount() {
-    // should only run if user logged in
-    // this.getSavedLists();
-    this.searchNewItem('kiwi');
+    if (this.state.isLoggedIn) { this.searchNewItem(); }
   }
 
   // Updates currentItems with contents of selected saved list.
