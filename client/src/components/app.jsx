@@ -246,6 +246,9 @@ class App extends React.Component {
           newDislike={newDislike}
           selectLocation={this.selectLocation}
           settingsView={settingsView}
+          updateNewAllergy={this.updateNewAllergy}
+          updateNewLike={this.updateNewLike}
+          updateNewDislike={this.updateNewDislike}
         />
         <SearchView
           currentItems={currentItems}
