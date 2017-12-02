@@ -16,6 +16,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       location: '',
+      allergies: [],
+      likes: [],
+      dislikes: [],
       currentItems: [{name: 'apple', recalls:[]}, {name: 'banana', recalls:[]}],
       // currentItems: [],
       newItemEntry: '',
@@ -124,7 +127,7 @@ class App extends React.Component {
 
   render() {
     var settingsView = (
-      <Settings location={this.state.state} selectLocation={this.selectLocation} />
+      <Settings settingsView={this.state.settingsView} location={this.state.state} allergies={this.state.allergies} likes={this.state.likes} dislikes={this.state.dislikes} selectLocation={this.selectLocation} />
     );
     var searchView = (
       <div>
