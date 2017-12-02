@@ -29,7 +29,7 @@ class App extends React.Component {
 
   // Makes get request to get saved shopping lists when component mounts
   componentDidMount() {
-    if (this.state.isLoggedIn) { this.searchNewItem(); }
+    if (this.state.isLoggedIn || true) { this.searchNewItem(); } // FIX FIX FIX
   }
 
   // Updates currentItems with contents of selected saved list.
