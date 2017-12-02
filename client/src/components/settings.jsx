@@ -13,24 +13,22 @@ class Settings extends React.Component {
         <div className="card-deck location">
           <div className="card">
             <div className="card-body">
+              <h3>Location</h3>
             </div>
           </div>
-        </div>
-        <div className="card-deck allergies">
           <div className="card">
             <div className="card-body">
+              <h3>Allergies</h3>
             </div>
           </div>
-        </div>
-        <div className="card-deck likes">
           <div className="card">
             <div className="card-body">
+              <h3>Likes</h3>
             </div>
           </div>
-        </div>
-        <div className="card-deck dislikes">
           <div className="card">
             <div className="card-body">
+              <h3>Dislikes</h3>
             </div>
           </div>
         </div>
