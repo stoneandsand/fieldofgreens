@@ -71,7 +71,7 @@ class App extends React.Component {
     let list = {
       id: '123',
       name: 'test',
-    }
+    };
     // list = this.state.selectedList;
     axios.get(`/api/users/${username}/lists/${list.id}`)
       .then(res => {
@@ -154,7 +154,7 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           allergies: res.data,
-        })
+        });
       })
       .catch(err => {
         console.error(err);
@@ -169,7 +169,7 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           likes: res.data,
-        })
+        });
       })
       .catch(err => {
         console.error(err);
@@ -184,7 +184,7 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           dislikes: res.data,
-        })
+        });
       })
       .catch(err => {
         console.error(err);
@@ -198,7 +198,7 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           location: res.data,
-        })
+        });
       })
       .catch(err => {
         console.error(err);
@@ -210,22 +210,16 @@ class App extends React.Component {
   }
 
   render() {
-    var settingsView = (
+    const settingsView = (
       <Settings settingsView={this.state.settingsView} location={this.state.location} allergies={this.state.allergies} likes={this.state.likes} dislikes={this.state.dislikes} selectLocation={this.selectLocation} addAllergy={this.addAllergy} addLike={this.addLike} addDislike={this.addDislike}/>
     );
-    var searchView = (
-      <div>
-        <div className="container">
-          <div className="row justify-content-md-center">
-            <div className="col-12 col-md-auto mt-4">
-              <ListManager currentItems={this.state.currentItems} getSavedListItems={this.getSavedListItems.bind(this)} />
-            </div>
-          </div>
+    const searchView = (
+      <div className="container">
+        <div>
+          <ListManager currentItems={this.state.currentItems} getSavedListItems={this.getSavedListItems.bind(this)} />
         </div>
-        <div className="row justify-content-md-center">
-          <div className="col-12 col-md-auto">
-            {this.state.currentItems.length > 0 && <RecallList deleteItem={this.deleteItem.bind(this)} currentItems={this.state.currentItems} />}
-          </div>
+        <div>
+        {this.state.currentItems.length > 0 && <RecallList deleteItem={this.deleteItem.bind(this)} currentItems={this.state.currentItems} />}
         </div>
       </div>
     );
