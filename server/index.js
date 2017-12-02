@@ -1,5 +1,4 @@
 const express = require('express');
-
 const app = express();
 const bodyParser = require('body-parser');
 const recalls = require('../db/data.js');
@@ -10,10 +9,9 @@ app.use(express.static(`${__dirname}/../`));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-
+// HELPERS
 
 // Helper function for getting data that matches the recalls GET request`
-
 const getRecallMatches = (keywordsArray) => {
   let matches = [];
   for (let keyword of keywordsArray) {
@@ -27,6 +25,7 @@ const getRecallMatches = (keywordsArray) => {
   return matches;
 };
 
+// ROUTING
 
 app.post('/signup', (req, res) => {
   console.log(req.body);
