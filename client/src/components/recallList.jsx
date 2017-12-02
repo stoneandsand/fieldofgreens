@@ -9,12 +9,12 @@ const recallList = props => (
       </h4>
     </div>
     <div className="card-body">
-      {props.currentItems.map((singleItem, i) =>
+      {props.currentItems.map((item, i) =>
     (<RecallListItem
          deleteItem={props.deleteItem}
-         entry={singleItem}
+         item={item}
          i={i}
-         key={`recallList-${i}`}
+         key={`recallListItem-${i}`}
     />))
   }
   </div>
