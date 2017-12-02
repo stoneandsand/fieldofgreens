@@ -8,15 +8,15 @@ mongoose.connect(DB_URI, {useMongoClient: true});
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
-const signup = (data, callback) => {
-  User.findOne({username: data.username}, (err, userEntry) => {
+const signup = (user, callback) => {
+  User.findOne({username: user.email}, (err, userEntry) => {
     if (err) {
       console.error(err);
       callback(err, null);
     } else {
       if (!userEntry) {
         let newUser = new User({
-          username: data.email,
+          username: user.email,
         });
         newUser.save((err, newUserEntry) => {
           if (err) {
