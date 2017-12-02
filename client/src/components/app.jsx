@@ -67,7 +67,12 @@ class App extends React.Component {
   getSavedListItems(listName) {
     const savedListItems = [];
     let username = this.state.username || 'abc';
-    axios.get(`/api/users/${username}/lists/5a20910146823c815f63af66`)
+    let list = {
+      id: '123',
+      name: 'test',
+    }
+    // list = this.state.selectedList;
+    axios.get(`/api/users/${username}/lists/${list.id}`)
       .then(res => {
         console.log(res.data);
         const mapped = res.data.items.map((item) => {
