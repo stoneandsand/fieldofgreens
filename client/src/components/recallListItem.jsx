@@ -8,7 +8,7 @@ const recallListItem = props => (
   </button>
     <span className="list-item">{props.item.name}</span>
     <div>
-        {props.item.recalls.length === 0 ? <RecallEntry recall={false} /> : props.item.recalls.map((rec, i) => <Recalls key={`recallEntry-${i}`} recall={rec} />)}
+        {props.item.recalls.length === 0 ? <RecallEntry recall={false} /> : props.item.recalls.map((recall, i) => <Recalls key={`recallEntry-${i}`} recall={recall} />)}
     </div>
   </div>
 );
