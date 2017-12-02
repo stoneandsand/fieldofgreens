@@ -15,8 +15,8 @@ app.use(bodyParser.json());
 const getRecallMatches = (keywordsArray) => {
   let matches = [];
   for (let keyword of keywordsArray) {
-    for (let recall of recalls.recallData) {
-      if (recall.product_description.toUpperCase().includes(keyword.toUpperCase()) && recall.report_date > '20170101') {
+    for (let recall of recalls.recallData && recall.report_date > '20170101') {
+      if (recall.product_description.toUpperCase().includes(keyword.toUpperCase()) ) {
         matches.push(recall);
       }
     }
@@ -26,7 +26,6 @@ const getRecallMatches = (keywordsArray) => {
 };
 
 // ROUTING
-
 app.post('/signup', (req, res) => {
   console.log(req.body);
   // expecting {username: '', password: ''}
@@ -50,7 +49,7 @@ app.get('/api/search/:location/:item', (req, res) => {
 
   let matches = getRecallMatches(keywords);
 
-  matches = matches.filter(match => match.distribution_pattern.includes(req.params.state));
+  matches = matches.filter(match => match.distribution_pattern.includes(req.params.location));
   res.send(matches.slice(0, 10));
 });
 // || match.distribution_pattern.includes('Nationwide')
