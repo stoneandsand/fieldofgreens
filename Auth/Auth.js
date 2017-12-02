@@ -12,20 +12,12 @@ export default class Auth {
   this.handleAuth = this.handleAuth.bind(this);
   // this.isAuthenticated = this.isAuthenticated.bind(this);
   this.setSession = this.setSession.bind(this);
-  this.getUserdata = this.getUserdata.bind(this);
   }
 
   login (email, password, cb) {
     lock.show();
   }
 
-  getUserdata (userID) {
-    lock.getUserInfo(userID, (err, profile)=> {
-      if(!error) {
-        return profile;
-      }
-    })
-  }
 
   handleAuth () {
     lock.on('authenticated', this.setSession);
