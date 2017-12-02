@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemInput from './ItemInput.jsx';
-import StateDropdown from './stateDropdown.jsx';
+import StateDropdown from './StateDropdown.jsx';
 import Auth0Lock from 'auth0-lock';
 import axios from 'axios';
 const Lock = require('../../../Auth/Auth.js').Lock;
