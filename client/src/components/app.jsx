@@ -20,7 +20,7 @@ class App extends React.Component {
       // currentItems: [],
       newItemEntry: '',
       isLoggedIn: false,
-      settingsView: false,
+      settingsView: true,
     };
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
     this.addNewItemToList = this.addNewItemToList.bind(this);
@@ -114,7 +114,7 @@ class App extends React.Component {
 
   render() {
     var settingsView = (
-      <Settings />
+      <Settings location={this.state.state} selectState={this.selectState} />
     );
     var searchView = (
       <div>
