@@ -7,8 +7,9 @@ class Settings extends React.Component {
   }
 
   render() {
-    console.log('settings props: ',this.props)
+    console.log('settings props: ', this.props);
     return (
+      this.props.settingsView && 
       <div className="container settingsView">
         <button type="button" className="btn btn-primary">Search</button>
         <div className="card-deck location">
@@ -59,7 +60,7 @@ class Settings extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
