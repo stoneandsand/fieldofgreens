@@ -48,14 +48,14 @@ class App extends React.Component {
   getSavedListItems(listName) {
     const savedListItems = [];
     axios.get(`/api/users/${this.state.username}/lists/${list}`)
-      .then((response) => {
+      .then(response => {
         console.log(response);
         const mapped = response.data[0].items.map((item) => {
           savedListItems.push({ name: item, recalls: [] });
         });
         console.log(mapped);
         this.setState({ currentItems: savedListItems }, this.searchFDA);
-      }).catch((err) => {
+      }).catch(err => {
         console.error(err);
         alert(`We're very sorry, ${username}. There was an error fetching your list.`);
       });
@@ -88,7 +88,7 @@ class App extends React.Component {
       promises.push(axios.get('/api/search', { item: currentItems[i], location: this.state.location }));
     }
     axios.all(promises).then((recallData) => {
-      recallData.forEach((response) => {
+      recallData.forEach(response => {
         const itemName = response.data[0];
         const itemRecalls = response.data;
         const newItem = {
@@ -99,6 +99,8 @@ class App extends React.Component {
         newCurrentItems.push(newItem);
         this.setState({ currentItems: newCurrentItems });
       });
+    }).catch(err => {
+      console.error(err);
     });
   }
 
@@ -107,7 +109,7 @@ class App extends React.Component {
     if (!this.state.location) { this.state.location = 'CA'; } // FIX FIX FIX
     if (!item) { item = 'kiwi'; } // FIX FIX FIX
     axios.get(`/api/search/${this.state.location}/${item}`)
-      .then((res) => {
+      .then(res => {
         // Should send back an array of objects (recalls);
         console.log(res.data);
         let currentItems = this.state.currentItems;
@@ -115,7 +117,7 @@ class App extends React.Component {
         currentItems.unshift(newItem);
         this.setState({currentItems: currentItems});
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
         // alert(`We're very sorry. There was an error searching for your item.`); FIX FIX FIX
       });
