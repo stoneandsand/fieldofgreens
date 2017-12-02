@@ -31,6 +31,7 @@ class App extends React.Component {
     this.selectLocation = this.selectLocation.bind(this);
     this.getSettings = this.getSettings.bind(this);
     this.addAllergy = this.addAllergy.bind(this);
+    this.addLike = this.addLike.bind(this);
   }
 
   // Makes get request to get saved shopping lists when component mounts
@@ -130,6 +131,12 @@ class App extends React.Component {
     event.preventDefault();
     const joined = this.state.allergies.push(event.target.value);
     this.setState({allergies: joined});
+  }
+
+  addLike(event) {
+    event.preventDefault();
+    const joined = this.state.likes.push(event.target.value);
+    this.setState({likes: joined});
   }
 
   render() {
