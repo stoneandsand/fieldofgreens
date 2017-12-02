@@ -25,8 +25,7 @@ class App extends React.Component {
       newAllergy: '',
       newLike: '',
       newDislike: '',
-      newLocation: '',
-      settingsView: true,
+      settingsView: false,
       username: '',
     };
     this.addAllergy = this.addAllergy.bind(this);
