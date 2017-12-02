@@ -12,21 +12,21 @@ const signup = (data, callback) => {
   User.findOne({username: data.username}, (err, userEntry) => {
     if (err) {
       console.error(err);
+      callback(err, null);
     } else {
       if (!userEntry) {
         let newUser = new User({
-          username: data.username,
-          email: data.email,
+          username: data.email,
         });
         newUser.save((err, newUserEntry) => {
           if (err) {
-            console.error(err, null);
+            callback(err, null);
           } else {
             callback(null, newUserEntry.username);
           }
         });
       } else {
-        callback('Username already exists');
+        callback(null, null); //Username already exists
       }
     }
   });
@@ -37,10 +37,11 @@ const getUserLists = (user, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
       console.error(err)
+      callback(err, []);
     } else {
       if (!userEntry) {
         console.log('no user found');
-        callback(err, []);
+        callback(null, []);
       } else {
         callback(null, userEntry.lists);
       }
