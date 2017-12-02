@@ -6,7 +6,7 @@ import ItemInput from './iteminput.jsx';
 import RecallList from './recallList.jsx';
 import ListManager from './listManager.jsx';
 import Navigation from './navigation.jsx';
-import Auth from './../../../Auth/Auth.js'
+import Auth from './../../../Auth/Auth.js';
 
 const auth = new Auth();
 
