@@ -50,7 +50,7 @@ class App extends React.Component {
           savedListItems.push({ name: item, recalls: [] });
         });
         console.log(mapped);
-        this.setState({ currentItems: savedListItems }, this.searchFDA);
+        this.setState({ currentItems: savedListItems }, this.searchAllItems);
       }).catch(err => {
         console.error(err);
         alert(`We're very sorry, ${username}. There was an error fetching your list.`);
@@ -76,7 +76,7 @@ class App extends React.Component {
 
   // called when new items are added to the list, whether by user input or retreival of existent list from database
   // makes get request for each item to '/searchNewList' API endpoint
-  searchFDA() {
+  searchAllItems() {
     const currentItems = this.state.currentItems;
     const newCurrentItems = [];
     const promises = [];
