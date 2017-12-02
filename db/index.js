@@ -70,6 +70,8 @@ const saveList = (user, list, callback) => {
   });
 };
 
+
+
 // Returns a list of a user and runs callback on its contents to the client
 const findList = (user, id, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
@@ -82,22 +84,6 @@ const findList = (user, id, callback) => {
         callback(null, targetList);
       } else {
         callback(null, {});
-      }
-    }
-  });
-};
-
-const findAllergies = (user, callback) => {
-  User.findOne({username: user}, (err, userEntry) => {
-    if (err) {
-      console.error(err);
-      callback(err, []);
-    } else {
-      if (!userEntry) {
-        console.log('no user found');
-        callback(null, []);
-      } else {
-        callback(null, userEntry.allergies);
       }
     }
   });
@@ -123,22 +109,6 @@ const addAllergies = (user, item, callback) => {
   });
 };
 
-const findLikes = (user, callback) => {
-  User.findOne({username: user}, (err, userEntry) => {
-    if (err) {
-      console.error(err)
-      callback(err, []);
-    } else {
-      if (!userEntry) {
-        console.log('no user found');
-        callback(null, []);
-      } else {
-        callback(null, userEntry.likes);
-      }
-    }
-  });
-};
-
 const addLikes = (user, item, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
@@ -158,22 +128,6 @@ const addLikes = (user, item, callback) => {
   });
 };
 
-const findDislikes = (user, callback) => {
-  User.findOne({username: user}, (err, userEntry) => {
-    if (err) {
-      console.error(err)
-      callback(err, []);
-    } else {
-      if (!userEntry) {
-        console.log('no user found');
-        callback(err, []);
-      } else {
-        callback(null, userEntry.dislikes);
-      }
-    }
-  });
-};
-
 const addDislikes = (user, item, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
@@ -189,6 +143,28 @@ const addDislikes = (user, item, callback) => {
           callback(null, updatedEntry.dislikes);
         }
       });
+    }
+  });
+};
+
+const findSettings = (user, callback) => {
+  User.findOne({username: user}, (err, userEntry) => {
+    if (err) {
+      console.error(err);
+      callback(err, []);
+    } else {
+      if (!userEntry) {
+        console.log('no user found');
+        callback(null, {});
+      } else {
+        let settings = {
+          allergies: userEntry.allergies,
+          likes: userEntry.likes,
+          dislikes: userEntry.dislikes,
+          location: userEntry.location,
+        }
+        callback(null, settings);
+      }
     }
   });
 };
@@ -230,10 +206,8 @@ module.exports.signup = signup;
 module.exports.getUserLists = getUserLists;
 module.exports.saveList = saveList;
 module.exports.findList = findList;
-module.exports.findAllergies = findAllergies;
 module.exports.addAllergies = addAllergies;
-module.exports.findLikes = findLikes;
 module.exports.addLikes = addLikes;
-module.exports.findDislikes = findDislikes;
 module.exports.addDislikes = addDislikes;
+module.exports.findSettings = findSettings;
 module.exports.removeItem = removeItem;
