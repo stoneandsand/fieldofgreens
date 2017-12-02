@@ -7,6 +7,7 @@ class Settings extends React.Component {
   }
 
   render() {
+    console.log('settings props: ',this.props)
     return (
       <div className="container settingsView">
         <button type="button" className="btn btn-primary">Search</button>
