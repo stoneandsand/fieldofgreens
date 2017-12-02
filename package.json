@@ -10,7 +10,7 @@
     "lint": "./node_modules/.bin/eslint --fix .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "wp": "webpack -d --progress --colors --watch",
-    "start": "node server/index.js",
+    "start": "nodemon server/index.js",
     "startdev": "nodemon --inspect server/index.js",
     "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
   },
