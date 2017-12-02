@@ -16,7 +16,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       state: '',
-      //  currentItems: [{name: 'apple', recalls:[]}, {name: 'banana', recalls:[]}],
+      currentItems: [{name: 'apple', recalls:[]}, {name: 'banana', recalls:[]}],
       currentItems: [],
       newItemEntry: '',
       isLoggedIn: false,
@@ -72,12 +72,18 @@ class App extends React.Component {
     this.setState({ currentItems: this.state.currentItems });
   }
 
-  searchNewItem() {
+  searchNewItem(item) {
     // let newItem = {name: this.state.newItemEntry, recalls: []}
-    let newItem = {name: 'bananas', recalls: []};
-    axios.post('/api/search', newItem)
+    // let newItem = {name: 'bananas', recalls: []};
+    console.log('SEARCHING');
+    axios.get(`/api/search/${item}`)
       .then((res) => {
+        // Should send back an array of objects (recalls);
         console.log(res.data);
+        let currentItems = this.state.currentItems;
+        let newItem = {name: item, recalls: res.data};
+        currentItems.unshift(newItem);
+        this.setState({currentItems: currentItems});
       })
       .catch((err) => {
         console.error(err);
