@@ -10,7 +10,7 @@ const SavedListsLoader = props => (
       </button>
       <div className="dropdown-menu" aria-labelledby="savedLists">
         {props.savedLists.map((listEntry, i) => (
-          <a className="dropdown-item" href="#" key={i} onClick={props.getSavedListItems.bind(null, listEntry)}>{listEntry}</a>
+          <a className="dropdown-item" href="#" key={i} onClick={props.getSavedListItems.bind(null, listEntry.id)}>{listEntry.name}</a>
         ))}
   </div>
     </div>
