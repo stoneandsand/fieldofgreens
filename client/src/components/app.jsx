@@ -226,6 +226,11 @@ class App extends React.Component {
           selectLocation={this.selectLocation}
           settingsView={settingsView}
         />
+        <SearchView
+          currentItems={currentItems}
+          deleteItem={this.deleteItem}
+          getSavedListItems={this.getSavedListItems}
+        />
       </div>
     );
   }
