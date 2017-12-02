@@ -24,7 +24,6 @@ class Navigation extends React.Component {
         axios.post('http://localhost:5000/signup', profile)
           .then( (success)=>{
             console.log('user data', success);
-            window.location.reload();
           })
           .catch((err)=>{
             console.log('error',err);
