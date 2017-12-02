@@ -44,7 +44,7 @@ class App extends React.Component {
       });
   }
 
-  // sets state for state(location) when item selected in dropdownv
+  // sets state for state(location) when item selected in dropdown
   selectLocation(e) {
     this.setState({ location: e.target.value });
   }
