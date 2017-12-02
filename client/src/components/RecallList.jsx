@@ -1,7 +1,8 @@
 import React from 'react';
-import RecallListItem from './recallListItem.jsx';
+import RecallListItem from './RecallListItem.jsx';
 
 const RecallList = props => (
+  this.props.currentItems.length > 0 &&
   <div className="row justify-content-md-center">
     <div className="col-1">
     </div>
@@ -16,7 +17,11 @@ const RecallList = props => (
           <ul className="list-group list-group-flush">
             {props.currentItems.map((item, i) =>
                                     <li className="list-group-item" key={`recallListItem-${i}`}>
-                                        <RecallListItem deleteItem={props.deleteItem} item={item} i={i} />
+                                        <RecallListItem
+                                            deleteItem={props.deleteItem}
+                                            i={i}
+                                            item={item}
+                                        />
                                       </li>
                                    )}
   </ul>

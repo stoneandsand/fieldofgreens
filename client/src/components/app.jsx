@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import StateDropdown from './StateDropdown.jsx';
-import ItemInput from './Iteminput.jsx';
+import ItemInput from './ItemInput.jsx';
 import RecallList from './RecallList.jsx';
 import ListManager from './ListManager.jsx';
 import Navigation from './Navigation.jsx';
@@ -226,25 +226,14 @@ class App extends React.Component {
           selectLocation={this.selectLocation}
           settingsView={settingsView}
         />
-        {
-          !settingsView && <searchView/>
-        }
       </div>
     );
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
 /*
-    const searchView = (
-      <div className="container">
-        <div>
-          <ListManager currentItems={this.state.currentItems} getSavedListItems={this.getSavedListItems.bind(this)} />
-        </div>
-        <div>
-        {this.state.currentItems.length > 0 && <RecallList deleteItem={this.deleteItem.bind(this)} currentItems={this.state.currentItems} />}
-        </div>
-      </div>
-    );
+        {
+          !settingsView && <searchView/>
+        }
 */
