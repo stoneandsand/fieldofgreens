@@ -203,6 +203,7 @@ class App extends React.Component {
       .catch(err => {
         console.error(err);
       });
+  }
 
   toggleLogin(boolean) {
     this.setState({isLoggedIn: boolean})
