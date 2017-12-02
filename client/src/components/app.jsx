@@ -50,6 +50,7 @@ class App extends React.Component {
   addNewItemToList(e) {
     e.preventDefault();
     this.setState({ newItemEntry: '' }, this.searchNewItem(this.state.newItemEntry));
+    // auth.isAuthenticated();
   }
 
   getSavedLists() {

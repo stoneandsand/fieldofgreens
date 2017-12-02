@@ -50,9 +50,9 @@ export default class Auth {
     // localStorage.removeItem('idToken');
   }
 
-  // isAuthenticated () {
-  //   return (!!localStorage.getItem('accessToken') && !!localStorage.getItem('idToken'));
-  // }
+  isAuthenticated () {
+    return (!!localStorage.getItem('accessToken') && !!localStorage.getItem('idToken'));
+  }
 }
 
 module.exports.Lock = lock
