@@ -15,6 +15,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       state: '',
+      //  currentItems: [{name: 'apple', recalls:[]}, {name: 'banana', recalls:[]}],
       currentItems: [],
       newItemEntry: '',
       isLoggedIn: false,
