@@ -19,8 +19,8 @@ class ListManager extends React.Component {
 
   getSavedLists() {
     axios.get(`/api/users/${username}/lists`)
-      .then(data => {
-        this.setState({ savedLists: data.data });
+      .then(res => {
+        this.setState({ savedLists: res.data });
       })
       .catch(err => {
         console.error(err);
@@ -50,11 +50,11 @@ class ListManager extends React.Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="row justify-content-md-center">
         <div className="col-1">
         </div>
         <div className="col-10">
-          <div className="card w-100 mb-4">
+          <div className="card mt-4 mb-4">
             <div className="listManager">
               <h4 className="card-header">
                 <b>List Manager</b>
