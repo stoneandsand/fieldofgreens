@@ -117,6 +117,7 @@ class App extends React.Component {
       })
       .catch((err) => {
         console.error(err);
+        // alert(`We're very sorry. There was an error searching for your item.`); FIX FIX FIX
       });
   }
   
