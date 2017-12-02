@@ -29,17 +29,16 @@ const getRecallMatches = (keywordsArray) => {
 app.post('/signup', (req, res) => {
   console.log(req.body, 'user_id');
   // expecting {username: '', password: ''}
-  res.send('req.body');
   let user = {
     username = req.body.name,
     email = req.body.email,
   }
 
-  db.signup(user, (username) => {
+  db.signup(user, (err, username) => {
     if (username) {
-      res.send(username);
+      res.send(null, username);
     } else {
-      res.send(null);
+      res.send(err, null);
     }
   });
 });
