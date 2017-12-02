@@ -122,22 +122,7 @@ class App extends React.Component {
       </div>
     );
     var searchView = (
-      <div className="container">
-        <div className="row justify-content-md-center">
-          <div className="col-12 col-md-auto mt-4">
-            <ListManager currentItems={this.state.currentItems} getSavedListItems={this.getSavedListItems.bind(this)} />
-          </div>
-        </div>
-      </div>
-      <div className="row justify-content-md-center">
-        <div className="col-12 col-md-auto">
-          {this.state.currentItems.length > 0 && <RecallList deleteItem={this.deleteItem.bind(this)} currentItems={this.state.currentItems} />}
-        </div>
-      </div>
-    );
-    return (
       <div>
-        <Navigation addNewItemToList={this.addNewItemToList} isLoggedIn={this.state.isLoggedIn} location={this.state.state} newItemEntry={this.state.newItemEntry} selectState={this.selectState} updateNewItemEntry={this.updateNewItemEntry} auth={auth} />
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-12 col-md-auto mt-4">
@@ -150,6 +135,14 @@ class App extends React.Component {
             {this.state.currentItems.length > 0 && <RecallList deleteItem={this.deleteItem.bind(this)} currentItems={this.state.currentItems} />}
           </div>
         </div>
+      </div>
+    );
+    return (
+      <div>
+        <Navigation addNewItemToList={this.addNewItemToList} isLoggedIn={this.state.isLoggedIn} location={this.state.state} newItemEntry={this.state.newItemEntry} selectState={this.selectState} updateNewItemEntry={this.updateNewItemEntry} auth={auth} />
+        {
+          this.state.settingsView ? settingsView : searchView
+        }
       </div>
     );
   }
