@@ -31,6 +31,7 @@ class Navigation extends React.Component {
           });
       });
     });
+
     Lock.on('authorization_error', (err)=>{
       console.log('auth error found: ', err);
     });

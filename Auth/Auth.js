@@ -1,7 +1,7 @@
-import auth0 from 'auth0-js';
-import Auth0Lock from 'auth0-lock';
-import { AUTH_SETTINGS } from './Auth0-settings.js';
 
+import Auth0Lock from 'auth0-lock';
+import auth0 from 'auth0-js';
+import { AUTH_SETTINGS } from './Auth0-settings.js';
 const lock = new Auth0Lock(AUTH_SETTINGS.clientId, AUTH_SETTINGS.domain, AUTH_SETTINGS.options);
 
 
@@ -12,11 +12,19 @@ export default class Auth {
   this.handleAuth = this.handleAuth.bind(this);
   // this.isAuthenticated = this.isAuthenticated.bind(this);
   this.setSession = this.setSession.bind(this);
-
+  this.getUserdata = this.getUserdata.bind(this);
   }
 
   login (email, password, cb) {
     lock.show();
+  }
+
+  getUserdata (userID) {
+    lock.getUserInfo(userID, (err, profile)=> {
+      if(!error) {
+        return profile;
+      }
+    })
   }
 
   handleAuth () {
@@ -36,6 +44,8 @@ export default class Auth {
         localStorage.setItem('profile', JSON.stringify(profile));
         localStorage.setItem('accessToken', authInfo.accessToken);
         localStorage.setItem('idToken', authInfo.idToken);
+        console.log('profile');
+        console.log(profile);
       })
     }
   }
