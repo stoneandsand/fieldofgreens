@@ -24,6 +24,7 @@ class Navigation extends React.Component {
         axios.post('http://localhost:5000/signup', profile)
           .then( (success)=>{
             console.log('user data', success);
+            this.props.toggleLogin(true);
           })
           .catch((err)=>{
             console.log('error',err);
