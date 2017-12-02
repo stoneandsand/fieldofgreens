@@ -24,7 +24,7 @@ class App extends React.Component {
     };
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
     this.addNewItemToList = this.addNewItemToList.bind(this);
-    this.selectState = this.selectState.bind(this);
+    this.selectLocation = this.selectLocation.bind(this);
   }
 
   // Makes get request to get saved shopping lists when component mounts
@@ -45,7 +45,7 @@ class App extends React.Component {
   }
 
   // sets state for state(location) when item selected in dropdownv
-  selecLocation(e) {
+  selectLocation(e) {
     this.setState({ location: e.target.value });
   }
 
@@ -114,7 +114,7 @@ class App extends React.Component {
 
   render() {
     var settingsView = (
-      <Settings location={this.state.state} selectState={this.selectState} />
+      <Settings location={this.state.state} selectLocation={this.selectLocation} />
     );
     var searchView = (
       <div>
