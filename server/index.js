@@ -41,22 +41,21 @@ app.post('/signup', (req, res) => {
 });
 
 // GET request for getting recall data from data.js
-app.post('/api/search', (req, res) => {
+app.get('/api/search/:location/:item', (req, res) => {
   // expecting {item: 'cheese cake', location: 'CA'}
-  console.log('REQUEST FROM CLIENT', req.body);
+  console.log('REQUEST FROM CLIENT', req.params.item);
+  console.log(req.params.location);
 
-  // const keywords = JSON.parse(req.query.item).name.split(' ');
-  // console.log(keywords);
+  const keywords = req.params.item.split(' ');
+  console.log(keywords);
 
-  // let matches = getRecallMatches(keywords);
+  let matches = getRecallMatches(keywords);
 
-  // matches = matches.filter(match => match.distribution_pattern.includes(req.query.state) || match.distribution_pattern.includes('Nationwide'));
-  // matches.unshift(JSON.parse(req.query.item).name);
+  matches = matches.filter(match => match.distribution_pattern.includes(req.params.state));
   // console.log('matches ======>', matches);
-  // res.send(matches.slice(0, 11));
-  res.send('API SEARCH');
+  res.send(matches.slice(0, 10));
 });
-
+// || match.distribution_pattern.includes('Nationwide')
 
 // POST request for saving new list to database
 app.post('/api/users/:username/lists', (req, res) => {

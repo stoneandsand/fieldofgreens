@@ -9,6 +9,7 @@ const listSchema = new Schema({
 const userSchema = new Schema({
   username: {type: String, unique: true},
   password: String,
+  location: String,
   allergies: [String],
   likes: [String],
   dislikes: [String],
