@@ -15,8 +15,8 @@ app.use(bodyParser.json());
 const getRecallMatches = (keywordsArray) => {
   let matches = [];
   for (let keyword of keywordsArray) {
-    for (let recall of recalls.recallData && recall.report_date > '20170101') {
-      if (recall.product_description.toUpperCase().includes(keyword.toUpperCase()) ) {
+    for (let recall of recalls.recallData ) {
+      if (recall.product_description.toUpperCase().includes(keyword.toUpperCase()) && recall.report_date > '20170101' ) {
         matches.push(recall);
       }
     }
