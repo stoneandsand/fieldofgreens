@@ -7,6 +7,7 @@ import RecallList from './recallList.jsx';
 import ListManager from './listManager.jsx';
 import Navigation from './navigation.jsx';
 import Auth from './../../../Auth/Auth.js';
+import Settings from '.settings.jsx';
 
 const auth = new Auth();
 
