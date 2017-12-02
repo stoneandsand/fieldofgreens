@@ -20,7 +20,7 @@ class App extends React.Component {
       // currentItems: [],
       newItemEntry: '',
       isLoggedIn: false,
-      settingsView: true,
+      settingsView: false,
       username: '',
     };
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
@@ -31,6 +31,17 @@ class App extends React.Component {
   // Makes get request to get saved shopping lists when component mounts
   componentDidMount() {
     if (this.state.isLoggedIn || true) { this.searchNewItem(); } // FIX FIX FIX
+  }
+
+  //  TO BE  REPLACED BY SEARCHNEWITEM
+  // adds new item to current list when "Add New Item" is clicked
+  addNewItemToList(e) {
+    e.preventDefault();
+    this.state.currentItems.unshift({ name: this.state.newItemEntry, recalls: [] });
+    this.setState({ newItemEntry: '' });
+    console.log(this.state.currentItems);
+    // this.setState({ currentItems: updatedCurrentItems }, this.searchFDA);
+    this.setState({ currentItems: this.state.currentItems }, this.searchFDA);
   }
 
   // Updates currentItems with contents of selected saved list.
@@ -57,38 +68,10 @@ class App extends React.Component {
     this.setState({ newItemEntry: e.target.value });
   }
 
-  // adds new item to current list when "Add New Item" is clicked
-  addNewItemToList(e) {
-    e.preventDefault();
-    this.state.currentItems.unshift({ name: this.state.newItemEntry, recalls: [] });
-    this.setState({ newItemEntry: '' });
-    console.log(this.state.currentItems);
-    // this.setState({ currentItems: updatedCurrentItems }, this.searchFDA);
-    this.setState({ currentItems: this.state.currentItems }, this.searchFDA);
-  }
-
   // deletes item from list when "delete" is clicked next to item
   deleteItem(index, e) {
     this.state.currentItems.splice(index, 1);
     this.setState({ currentItems: this.state.currentItems });
-  }
-
-  searchNewItem(item) {
-    // DEFAULTS FOR TESTING
-    if (!this.state.location) { this.state.location = 'CA'; } // FIX FIX FIX
-    if (!item) { item = 'kiwi'; } // FIX FIX FIX
-    axios.get(`/api/search/${this.state.location}/${item}`)
-      .then((res) => {
-        // Should send back an array of objects (recalls);
-        console.log(res.data);
-        let currentItems = this.state.currentItems;
-        let newItem = {name: item, recalls: res.data}; // EXAMPLE: {name: 'bananas', recalls: []};
-        currentItems.unshift(newItem);
-        this.setState({currentItems: currentItems});
-      })
-      .catch((err) => {
-        console.error(err);
-      });
   }
 
   // called when new items are added to the list, whether by user input or retreival of existent list from database
@@ -115,6 +98,24 @@ class App extends React.Component {
     });
   }
 
+  searchNewItem(item) {
+    // DEFAULTS FOR TESTING
+    if (!this.state.location) { this.state.location = 'CA'; } // FIX FIX FIX
+    if (!item) { item = 'kiwi'; } // FIX FIX FIX
+    axios.get(`/api/search/${this.state.location}/${item}`)
+      .then((res) => {
+        // Should send back an array of objects (recalls);
+        console.log(res.data);
+        let currentItems = this.state.currentItems;
+        let newItem = {name: item, recalls: res.data}; // EXAMPLE: {name: 'bananas', recalls: []};
+        currentItems.unshift(newItem);
+        this.setState({currentItems: currentItems});
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  
   render() {
     var settingsView = (
       <Settings location={this.state.state} selectLocation={this.selectLocation} />
