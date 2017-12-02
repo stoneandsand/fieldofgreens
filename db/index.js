@@ -70,8 +70,6 @@ const saveList = (user, list, callback) => {
   });
 };
 
-
-
 // Returns a list of a user and runs callback on its contents to the client
 const findList = (user, id, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
@@ -89,6 +87,7 @@ const findList = (user, id, callback) => {
   });
 };
 
+//Add to user's allergies lists
 const addAllergies = (user, item, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
@@ -109,6 +108,7 @@ const addAllergies = (user, item, callback) => {
   });
 };
 
+//Add to user's likes list
 const addLikes = (user, item, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
@@ -128,6 +128,7 @@ const addLikes = (user, item, callback) => {
   });
 };
 
+//Add to user's dislikes list
 const addDislikes = (user, item, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
@@ -147,6 +148,27 @@ const addDislikes = (user, item, callback) => {
   });
 };
 
+// Set user's location
+const addLocation = (user, location, callback) => {
+  User.findOne({username: user}, (err, userEntry) => {
+    if (err) {
+      console.error(err);
+      callback(err, '');
+    } else {
+      userEntry.location = location;
+      userEntry.save((err, updatedEntry) => {
+        if (err) {
+          console.error(err);
+          callback(err, '');
+        } else {
+          callback(null, updatedEntry.location);
+        }
+      });
+    }
+  });
+};
+
+// Retrieve user settings (allergies, likes, dislikes, location)
 const findSettings = (user, callback) => {
   User.findOne({username: user}, (err, userEntry) => {
     if (err) {
@@ -169,6 +191,7 @@ const findSettings = (user, callback) => {
   });
 };
 
+// Remove lists or items from user's profile
 const removeItem = (user, item, callback) => {
   console.log(item);
   User.findOne({username: user}, (err, userEntry) => {
@@ -209,5 +232,6 @@ module.exports.findList = findList;
 module.exports.addAllergies = addAllergies;
 module.exports.addLikes = addLikes;
 module.exports.addDislikes = addDislikes;
+module.exports.addLocation = addLocation;
 module.exports.findSettings = findSettings;
 module.exports.removeItem = removeItem;
