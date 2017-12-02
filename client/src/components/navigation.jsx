@@ -25,6 +25,7 @@ class Navigation extends React.Component {
           .then( (success)=>{
             console.log('user data', success);
             localStorage.setItem('authenticated', true);
+    //        location.reload();
           })
           .catch((err)=>{
             console.log('error',err);
@@ -72,8 +73,9 @@ class Navigation extends React.Component {
           </div>
           <div className="col-md-4 signUpOrSettings">
             <StateDropdown location={this.props.location} selectState={this.props.selectState} />
-            {isNotLoggedIn}
-            {isLoggedIn}
+ {
+  localStorage.getItem('authenticated') ? isLoggedIn : isNotLoggedIn
+ }
           </div>
         </div>
       </div>
