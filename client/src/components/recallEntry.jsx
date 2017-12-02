@@ -5,18 +5,22 @@ const recallEntry = props => {
     return (
       <div className="recall-entry">
         <h5>
-          Product:
+          <i>
+            Product
+          </i>
         </h5>
         <p>
-         {props.recall.product_description}
+          {props.recall.product_description}
         </p>
         <h5>
-          Reason for recall:
-          </h5>
+          <i>
+            Reason for Recall
+          </i>
+        </h5>
         <p>
           {props.recall.reason_for_recall}
         </p>
-        <hr/>
+        {!props.last && <hr/>}
       </div>
     );
   } else {
