@@ -18,11 +18,12 @@ class ListManager extends React.Component {
   }
 
   getSavedLists() {
-    axios.get(`/api/${username}/getSavedLists`)
+    axios.get(`/api/users/${username}/lists`)
       .then((data) => {
         this.setState({ savedLists: data.data });
       })
-      .catch((error) => {
+      .catch((err) => {
+        console.error(err);
       });
   }
 
