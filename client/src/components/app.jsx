@@ -73,8 +73,9 @@ class App extends React.Component {
 
   // deletes item from list when "delete" is clicked next to item
   deleteItem(index, e) {
-    this.state.currentItems.splice(index, 1);
-    this.setState({ currentItems: this.state.currentItems });
+    let currentItems = this.state.currentItems;
+    currentItems.splice(index, 1);
+    this.setState({ currentItems: currentItems });
   }
 
   // called when new items are added to the list, whether by user input or retreival of existent list from database
