@@ -12,7 +12,7 @@ const itemInput = props => {
       </div>
     </form>
   </div>
-  )
-}
+  );
+};
 
 export default itemInput;

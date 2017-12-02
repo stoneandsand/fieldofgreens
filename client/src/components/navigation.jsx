@@ -22,15 +22,15 @@ class Navigation extends React.Component {
         console.log('err',err, 'profile',profile);
 
         axios.post('http://localhost:5000/signup', profile)
-        .then( (success)=>{
-          console.log('user data', success);
-          window.location.reload();
-        })
-        .catch((err)=>{
-          console.log('error',err);
-        });
-      })
-    })
+          .then( (success)=>{
+            console.log('user data', success);
+            window.location.reload();
+          })
+          .catch((err)=>{
+            console.log('error',err);
+          });
+      });
+    });
     Lock.on('authorization_error', (err)=>{
       console.log('auth error found: ', err);
     });
@@ -42,7 +42,7 @@ class Navigation extends React.Component {
 
   render() {
 
-    console.log('Navigation props: ',this.props)
+    console.log('Navigation props: ',this.props);
     const isLoggedIn = <h3><span id="logout" onClick={this.props.auth.logout}>Logout</span> <span id="settings">Settings</span></h3>;
     const isNotLoggedIn = <h3 onClick={this.props.auth.login}>Login/SignUp</h3>;
     return (
