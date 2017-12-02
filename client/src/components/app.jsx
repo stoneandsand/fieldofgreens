@@ -21,6 +21,7 @@ class App extends React.Component {
       newItemEntry: '',
       isLoggedIn: false,
       settingsView: true,
+      username: '',
     };
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
     this.addNewItemToList = this.addNewItemToList.bind(this);
@@ -34,13 +35,15 @@ class App extends React.Component {
 
   // Updates currentItems with contents of selected saved list.
   getSavedListItems(listName) {
-    const newItems = [];
-    axios.get(`/api/users/${username}/lists/${list}`)
+    const savedListItems = [];
+    axios.get(`/api/users/${this.state.username}/lists/${list}`)
       .then((response) => {
+        console.log(response);
         const mapped = response.data[0].items.map((item) => {
-          newItems.push({ name: item, recalls: [] });
+          savedListItems.push({ name: item, recalls: [] });
         });
-        this.setState({ currentItems: newItems }, this.searchFDA);
+        console.log(mapped);
+        this.setState({ currentItems: savedListItems }, this.searchFDA);
       });
   }
 
