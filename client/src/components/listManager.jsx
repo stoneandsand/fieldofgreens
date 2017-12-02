@@ -3,9 +3,9 @@
 
 import axios from 'axios';
 import React from 'react';
-import CurrentItems from './currentItems.jsx';
+import CurrentListItemsDisplay from './currentListItemsDisplay.jsx';
+import CurrentListSaver from './currentListSaver.jsx';
 import SavedListsLoader from './savedListsLoader.jsx';
-import SaveList from './saveList.jsx';
 
 class ListManager extends React.Component {
   constructor(props) {
@@ -53,10 +53,10 @@ class ListManager extends React.Component {
             </h4>
           </div>
           <div className="card-body">
-            {this.state.savedLists.length > 0 && <SavedListsLoader getSavedListItems={this.getSavedListItems} savedLists={this.state.savedLists}/>}
+            {this.state.savedLists.length > 0 && <SavedListsLoader getSavedListItems={this.props.getSavedListItems} savedLists={this.state.savedLists}/>}
             {this.state.savedLists.length > 0 && <hr/>}
-            <CurrentItems currentItems={this.props.currentItems}/>
-            <SaveList newListName={this.newListName} updateNewListName={this.updateNewListName.bind(this)} saveNewList={this.saveNewList.bind(this)} />
+            <CurrentListItemsDisplay currentItems={this.props.currentItems}/>
+            <CurrentListSaver newListName={this.newListName} updateNewListName={this.updateNewListName.bind(this)} saveNewList={this.saveNewList.bind(this)} />
           </div>
         </div>
       </div>
