@@ -9,7 +9,7 @@ const searchView = props => (
       getSavedListItems={this.props.getSavedListItems} // BIND IN APP
     />
     <RecallList
-      deleteItem={this.deleteItem.bind(this)}
+      deleteItem={this.deleteItem}
       currentItems={this.props.currentItems}
     />
   </div>
