@@ -123,9 +123,7 @@ class App extends React.Component {
 
   render() {
     var settingsView = (
-      <div className="container settingsView">
-        <Settings />
-      </div>
+      <Settings />
     );
     var searchView = (
       <div>
