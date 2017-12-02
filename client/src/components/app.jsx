@@ -115,6 +115,11 @@ class App extends React.Component {
   }
 
   render() {
+    var settingsView = (
+      <div className="container settingsView">
+        <Settings />
+      </div>
+    );
     return (
       <div>
         <Navigation addNewItemToList={this.addNewItemToList} isLoggedIn={this.state.isLoggedIn} location={this.state.state} newItemEntry={this.state.newItemEntry} selectState={this.selectState} updateNewItemEntry={this.updateNewItemEntry} auth={auth} />
