@@ -38,6 +38,9 @@ class App extends React.Component {
     this.getSettings = this.getSettings.bind(this);
     this.selectLocation = this.selectLocation.bind(this);
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
+    this.updateNewAllergy = this.updateNewAllergy.bind(this);
+    this.updateNewLike = this.updateNewLike.bind(this);
+    this.updateNewDislike = this.updateNewDislike.bind(this);
   }
 
   // Makes get request to get saved shopping lists when component mounts
@@ -82,6 +85,21 @@ class App extends React.Component {
   // sets state for newItemEntry when user inputs item name
   updateNewItemEntry(e) {
     this.setState({ newItemEntry: e.target.value });
+  }
+
+  // sets state for newAllergy when user inputs item name
+  updateNewAllergy(e) {
+    this.setState({ newAllergy: e.target.value });
+  }
+
+  // sets state for newLike when user inputs item name
+  updateNewLike(e) {
+    this.setState({ newLike: e.target.value });
+  }
+
+  // sets state for newDislike when user inputs item name
+  updateNewDislike(e) {
+    this.setState({ newDislike: e.target.value });
   }
 
   // deletes item from list when "delete" is clicked next to item
