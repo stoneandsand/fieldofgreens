@@ -38,7 +38,7 @@ class App extends React.Component {
     axios.get(`/api/${username}/${list}`, { params: { name: listName } })
       .then((response) => {
         const mapped = response.data[0].items.map((item) => {
-          newItems.push({ name: item, recalls: '' });
+          newItems.push({ name: item, recalls: [] });
         });
         this.setState({ currentItems: newItems }, this.searchFDA);
       });
