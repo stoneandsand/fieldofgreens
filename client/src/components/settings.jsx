@@ -1,4 +1,5 @@
 import React from 'react';
+import StateDropdown from './stateDropdown.jsx';
 
 class Settings extends React.Component {
   constructor(props) {
@@ -7,7 +8,9 @@ class Settings extends React.Component {
 
   render() {
     return (
-      <h1>test</h1>
+      <div className="container settingsView">
+        <StateDropdown />
+      </div>
     )
   }
 }
