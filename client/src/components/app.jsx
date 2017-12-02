@@ -35,7 +35,7 @@ class App extends React.Component {
   // Updates currentItems with contents of selected saved list.
   getSavedListItems(listName) {
     const newItems = [];
-    axios.get(`/api/${username}/${list}`, { params: { name: listName } })
+    axios.get(`/api/users/${username}/lists/${list}`)
       .then((response) => {
         const mapped = response.data[0].items.map((item) => {
           newItems.push({ name: item, recalls: [] });
@@ -44,9 +44,9 @@ class App extends React.Component {
       });
   }
 
-  // sets state for state(location) when item selected in dropdown
-  selectState(e) {
-    this.setState({ state: e.target.value });
+  // sets state for state(location) when item selected in dropdownv
+  selecLocation(e) {
+    this.setState({ location: e.target.value });
   }
 
   // sets state for newItemEntry when user inputs item name
@@ -134,7 +134,7 @@ class App extends React.Component {
     );
     return (
       <div>
-        <Navigation addNewItemToList={this.addNewItemToList} isLoggedIn={this.state.isLoggedIn} location={this.state.state} newItemEntry={this.state.newItemEntry} selectState={this.selectState} updateNewItemEntry={this.updateNewItemEntry} auth={auth} />
+        <Navigation addNewItemToList={this.addNewItemToList} isLoggedIn={this.state.isLoggedIn} location={this.state.state} newItemEntry={this.state.newItemEntry} selectLocation={this.selectLocation} updateNewItemEntry={this.updateNewItemEntry} auth={auth} />
         {
           this.state.settingsView ? settingsView : searchView
         }
