@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemEntry from './itemEntry.jsx';
+import RecallListItem from './recallListItem.jsx';
 
 const recallList = props => (
   <div className="card mb-4">
@@ -10,7 +10,7 @@ const recallList = props => (
     </div>
     <div className="card-body">
       {props.currentItems.map((singleItem, i) =>
-    (<ItemEntry
+    (<RecallListItem
          deleteItem={props.deleteItem}
          entry={singleItem}
          i={i}
