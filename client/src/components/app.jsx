@@ -192,13 +192,51 @@ class App extends React.Component {
   }
 
   toggleLogin(boolean) {
-    this.setState({isLoggedIn: boolean})
+    this.setState({isLoggedIn: boolean});
   }
 
   render() {
-    const settingsView = (
-      <Settings settingsView={this.state.settingsView} location={this.state.location} allergies={this.state.allergies} likes={this.state.likes} dislikes={this.state.dislikes} selectLocation={this.selectLocation} addAllergy={this.addAllergy} addLike={this.addLike} addDislike={this.addDislike}/>
+    const {
+      allergies,
+      dislikes,
+      likes,
+      location,
+      newItemEntry,
+      settingsView,
+    } = this.state;
+    return (
+      <div>
+        <Navigation
+          addNewItemToList={this.addNewItemToList}
+          auth={auth}
+          location={location}
+          newItemEntry={newItemEntry}
+          selectLocation={this.selectLocation}
+          toggleLogin={this.toggleLogin}
+          updateNewItemEntry={this.updateNewItemEntry}
+        />
+        <Settings
+          addAllergy={this.addAllergy}
+          addDislike={this.addDislike}
+          addLike={this.addLike}
+          allergies={allergies}
+          dislikes={dislikes}
+          likes={this.likes}
+          location={location}
+          selectLocation={this.selectLocation}
+          settingsView={settingsView}
+        />
+        {
+          !settingsView && <searchView/>
+        }
+      </div>
     );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));
+
+/*
     const searchView = (
       <div className="container">
         <div>
@@ -209,15 +247,4 @@ class App extends React.Component {
         </div>
       </div>
     );
-    return (
-      <div>
-        <Navigation addNewItemToList={this.addNewItemToList} toggleLogin={this.toggleLogin} location={this.state.state} newItemEntry={this.state.newItemEntry} selectLocation={this.selectLocation} updateNewItemEntry={this.updateNewItemEntry} auth={auth} />
-        {
-          this.state.settingsView ? settingsView : searchView
-        }
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<App />, document.getElementById('app'));
+*/
