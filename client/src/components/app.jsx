@@ -48,9 +48,9 @@ class App extends React.Component {
   getSavedListItems(listName) {
     const savedListItems = [];
     axios.get(`/api/users/${this.state.username}/lists/${list}`)
-      .then(response => {
-        console.log(response);
-        const mapped = response.data[0].items.map((item) => {
+      .then(res => {
+        console.log(res);
+        const mapped = res.data[0].items.map((item) => {
           savedListItems.push({ name: item, recalls: [] });
         });
         console.log(mapped);
@@ -88,14 +88,14 @@ class App extends React.Component {
       promises.push(axios.get('/api/search', { item: currentItems[i], location: this.state.location }));
     }
     axios.all(promises).then((recallData) => {
-      recallData.forEach(response => {
-        const itemName = response.data[0];
-        const itemRecalls = response.data;
+      recallData.forEach(res => {
+        const itemName = res.data[0];
+        const itemRecalls = res.data;
         const newItem = {
           name: itemName,
           recalls: itemRecalls,
         };
-        response.data.shift();
+        res.data.shift();
         newCurrentItems.push(newItem);
         this.setState({ currentItems: newCurrentItems });
       });
