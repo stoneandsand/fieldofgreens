@@ -30,6 +30,7 @@ class App extends React.Component {
     this.addNewItemToList = this.addNewItemToList.bind(this);
     this.selectLocation = this.selectLocation.bind(this);
     this.getSettings = this.getSettings.bind(this);
+    this.addAllergy = this.addAllergy.bind(this);
   }
 
   // Makes get request to get saved shopping lists when component mounts
@@ -123,6 +124,12 @@ class App extends React.Component {
         console.error(err);
         // alert(`We're very sorry. There was an error searching for your item.`); FIX FIX FIX
       });
+  }
+
+  addAllergy(event) {
+    event.preventDefault();
+    const joined = this.state.allergies.push(event.target.value);
+    this.setState({allergies: joined});
   }
 
   render() {
