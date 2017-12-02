@@ -37,11 +37,7 @@ class App extends React.Component {
   // adds new item to current list when "Add New Item" is clicked
   addNewItemToList(e) {
     e.preventDefault();
-    this.state.currentItems.unshift({ name: this.state.newItemEntry, recalls: [] });
-    this.setState({ newItemEntry: '' });
-    console.log(this.state.currentItems);
-    // this.setState({ currentItems: updatedCurrentItems }, this.searchFDA);
-    this.setState({ currentItems: this.state.currentItems }, this.searchFDA);
+    this.setState({ newItemEntry: '' }, this.searchNewItem(this.state.newItemEntry));
   }
 
   // Updates currentItems with contents of selected saved list.
@@ -111,6 +107,7 @@ class App extends React.Component {
     axios.get(`/api/search/${this.state.location}/${item}`)
       .then(res => {
         // Should send back an array of objects (recalls);
+        console.log('RESPONSE FROM SEARCH-NEW-ITEM:');
         console.log(res.data);
         let currentItems = this.state.currentItems;
         let newItem = {name: item, recalls: res.data}; // EXAMPLE: {name: 'bananas', recalls: []};
