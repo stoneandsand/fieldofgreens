@@ -127,7 +127,7 @@ class App extends React.Component {
 
   render() {
     var settingsView = (
-      <Settings settingsView={this.state.settingsView} location={this.state.state} allergies={this.state.allergies} likes={this.state.likes} dislikes={this.state.dislikes} selectLocation={this.selectLocation} />
+      <Settings settingsView={this.state.settingsView} location={this.state.location} allergies={this.state.allergies} likes={this.state.likes} dislikes={this.state.dislikes} selectLocation={this.selectLocation} />
     );
     var searchView = (
       <div>
@@ -147,7 +147,7 @@ class App extends React.Component {
     );
     return (
       <div>
-        <Navigation addNewItemToList={this.addNewItemToList} isLoggedIn={this.state.isLoggedIn} location={this.state.state} newItemEntry={this.state.newItemEntry} selectLocation={this.selectLocation} updateNewItemEntry={this.updateNewItemEntry} auth={auth} />
+        <Navigation addNewItemToList={this.addNewItemToList} isLoggedIn={this.state.isLoggedIn} location={this.state.location} newItemEntry={this.state.newItemEntry} selectLocation={this.selectLocation} updateNewItemEntry={this.updateNewItemEntry} auth={auth} />
         {
           this.state.settingsView ? settingsView : searchView
         }
