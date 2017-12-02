@@ -19,11 +19,12 @@ class ListManager extends React.Component {
 
   getSavedLists() {
     axios.get(`/api/users/${username}/lists`)
-      .then((data) => {
+      .then(data => {
         this.setState({ savedLists: data.data });
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
+        // alert(`We're very sorry, ${username}. There was an fetching your saved lists.`);
       });
   }
 
@@ -34,9 +35,12 @@ class ListManager extends React.Component {
       listName: this.state.newListName,
       items: this.props.currentItems,
     })
-      .then((response) => {
+      .then(response => {
         this.setState({newListName: ''});
         // this.props.getSavedLists();
+      }).catch(err => {
+        console.error(err);
+        // alert(`We're very sorry, ${username}. There was an error saving your list.`);
       });
   }
 
