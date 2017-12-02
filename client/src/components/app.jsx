@@ -81,22 +81,22 @@ class App extends React.Component {
   // called when new items are added to the list, whether by user input or retreival of existent list from database
   // makes get request for each item to '/searchNewList' API endpoint
   searchFDA() {
-    const scope = this.state.currentItems;
+    const currentItems = this.state.currentItems;
     const newCurrentItems = [];
     const promises = [];
     for (let i = 0; i < this.state.currentItems.length; i++) {
-      promises.push(axios.get('/api/search', { item: scope[i], state: this.state.state }));
+      promises.push(axios.get('/api/search', { item: currentItems[i], location: this.state.location }));
     }
     axios.all(promises).then((recallData) => {
       recallData.forEach((response) => {
-        const item = response.data[0];
-        const value = response.data;
-        const obj = {
-          recalls: value,
-          name: item,
+        const itemName = response.data[0];
+        const itemRecalls = response.data;
+        const newItem = {
+          name: itemName,
+          recalls: itemRecalls,
         };
         response.data.shift();
-        newCurrentItems.push(obj);
+        newCurrentItems.push(newItem);
         this.setState({ currentItems: newCurrentItems });
       });
     });
