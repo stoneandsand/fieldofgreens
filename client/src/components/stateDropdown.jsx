@@ -1,6 +1,6 @@
 import React from 'react';
 
-class stateDropdown extends React.Component {
+class StateDropdown extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -68,4 +68,4 @@ class stateDropdown extends React.Component {
   }
 };
 
-export default stateDropdown;
+export default StateDropdown;

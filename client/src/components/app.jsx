@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import StateDropdown from './stateDropdown.jsx';
-import ItemInput from './iteminput.jsx';
-import RecallList from './recallList.jsx';
-import ListManager from './listManager.jsx';
-import Navigation from './navigation.jsx';
+import StateDropdown from './StateDropdown.jsx';
+import ItemInput from './Iteminput.jsx';
+import RecallList from './RecallList.jsx';
+import ListManager from './ListManager.jsx';
+import Navigation from './Navigation.jsx';
 import Auth from './../../../Auth/Auth.js';
-import Settings from './settings.jsx';
+import Settings from './Settings.jsx';
 
 const auth = new Auth();
 

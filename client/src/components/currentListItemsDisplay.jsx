@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-const currentListItemsDisplay = props =>
+const CurrentListItemsDisplay = props =>
       (
         <div>
           <p><b>Current Items: </b>
@@ -16,4 +16,4 @@ const currentListItemsDisplay = props =>
           </div>
       );
 
-export default currentListItemsDisplay;
+export default CurrentListItemsDisplay;

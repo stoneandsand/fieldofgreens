@@ -1,7 +1,7 @@
 import React from 'react';
 import RecallEntry from './recallEntry.jsx';
 
-const recallListItem = props => (
+const RecallListItem = props => (
   <div>
     <button type="button" className="btn btn-default" onClick={props.deleteItem.bind(null, props.i)}>
     <span className="glyphicon glyphicon-remove" />
@@ -14,4 +14,4 @@ const recallListItem = props => (
   </div>
 );
 
-export default recallListItem;
+export default RecallListItem;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const recallEntry = props => {
+const RecallEntry = props => {
   if (props.recall) {
     return (
       <div className="recall-entry">
@@ -28,4 +28,4 @@ const recallEntry = props => {
   }
 };
 
-export default recallEntry;
+export default RecallEntry;
