@@ -148,7 +148,7 @@ class App extends React.Component {
 
   render() {
     var settingsView = (
-      <Settings settingsView={this.state.settingsView} location={this.state.location} allergies={this.state.allergies} likes={this.state.likes} dislikes={this.state.dislikes} selectLocation={this.selectLocation} />
+      <Settings settingsView={this.state.settingsView} location={this.state.location} allergies={this.state.allergies} likes={this.state.likes} dislikes={this.state.dislikes} selectLocation={this.selectLocation} addAllergy={this.addAllergy} addLike={this.addLike} addDislike={this.addDislike}/>
     );
     var searchView = (
       <div>
