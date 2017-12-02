@@ -10,11 +10,16 @@ export const AUTH_SETTINGS = {
       primaryColor: '#71d839',
       socialButtonStyle:'small'
     },
-    allowedConnections: [/*'Username-Password-Authentication', */'facebook'],
+    allowedConnections: [/*'Username-Password-Authentication', */'facebook', 'google-oauth2'],
     allowLogin: true,
     loginAfterSignUp: true,
     closable: true,
     autoclose: true,
     oidcConformant: false,
+    auth:{
+      params: {
+        scope: 'openid name email'
+      }
+    }
   }
 }
