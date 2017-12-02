@@ -45,19 +45,16 @@ class ListManager extends React.Component {
   render() {
     return (
       <div className="card mb-4">
-        <br />
-        <div className="savedList">
-          <div>
-            <h4 className="card-header">
-              <b>List Manager</b>
-            </h4>
-          </div>
-          <div className="card-body">
-            {this.state.savedLists.length > 0 && <SavedListsLoader getSavedListItems={this.props.getSavedListItems} savedLists={this.state.savedLists}/>}
-            {this.state.savedLists.length > 0 && <hr/>}
-            <CurrentListItemsDisplay currentItems={this.props.currentItems}/>
-            <CurrentListSaver newListName={this.newListName} updateNewListName={this.updateNewListName.bind(this)} saveNewList={this.saveNewList.bind(this)} />
-          </div>
+        <div className="listManager">
+          <h4 className="card-header">
+            <b>List Manager</b>
+          </h4>
+        </div>
+        <div className="card-body">
+          {this.state.savedLists.length > 0 && <SavedListsLoader getSavedListItems={this.props.getSavedListItems} savedLists={this.state.savedLists}/>}
+          {this.state.savedLists.length > 0 && <hr/>}
+          <CurrentListItemsDisplay currentItems={this.props.currentItems}/>
+          <CurrentListSaver newListName={this.newListName} updateNewListName={this.updateNewListName.bind(this)} saveNewList={this.saveNewList.bind(this)} />
         </div>
       </div>
     );
