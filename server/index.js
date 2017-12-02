@@ -16,7 +16,7 @@ const getRecallMatches = (keywordsArray) => {
   let matches = [];
   for (let keyword of keywordsArray) {
     for (let recall of recalls.recallData ) {
-      if (recall.product_description.toUpperCase().includes(keyword.toUpperCase()) && recall.report_date > '20160101' ) {
+      if (recall.product_description.toUpperCase().includes(keyword.toUpperCase()) && recall.report_date > '20160101' && recall.status ==='Ongoing') {
         matches.push(recall);
       }
     }
@@ -30,8 +30,7 @@ app.post('/signup', (req, res) => {
   console.log(req.body);
   // expecting {username: '', password: ''}
   let user = {
-    username: req.body.name,
-    email: req.body.email,
+    username: req.body.email,
   }
 
   db.signup(user, (err, username) => {
