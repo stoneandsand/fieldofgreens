@@ -6,9 +6,9 @@ const recallListItem = props => (
     <button type="button" className="btn btn-default" onClick={props.deleteItem.bind(null, props.i)}>
     <span className="glyphicon glyphicon-remove" />
   </button>
-    <span className="list-item">{props.entry.name}</span>
+    <span className="list-item">{props.item.name}</span>
     <div>
-        {entry.recalls === '' ? <Recalls recall={false} /> : entry.recalls.map((rec, i) => <Recalls key={`recallListEntry${i}`} recall={rec} />)}
+        {props.item.recalls === '' ? <Recalls recall={false} /> : props.item.recalls.map((rec, i) => <Recalls key={`recallEntry-${i}`} recall={rec} />)}
     </div>
   </div>
 );
