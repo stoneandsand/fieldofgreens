@@ -27,19 +27,18 @@ const getRecallMatches = (keywordsArray) => {
 
 // ROUTING
 app.post('/signup', (req, res) => {
-  console.log(req.body, 'user_id');
+  console.log(req.body);
   // expecting {username: '', password: ''}
   let user = {
-    username = req.body.name,
-    email = req.body.email,
+    username: req.body.name,
+    email: req.body.email,
   }
 
   db.signup(user, (err, username) => {
-    if (username) {
-      res.send(null, username);
-    } else {
-      res.send(err, null);
+    if (err) {
+      res.send('');
     }
+    res.send(username);
   });
 });
 
@@ -72,6 +71,9 @@ app.post('/api/users/:username/lists', (req, res) => {
   };
   console.log(list);
   db.saveList(req.body.username, list, (err, updatedLists) => {
+    if (err) {
+      res.send([]); // Error retrieving updated lists
+    }
     console.log(updatedLists);
     res.send(updatedLists);
   });
@@ -80,7 +82,9 @@ app.post('/api/users/:username/lists', (req, res) => {
 // GET request for retrieving all saved lists names for a user
 app.get('/api/users/:username/lists', (req, res) => {
   db.getUserLists(req.params.username, (err, userLists) => {
-    console.log(userLists);
+    if (err) {
+      res.send([]); // Error retrieving saved lists
+    }
     res.send(userLists);
   });
 });
@@ -89,6 +93,9 @@ app.get('/api/users/:username/lists', (req, res) => {
 app.get('/api/users/:username/lists/:id', (req, res) => {
   // each saved list should have a _id property
   db.findList(req.params.username, req.params.id, (err, targetList) => {
+    if (err) {
+      res.send({}); //Error retrieving list
+    }
     console.log(targetList);
     res.send(targetList);
   });
@@ -96,6 +103,10 @@ app.get('/api/users/:username/lists/:id', (req, res) => {
 
 app.get('/api/users/:username/settings', (req, res) => {
   db.findSettings(req.params.username, (err, settings) => {
+    if (err) {
+      res.send({allergies: [], likes: [], dislikes: [], location: ''});
+      //Error retrieving user settings
+    }
   //should send {allergies: [], likes: [], dislikes: [], location: ''}
     res.send(settings);
   })
@@ -105,6 +116,9 @@ app.post('/api/users/:username/allergies', (req, res) => {
   console.log(req.body.item);
   // Expecting {item: 'apple'} item in POST request
   db.addAllergies(req.params.username, req.body.item, (err, updatedAllergyList) => {
+    if (err) {
+      res.send([]); //Error retrieving updated allergy list
+    }
     res.send(updatedAllergyList);
   });
 });
@@ -112,6 +126,9 @@ app.post('/api/users/:username/allergies', (req, res) => {
 app.post('/api/users/:username/likes', (req, res) => {
   // Expecting {item: 'apple'} item in POST request
   db.addLikes(req.params.username, req.body.item, (err, updatedLikeList) => {
+    if (err) {
+      res.send([]); //Error retrieving updated likes list
+    }
     res.send(updatedLikeList);
   });
 });
@@ -119,12 +136,18 @@ app.post('/api/users/:username/likes', (req, res) => {
 app.post('/api/users/:username/dislikes', (req, res) => {
   // Expecting {item: 'apple'} item in POST request
   db.addAllergies(req.params.username, req.body.item, (err, updatedDislikeList) => {
+    if (err) {
+      res.send([]); //Error retrieving updated dislikes list
+    }
     res.send(updatedDislikeList);
   });
 });
 
 app.post('/api/users/:username/location', (req, res) => {
   db.addLocation(req.params.username, req.body.location, (err, location) => {
+    if (err) {
+      res.send(''); //Error saving location
+    }
     res.send(location)
   });
 });
@@ -132,6 +155,9 @@ app.post('/api/users/:username/location', (req, res) => {
 app.post('/api/users/:username/delete', (req, res) => {
   // Expecting {name: 'apple', type: 'allergies'}
   db.removeItem(req.params.username, req.body, (err, updatedList) => {
+    if (err) {
+      res.send([]); //Error retrieving updated list
+    }
     res.send(updatedList);
   });
 });
