@@ -199,7 +199,10 @@ class App extends React.Component {
       dislikes,
       likes,
       location,
+      newAllergy,
+      newDislike,
       newItemEntry,
+      newLike,
       settingsView,
     } = this.state;
     return (
@@ -220,6 +223,9 @@ class App extends React.Component {
           dislikes={dislikes}
           likes={this.likes}
           location={location}
+          newAllergy={newAllergy}
+          newLike={newLike}
+          newDislike={newDislike}
           selectLocation={this.selectLocation}
           settingsView={settingsView}
         />
