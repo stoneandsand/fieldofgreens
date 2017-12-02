@@ -3,9 +3,9 @@
 
 import axios from 'axios';
 import React from 'react';
-import CurrentListItemsDisplay from './currentListItemsDisplay.jsx';
-import CurrentListSaver from './currentListSaver.jsx';
-import SavedListsLoader from './savedListsLoader.jsx';
+import CurrentListItemsDisplay from './CurrentListItemsDisplay.jsx';
+import CurrentListSaver from './CurrentListSaver.jsx';
+import SavedListsLoader from './SavedListsLoader.jsx';
 
 class ListManager extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class ListManager extends React.Component {
     this.state = {
       newListName: '',
       savedLists: ['test'], // FIX FIX FIX
-      // savedLists: [], 
+      // savedLists: [],
     };
   }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import RecallListItem from './recallListItem.jsx';
 
-const recallList = props => (
+const RecallList = props => (
   <div className="row justify-content-md-center">
     <div className="col-1">
     </div>
@@ -28,4 +28,4 @@ const recallList = props => (
     </div>
 );
 
-export default recallList;
+export default RecallList;

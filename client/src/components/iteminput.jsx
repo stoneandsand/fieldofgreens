@@ -1,6 +1,6 @@
 import React from 'react';
 
-const itemInput = props => {
+const ItemInput = props => {
   return (
   <div>
     <form className="form-group" onSubmit={props.addNewItemToList}>
@@ -15,4 +15,4 @@ const itemInput = props => {
   );
 };
 
-export default itemInput;
+export default ItemInput;

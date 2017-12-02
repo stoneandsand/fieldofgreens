@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemInput from './iteminput.jsx';
+import ItemInput from './ItemInput.jsx';
 import StateDropdown from './stateDropdown.jsx';
 import Auth0Lock from 'auth0-lock';
 import axios from 'axios';
