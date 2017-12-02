@@ -29,15 +29,17 @@ class App extends React.Component {
       settingsView: false,
       username: '',
     };
-    this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
-    this.addNewItemToList = this.addNewItemToList.bind(this);
-    this.selectLocation = this.selectLocation.bind(this);
-    this.getSettings = this.getSettings.bind(this);
     this.addAllergy = this.addAllergy.bind(this);
-    this.addLike = this.addLike.bind(this);
     this.addDislike = this.addDislike.bind(this);
+    this.addLike = this.addLike.bind(this);
     this.addLocation = this.addLocation.bind(this);
+    this.addNewItemToList = this.addNewItemToList.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+    this.getSavedListItems = this.getSavedListItems.bind(this);
+    this.getSettings = this.getSettings.bind(this);
+    this.selectLocation = this.selectLocation.bind(this);
     this.toggleLogin = this.toggleLogin.bind(this);
+    this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
   }
 
   // Makes get request to get saved shopping lists when component mounts
