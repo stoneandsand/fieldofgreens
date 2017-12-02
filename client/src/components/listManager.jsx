@@ -1,9 +1,10 @@
 // Component to load saved lists, display current items, and save current items into a new list.
 // The saved lists dropdown should only show if a user is logged in.
 
+import axios from 'axios';
 import React from 'react';
 import CurrentItems from './currentItems.jsx';
-import LoadSavedLists from './loadSavedLists.jsx';
+import SavedListsLoader from './savedListsLoader.jsx';
 import SaveList from './saveList.jsx';
 
 class ListManager extends React.Component {
@@ -24,30 +25,23 @@ class ListManager extends React.Component {
       });
   }
 
-  saveNewListName(e) {
+  saveNewList(e) {
     e.preventDefault();
-    this.props.submitNewList(this.newListName);
-    this.setState({newListName: ''});
+    let username = 'bob'; // FIX FIX FIX
+    axios.post(`/api/users/${username}/lists`, {
+      listName: this.state.newListName,
+      items: this.props.currentItems,
+    })
+      .then((response) => {
+        this.setState({newListName: ''});
+        // this.props.getSavedLists();
+      });
   }
 
   updateNewListName(e) {
     this.setState({ newListName: e.target.value });
   }
 
-  // called when "Save List" is clicked with a list name
-  // makes post request to '/saveList' API endpoint and saves list name & items to database
-  // calls getSavedList to get latest list of lists from database to render newest list
-  submitNewList(listName) {
-    let username = 'bob'; // FIX FIX FIX
-    axios.post(`/api/users/${username}/lists`, {
-      listName: listName,
-      items: this.props.currentItems,
-    })
-      .then((response) => {
-        this.getSavedLists();
-      });
-  }
-  
   render() {
     return (
       <div className="card mb-4">
@@ -59,10 +53,10 @@ class ListManager extends React.Component {
             </h4>
           </div>
           <div className="card-body">
-            {this.state.savedLists.length > 0 && <LoadSavedLists getSavedListItems={this.getSavedListItems} savedLists={this.state.savedLists}/>}
+            {this.state.savedLists.length > 0 && <SavedListsLoader getSavedListItems={this.getSavedListItems} savedLists={this.state.savedLists}/>}
             {this.state.savedLists.length > 0 && <hr/>}
             <CurrentItems currentItems={this.props.currentItems}/>
-            <SaveList newListName={this.newListName} updateNewListName={this.updateNewListName} saveNewListName={this.saveNewListName} />
+            <SaveList newListName={this.newListName} updateNewListName={this.updateNewListName.bind(this)} saveNewList={this.saveNewList.bind(this)} />
           </div>
         </div>
       </div>
