@@ -269,6 +269,7 @@ class App extends React.Component {
           updateNewAllergy={this.updateNewAllergy}
           updateNewLike={this.updateNewLike}
           updateNewDislike={this.updateNewDislike}
+          toggleView={this.toggleView}
         />
         <SearchView
           currentItems={currentItems}
