@@ -24,9 +24,8 @@ class Settings extends React.Component {
       updateNewLike,
       updateNewDislike,
     } = this.props;
-    console.log('settings props: ', this.props);
     return (
-      this.props.settingsView &&
+      {settingsView} &&
       <div className="container settingsView">
         <button type="button" className="btn btn-primary">Search</button>
         <div className="card-deck location">
@@ -38,18 +37,18 @@ class Settings extends React.Component {
           </div>
           <div className="card">
             <div className="card-body">
-              <div className="form-group">
+              <form className="form-group" onSubmit={addAllergy}>
                 <label>Allergies</label>
                 <div className="input-group">
-                  <input type="test" className="form-control" id="allergies" placeholder="peanuts" />
+                  <input type="test" className="form-control" id="allergies" placeholder="peanuts" onChange={updateNewAllergy} />
                   <span className="input-group-btn">
                     <input type="submit" className="btn btn-success" value="Add Item" />
                   </span>
                 </div>
-              </div>
+              </form>
               <ol>
                 {
-                  allergies.length > 0 ? allergies.map((allergy, i) => {
+                  allergies ? allergies.map((allergy, i) => {
                     return <li key={i}>{allergy}</li>
                   }) : null
                 }
