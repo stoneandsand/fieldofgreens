@@ -3,6 +3,7 @@ import ListManager from './ListManager.jsx';
 import RecallList from './RecallList.jsx';
 
 const SearchView = props => (
+  !props.settingsView &&
   <div className="container">
     <ListManager
       currentItems={props.currentItems}
