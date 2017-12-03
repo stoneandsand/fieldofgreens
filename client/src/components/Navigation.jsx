@@ -50,9 +50,8 @@ class Navigation extends React.Component {
 
 
   render() {
-
-    const isLoggedIn = <h3><span id="logout" onClick={this.logoutFunc}>Logout</span> <span id="settings">Settings</span></h3>;
-    const isNotLoggedIn = <h3 onClick={this.props.auth.login}>Login/SignUp</h3>;
+    const isLoggedIn = <span><button type="button" className="btn btn-info"><i className="fa fa-cog fa-1x" aria-hidden="true"></i></button>    <button type="button" className="btn btn-warning" onClick={this.logoutFunc}>Logout</button></span>;
+    const isNotLoggedIn = <button type="button" className="btn btn-primary" onClick={this.props.auth.login}>Login / Sign-Up</button>;
     return (
       <div className="container-fluid navigation">
         <div className="row top">
@@ -65,7 +64,7 @@ class Navigation extends React.Component {
           <div className="col-md-4 signUpOrSettings">
             <StateDropdown location={this.props.location} selectState={this.props.selectState} />
  {
-  localStorage.getItem('authenticated') ? isLoggedIn : isNotLoggedIn
+  false ? isLoggedIn : isNotLoggedIn
  }
           </div>
         </div>
