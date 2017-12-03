@@ -50,7 +50,7 @@ class Navigation extends React.Component {
 
 
   render() {
-    const isLoggedIn = <span><button type="button" className="btn btn-info"><i className="fa fa-cog fa-1x" aria-hidden="true"></i></button>    <button type="button" className="btn btn-warning" onClick={this.logoutFunc}>Logout</button></span>;
+    const isLoggedIn = <span><button type="button" className="btn btn-info" onClick={this.props.goToSettingsView}><i className="fa fa-cog fa-1x" aria-hidden="true"></i></button>    <button type="button" className="btn btn-warning" onClick={this.logoutFunc}>Logout</button></span>;
     const isNotLoggedIn = <button type="button" className="btn btn-primary" onClick={this.props.auth.login}>Login / Sign-Up</button>;
     return (
       <div className="container-fluid navigation">
