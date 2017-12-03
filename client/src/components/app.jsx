@@ -252,6 +252,7 @@ class App extends React.Component {
           newItemEntry={newItemEntry}
           selectLocation={this.selectLocation}
           updateNewItemEntry={this.updateNewItemEntry}
+          goToSettingsView={this.goToSettingsView}
         />
         <Settings
           addAllergy={this.addAllergy}
@@ -269,7 +270,6 @@ class App extends React.Component {
           updateNewAllergy={this.updateNewAllergy}
           updateNewLike={this.updateNewLike}
           updateNewDislike={this.updateNewDislike}
-          goToSettingsView={this.goToSettingsView}
         />
         <SearchView
           currentItems={currentItems}
