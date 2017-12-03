@@ -227,7 +227,7 @@ class App extends React.Component {
   }
 
   toggleView() {
-    this.setState({settingsView: !settingsView});
+    this.setState({settingsView: !this.state.settingsView});
   }
 
   render() {
