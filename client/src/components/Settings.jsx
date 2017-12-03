@@ -57,7 +57,7 @@ class Settings extends React.Component {
           </div>
           <div className="card">
             <div className="card-body">
-              <div className="form-group">
+              <form className="form-group">
                 <label>Likes</label>
                 <div className="input-group">
                   <input type="test" className="form-control" id="likes" placeholder="Kale" />
@@ -65,7 +65,7 @@ class Settings extends React.Component {
                     <input type="submit" className="btn btn-success" value="Add Item" />
                   </span>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
           <div className="card">
