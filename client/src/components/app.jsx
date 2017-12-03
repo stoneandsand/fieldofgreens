@@ -239,7 +239,7 @@ class App extends React.Component {
           addLike={this.addLike}
           allergies={allergies}
           dislikes={dislikes}
-          likes={this.likes}
+          likes={likes}
           location={location}
           newAllergy={newAllergy}
           newLike={newLike}
