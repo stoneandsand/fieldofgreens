@@ -57,7 +57,7 @@ class Settings extends React.Component {
           </div>
           <div className="card">
             <div className="card-body">
-              <form className="form-group">
+              <form className="form-group" onSubmit={addLike}>
                 <label>Likes</label>
                 <div className="input-group">
                   <input type="test" className="form-control" id="likes" placeholder="Kale" />
