@@ -9,7 +9,6 @@ class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.logoutFunc = this.logoutFunc.bind(this);
-    this.setAuthenticatedStatus = this.setAuthenticatedStatus.bind(this);
   }
 
   componentWillMount() {
@@ -41,10 +40,6 @@ class Navigation extends React.Component {
     });
     console.log(localStorage.getItem('authenticated'));
     console.log(localStorage.getItem('email'));
-  }
-
-  componentDidMount() {
-    this.setAuthenticatedStatus();
   }
 
   logoutFunc() {
