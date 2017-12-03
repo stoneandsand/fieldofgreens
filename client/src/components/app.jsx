@@ -281,7 +281,7 @@ class App extends React.Component {
           currentItems={currentItems}
           deleteItem={this.deleteItem}
           getSavedListItems={this.getSavedListItems}
-          goToSearchView={this.gotToSearchView}
+          goToSearchView={this.goToSearchView}
         />
       </div>
     );
