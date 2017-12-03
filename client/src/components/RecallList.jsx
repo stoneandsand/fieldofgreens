@@ -2,7 +2,7 @@ import React from 'react';
 import RecallListItem from './RecallListItem.jsx';
 
 const RecallList = props => (
-  this.props.currentItems.length > 0 &&
+  props.currentItems.length > 0 &&
   <div className="row justify-content-md-center">
     <div className="col-1">
     </div>
