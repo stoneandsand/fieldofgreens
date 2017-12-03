@@ -78,15 +78,22 @@ class Settings extends React.Component {
           </div>
           <div className="card">
             <div className="card-body">
-              <form className="form-group">
+              <form className="form-group" onSubmit={addDislike}>
                 <label>Dislikes</label>
                 <div className="input-group">
-                  <input type="test" className="form-control" id="dislikes" placeholder="Chicken" />
+                  <input type="test" className="form-control" id="dislikes" placeholder="Chicken" onChange={updateNewDislike} />
                   <span className="input-group-btn">
                     <input type="submit" className="btn btn-success" value="Add Item" />
                   </span>
                 </div>
               </form>
+              <ol>
+              {
+                dislikes ? dislikes.map((dislike, i) => {
+                  return <li key={i}>{dislike}</li>
+                }) : null
+              }
+              </ol>
             </div>
           </div>
         </div>
