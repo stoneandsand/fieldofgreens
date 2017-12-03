@@ -2,17 +2,17 @@ import React from 'react';
 import ListManager from './ListManager.jsx';
 import RecallList from './RecallList.jsx';
 
-const searchView = props => (
+const SearchView = props => (
   <div className="container">
     <ListManager
-      currentItems={this.props.currentItems}
-      getSavedListItems={this.props.getSavedListItems} // BIND IN APP
+      currentItems={props.currentItems}
+      getSavedListItems={props.getSavedListItems}
     />
     <RecallList
-      deleteItem={this.deleteItem}
-      currentItems={this.props.currentItems}
+      deleteItem={props.deleteItem}
+      currentItems={props.currentItems}
     />
   </div>
 );
 
-
+export default SearchView;
