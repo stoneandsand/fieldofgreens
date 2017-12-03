@@ -25,7 +25,7 @@ class App extends React.Component {
       newAllergy: '',
       newLike: '',
       newDislike: '',
-      settingsView: true,
+      settingsView: false,
       username: '',
     };
     this.addAllergy = this.addAllergy.bind(this);
@@ -36,7 +36,7 @@ class App extends React.Component {
     this.deleteItem = this.deleteItem.bind(this);
     this.getSavedListItems = this.getSavedListItems.bind(this);
     this.getSettings = this.getSettings.bind(this);
-    this.gotToSearchView = this.gotToSearchView.bind(this);
+    this.goToSearchView = this.goToSearchView.bind(this);
     this.goToSettingsView = this.goToSettingsView.bind(this);
     this.selectLocation = this.selectLocation.bind(this);
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
