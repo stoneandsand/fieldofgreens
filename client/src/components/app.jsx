@@ -41,6 +41,7 @@ class App extends React.Component {
     this.updateNewAllergy = this.updateNewAllergy.bind(this);
     this.updateNewLike = this.updateNewLike.bind(this);
     this.updateNewDislike = this.updateNewDislike.bind(this);
+    this.getSavedLists = this.getSavedLists.bind(this);
   }
 
   // Makes get request to get saved shopping lists when component mounts
@@ -57,11 +58,23 @@ class App extends React.Component {
     this.setState({ newItemEntry: '' }, this.searchNewItem(this.state.newItemEntry));
   }
 
+  getSavedLists() {
+    axios.get(`/api/users/${this.state.username}/lists`)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+        // alert(`We're very sorry, ${username}. There was an fetching your saved lists.`);
+      });
+  };
+
   // Updates currentItems with contents of selected saved list.
   getSavedListItems(listId) {
     const savedListItems = [];
-    let username = this.state.username || 'abc';
-    let id = listId || '5a20910146823c815f63af66';
+    let username = this.state.username || 'j.tang17@gmail.com';
+    console.log(listId);
+    let id = listId;
 
     axios.get(`/api/users/${username}/lists/${id}`)
       .then(res => {
@@ -110,7 +123,7 @@ class App extends React.Component {
   }
 
   getSettings() {
-    let username = this.state.username || 'chucky';
+    let username = this.state.username || 'j.tang17@gmail.com';
     axios.get(`api/users/${username}/settings`)
       .then(res => {
         console.log(res.data);

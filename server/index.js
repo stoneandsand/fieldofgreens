@@ -29,11 +29,8 @@ const getRecallMatches = (keywordsArray) => {
 app.post('/signup', (req, res) => {
   console.log(req.body);
   // expecting {username: '', password: ''}
-  let user = {
-    username: req.body.email,
-  }
 
-  db.signup(user, (err, username) => {
+  db.signup(req.body.email, (err, username) => {
     if (err) {
       res.send('');
     }
@@ -59,7 +56,6 @@ app.get('/api/search/:location/:item', (req, res) => {
 
 // POST request for saving new list to database
 app.post('/api/users/:username/lists', (req, res) => {
-  // expecting {username: '', items: ['apples', 'oranges'], listName: 'fruits'}
   const items = [];
   for (const item of req.body.items) {
     items.push(item.name);
@@ -68,10 +64,11 @@ app.post('/api/users/:username/lists', (req, res) => {
     name: req.body.listName,
     items: items,
   };
+  console.log(req.params.username)
   console.log(list);
-  db.saveList(req.body.username, list, (err, updatedLists) => {
+  db.saveList(req.params.username, list, (err, updatedLists) => {
     if (err) {
-      res.send([]); // Error retrieving updated lists
+      res.send(err); // Error retrieving updated lists
     }
     console.log(updatedLists);
     res.send(updatedLists);

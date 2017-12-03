@@ -9,18 +9,19 @@ let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 const signup = (user, callback) => {
-  User.findOne({username: user.email}, (err, userEntry) => {
+  console.log(typeof user);
+  User.findOne({username: user}, (err, userEntry) => {
     if (err) {
       console.error(err);
       callback(err, null);
     } else {
       if (!userEntry) {
         let newUser = new User({
-          username: user.email,
+          username: user,
         });
         newUser.save((err, newUserEntry) => {
           if (err) {
-            callback(err, null);
+            console.error(err);
           } else {
             callback(null, newUserEntry.username);
           }
@@ -55,6 +56,7 @@ const saveList = (user, list, callback) => {
     if (err) {
       console.error(err);
     } else {
+      console.log(userEntry);
       userEntry.lists.push({
         name: list.name,
         items: list.items,
