@@ -36,6 +36,7 @@ class App extends React.Component {
     this.deleteItem = this.deleteItem.bind(this);
     this.getSavedListItems = this.getSavedListItems.bind(this);
     this.getSettings = this.getSettings.bind(this);
+    this.gotToSearchView = this.gotToSearchView.bind(this);
     this.goToSettingsView = this.goToSettingsView.bind(this);
     this.selectLocation = this.selectLocation.bind(this);
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
@@ -230,6 +231,10 @@ class App extends React.Component {
     this.setState({settingsView: true});
   }
 
+  gotToSearchView() {
+    this.setState({settingsView: false});
+  }
+
   render() {
     const {
       allergies,
@@ -270,6 +275,7 @@ class App extends React.Component {
           updateNewAllergy={this.updateNewAllergy}
           updateNewLike={this.updateNewLike}
           updateNewDislike={this.updateNewDislike}
+          gotToSearchView={this.gotToSearchView}
         />
         <SearchView
           currentItems={currentItems}
