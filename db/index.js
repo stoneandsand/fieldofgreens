@@ -115,13 +115,13 @@ const addAllergies = (item, callback) => {
 };
 
 //Add to user's likes list
-const addLikes = (user, item, callback) => {
-  User.findOne({username: user}, (err, userEntry) => {
+const addLikes = (item, callback) => {
+  User.findOne({username: item.user}, (err, userEntry) => {
     if (err) {
       console.error(err);
       callback(err, []);
     } else {
-      userEntry.likes.push(item);
+      userEntry.likes.push(item.item);
       userEntry.save((err, updatedEntry) => {
         if (err) {
           console.error(err);
@@ -135,13 +135,13 @@ const addLikes = (user, item, callback) => {
 };
 
 //Add to user's dislikes list
-const addDislikes = (user, item, callback) => {
-  User.findOne({username: user}, (err, userEntry) => {
+const addDislikes = (item, callback) => {
+  User.findOne({username: item.user}, (err, userEntry) => {
     if (err) {
       console.error(err);
       callback(err, []);
     } else {
-      userEntry.dislikes.push(item);
+      userEntry.dislikes.push(item.item);
       userEntry.save((err, updatedEntry) => {
         if (err) {
           console.error(err);

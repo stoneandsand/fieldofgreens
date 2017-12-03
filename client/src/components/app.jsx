@@ -191,7 +191,7 @@ class App extends React.Component {
 
   addLike(event) {
     event.preventDefault();
-    axios.post(`/api/users/${username}/likes`, {item: event.target.value})
+    axios.post(`/api/users/${this.state.username}/likes`, {item: this.state.newLike, user: this.state.username})
       .then(res => {
         this.setState({
           likes: res.data,
@@ -204,7 +204,7 @@ class App extends React.Component {
 
   addDislike(event) {
     event.preventDefault();
-    axios.post(`/api/users/${username}/dislikes`, {item: event.target.value})
+    axios.post(`/api/users/${this.state.username}/dislikes`, {item: this.state.newDislike, user:this.state.username})
       .then(res => {
         this.setState({
           dislikes: res.data,
