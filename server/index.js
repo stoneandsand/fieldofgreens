@@ -27,7 +27,7 @@ const getRecallMatches = (keywordsArray) => {
 
 // ROUTING
 app.post('/signup', (req, res) => {
-  console.log(req.body);
+  console.log(req.body, 'req.body for signup');
   // expecting {username: '', password: ''}
 
   db.signup(req.body.email, (err, username) => {
@@ -109,7 +109,7 @@ app.get('/api/users/:username/settings', (req, res) => {
 });
 
 app.post('/api/users/:username/allergies', (req, res) => {
-  console.log(req.body);
+  console.log(req.body, 'req.body');
   // Expecting {item: 'apple'} item in POST request
   db.addAllergies(req.body, (err, updatedAllergyList) => {
     if (err) {

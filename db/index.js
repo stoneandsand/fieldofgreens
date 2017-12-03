@@ -16,7 +16,7 @@ const signup = (user, callback) => {
       callback(err, null);
     } else {
       if (!userEntry) {
-        let newUser = new User({
+        var newUser = new User({
           username: user,
         });
         newUser.save((err, newUserEntry) => {
@@ -92,7 +92,7 @@ const findList = (user, id, callback) => {
 
 //Add to user's allergies lists
 const addAllergies = (item, callback) => {
-  console.log({username: item.user}, 'allergy call');
+  console.log(item.user, 'allergy call');
   User.findOne({username: item.user}, (err, userEntry) => {
     if (err) {
       console.error(err);
