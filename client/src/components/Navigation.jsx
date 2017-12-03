@@ -64,7 +64,7 @@ class Navigation extends React.Component {
           <div className="col-md-4 signUpOrSettings">
             <StateDropdown location={this.props.location} selectState={this.props.selectState} />
  {
-  false ? isLoggedIn : isNotLoggedIn
+  localStorage.getItem('authenticated') ? isLoggedIn : isNotLoggedIn
  }
           </div>
         </div>
