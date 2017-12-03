@@ -26,7 +26,6 @@ class App extends React.Component {
       newLike: '',
       newDislike: '',
       newLocation: '',
-      isLoggedIn: false,
       settingsView: true,
       username: '',
     };
@@ -39,7 +38,6 @@ class App extends React.Component {
     this.getSavedListItems = this.getSavedListItems.bind(this);
     this.getSettings = this.getSettings.bind(this);
     this.selectLocation = this.selectLocation.bind(this);
-    this.toggleLogin = this.toggleLogin.bind(this);
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
   }
 
@@ -195,10 +193,6 @@ class App extends React.Component {
       });
   }
 
-  toggleLogin(boolean, uname) {
-    this.setState({isLoggedIn: boolean, username: uname});
-  }
-
   render() {
     const {
       allergies,
@@ -217,7 +211,6 @@ class App extends React.Component {
           location={location}
           newItemEntry={newItemEntry}
           selectLocation={this.selectLocation}
-          toggleLogin={this.toggleLogin}
           updateNewItemEntry={this.updateNewItemEntry}
         />
         <Settings
