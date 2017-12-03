@@ -121,7 +121,7 @@ app.post('/api/users/:username/allergies', (req, res) => {
 
 app.post('/api/users/:username/likes', (req, res) => {
   // Expecting {item: 'apple'} item in POST request
-  db.addLikes(req.params.username, req.body.item, (err, updatedLikeList) => {
+  db.addLikes(req.body, (err, updatedLikeList) => {
     if (err) {
       res.send([]); //Error retrieving updated likes list
     }
@@ -131,7 +131,7 @@ app.post('/api/users/:username/likes', (req, res) => {
 
 app.post('/api/users/:username/dislikes', (req, res) => {
   // Expecting {item: 'apple'} item in POST request
-  db.addAllergies(req.params.username, req.body.item, (err, updatedDislikeList) => {
+  db.addDislikes(req.body, (err, updatedDislikeList) => {
     if (err) {
       res.send([]); //Error retrieving updated dislikes list
     }
