@@ -50,7 +50,6 @@ class App extends React.Component {
     // FIX FIX FIX
   }
 
-  // Add new item to current list when "Add New Item" is clicked
   addNewItemToList(e) {
     e.preventDefault();
     this.setState({ newItemEntry: '' }, this.searchNewItem(this.state.newItemEntry));
