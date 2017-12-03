@@ -24,6 +24,7 @@ class Settings extends React.Component {
       updateNewLike,
       updateNewDislike,
     } = this.props;
+    console.log(this.props)
     return (
       settingsView &&
       <div className="container settingsView">
@@ -66,6 +67,13 @@ class Settings extends React.Component {
                   </span>
                 </div>
               </form>
+              <ol>
+                {
+                  likes ? likes.map((like, i) => {
+                    return <li key={i}>{like}</li>
+                  }) : null
+                }
+              </ol>
             </div>
           </div>
           <div className="card">
