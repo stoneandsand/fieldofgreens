@@ -3,8 +3,8 @@ import RecallEntry from './RecallEntry.jsx';
 
 const RecallListItem = props => (
   <div>
-    <button type="button" className="btn btn-default" onClick={props.deleteItem.bind(null, props.i)}>
-    <span className="glyphicon glyphicon-remove" />
+    <button type="button" className="btn btn-danger" onClick={props.deleteItem.bind(null, props.i)}>
+      <i className="fa fa-remove fa-2x" aria-hidden="true"></i>
   </button>
     <span className="list-item"><big>{props.item.name}</big></span>
     <div>
