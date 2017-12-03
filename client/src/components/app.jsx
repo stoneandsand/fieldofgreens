@@ -231,7 +231,7 @@ class App extends React.Component {
     this.setState({settingsView: true});
   }
 
-  gotToSearchView() {
+  goToSearchView() {
     this.setState({settingsView: false});
   }
 
