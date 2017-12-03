@@ -50,16 +50,7 @@ class Navigation extends React.Component {
   logoutFunc() {
     localStorage.removeItem('authenticated');
     localStorage.removeItem('email');
-    this.setAuthenticatedStatus();
     this.props.auth.logout();
-  }
-
-  setAuthenticatedStatus() {
-    if (localStorage.getItem('authenticated') ) {
-      this.props.toggleLogin(true);
-    } else {
-      this.props.toggleLogin(false);
-    }
   }
 
 
