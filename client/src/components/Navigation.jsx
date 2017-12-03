@@ -24,8 +24,10 @@ class Navigation extends React.Component {
         axios.post('http://localhost:5000/signup', profile)
           .then( (success)=>{
             console.log('user data', success);
+            localStorage.setItem('email', profile.email);
+            console.log(localStorage.getItem('email'), 'email');
             localStorage.setItem('authenticated', true);
-    //        location.reload();
+            location.reload();
           })
           .catch((err)=>{
             console.log('error',err);
@@ -37,6 +39,8 @@ class Navigation extends React.Component {
     Lock.on('authorization_error', (err)=>{
       console.log('auth error found: ', err);
     });
+    console.log(localStorage.getItem('authenticated'));
+    console.log(localStorage.getItem('email'));
   }
 
   componentDidMount() {
@@ -45,6 +49,7 @@ class Navigation extends React.Component {
 
   logoutFunc() {
     localStorage.removeItem('authenticated');
+    localStorage.removeItem('email');
     this.setAuthenticatedStatus();
     this.props.auth.logout();
   }

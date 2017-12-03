@@ -27,7 +27,7 @@ class App extends React.Component {
       newDislike: '',
       newLocation: '',
       isLoggedIn: false,
-      settingsView: false,
+      settingsView: true,
       username: '',
     };
     this.addAllergy = this.addAllergy.bind(this);
@@ -48,6 +48,8 @@ class App extends React.Component {
     this.getSettings();
     // if (this.state.isLoggedIn || true) { this.searchNewItem(); }
     // FIX FIX FIX
+    this.setState({username: localStorage.getItem('email')});
+    console.log(localStorage.getItem('email'), 'email called on app.jsx')
   }
 
   addNewItemToList(e) {
@@ -193,8 +195,8 @@ class App extends React.Component {
       });
   }
 
-  toggleLogin(boolean) {
-    this.setState({isLoggedIn: boolean});
+  toggleLogin(boolean, uname) {
+    this.setState({isLoggedIn: boolean, username: uname});
   }
 
   render() {
