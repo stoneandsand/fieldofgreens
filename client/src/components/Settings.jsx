@@ -47,6 +47,13 @@ class Settings extends React.Component {
                   </span>
                 </div>
               </div>
+              <ol>
+                {
+                  allergies.length > 0 ? allergies.map((allergy, i) => {
+                    return <li key={i}>{allergy}</li>
+                  }) : null
+                }
+              </ol>
             </div>
           </div>
           <div className="card">
