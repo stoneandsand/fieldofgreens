@@ -275,13 +275,12 @@ class App extends React.Component {
           updateNewAllergy={this.updateNewAllergy}
           updateNewLike={this.updateNewLike}
           updateNewDislike={this.updateNewDislike}
-          gotToSearchView={this.gotToSearchView}
+          goToSearchView={this.goToSearchView}
         />
         <SearchView
           currentItems={currentItems}
           deleteItem={this.deleteItem}
           getSavedListItems={this.getSavedListItems}
-          goToSearchView={this.goToSearchView}
         />
       </div>
     );
