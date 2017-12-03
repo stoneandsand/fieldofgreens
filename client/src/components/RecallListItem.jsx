@@ -1,5 +1,5 @@
 import React from 'react';
-import RecallEntry from './recallEntry.jsx';
+import RecallEntry from './RecallEntry.jsx';
 
 const RecallListItem = props => (
   <div>
