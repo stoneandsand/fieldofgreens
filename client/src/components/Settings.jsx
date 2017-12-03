@@ -25,7 +25,7 @@ class Settings extends React.Component {
       updateNewDislike,
     } = this.props;
     return (
-      {settingsView} &&
+      settingsView &&
       <div className="container settingsView">
         <button type="button" className="btn btn-primary">Search</button>
         <div className="card-deck location">
