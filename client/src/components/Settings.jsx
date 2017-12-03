@@ -13,6 +13,7 @@ class Settings extends React.Component {
       addLike,
       allergies,
       dislikes,
+      goToSearchView,
       likes,
       location,
       newAllergy,
@@ -20,7 +21,6 @@ class Settings extends React.Component {
       newDislike,
       selectLocation,
       settingsView,
-      toggleView,
       updateNewAllergy,
       updateNewLike,
       updateNewDislike,
@@ -29,7 +29,7 @@ class Settings extends React.Component {
     return (
       settingsView &&
       <div className="container settingsView">
-        <button type="button" className="btn btn-primary" onClick={toggleView} >Search</button>
+        <button type="button" className="btn btn-primary" onClick={goToSearchView}>Search</button>
         <div className="card-deck location">
           <div className="card">
             <div className="card-body">
