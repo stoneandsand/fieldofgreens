@@ -91,14 +91,17 @@ const findList = (user, id, callback) => {
 };
 
 //Add to user's allergies lists
-const addAllergies = (user, item, callback) => {
-  User.findOne({username: user}, (err, userEntry) => {
+const addAllergies = (item, callback) => {
+  console.log({username: item.user}, 'allergy call');
+  User.findOne({username: item.user}, (err, userEntry) => {
     if (err) {
       console.error(err);
       callback(err, []);
     } else {
-      console.log(item);
-      userEntry.allergies.push(item);
+      console.log(userEntry, 'userEntry');
+      console.log(item, 'item');
+
+      userEntry.allergies.push(item.item);
       userEntry.save((err, updatedEntry) => {
         if (err) {
           console.error(err);
