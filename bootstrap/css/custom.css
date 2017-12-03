@@ -10,6 +10,10 @@
   padding-top: 10px;
 }
 
+.settingsView .btn-primary {
+  margin: 20px;
+}
+
 .signUpOrSettings {
   padding-top: 8px;
   text-align: right;
