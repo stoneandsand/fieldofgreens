@@ -6,6 +6,7 @@ import ItemInput from './ItemInput.jsx';
 import ListManager from './ListManager.jsx';
 import Navigation from './Navigation.jsx';
 import RecallList from './RecallList.jsx';
+import SearchView from './SearchView.jsx';
 import Settings from './Settings.jsx';
 import StateDropdown from './StateDropdown.jsx';
 
@@ -200,6 +201,7 @@ class App extends React.Component {
   render() {
     const {
       allergies,
+      currentItems,
       dislikes,
       likes,
       location,
@@ -239,8 +241,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-/*
-        {
-          !settingsView && <searchView/>
-        }
-*/
