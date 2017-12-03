@@ -20,6 +20,7 @@ class Settings extends React.Component {
       newDislike,
       selectLocation,
       settingsView,
+      toggleView,
       updateNewAllergy,
       updateNewLike,
       updateNewDislike,
