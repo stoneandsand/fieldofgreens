@@ -36,8 +36,8 @@ class App extends React.Component {
     this.deleteItem = this.deleteItem.bind(this);
     this.getSavedListItems = this.getSavedListItems.bind(this);
     this.getSettings = this.getSettings.bind(this);
+    this.goToSettingsView = this.goToSettingsView.bind(this);
     this.selectLocation = this.selectLocation.bind(this);
-    this.toggleView = this.toggleView.bind(this);
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
     this.updateNewAllergy = this.updateNewAllergy.bind(this);
     this.updateNewLike = this.updateNewLike.bind(this);
@@ -226,8 +226,8 @@ class App extends React.Component {
       });
   }
 
-  toggleView() {
-    this.setState({settingsView: !this.state.settingsView});
+  goToSettingsView() {
+    this.setState({settingsView: true});
   }
 
   render() {
@@ -269,7 +269,7 @@ class App extends React.Component {
           updateNewAllergy={this.updateNewAllergy}
           updateNewLike={this.updateNewLike}
           updateNewDislike={this.updateNewDislike}
-          toggleView={this.toggleView}
+          goToSettingsView={this.goToSettingsView}
         />
         <SearchView
           currentItems={currentItems}
