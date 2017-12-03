@@ -37,6 +37,7 @@ class App extends React.Component {
     this.getSavedListItems = this.getSavedListItems.bind(this);
     this.getSettings = this.getSettings.bind(this);
     this.selectLocation = this.selectLocation.bind(this);
+    this.toggleView = this.toggleView.bind(this);
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
     this.updateNewAllergy = this.updateNewAllergy.bind(this);
     this.updateNewLike = this.updateNewLike.bind(this);
@@ -223,6 +224,10 @@ class App extends React.Component {
       .catch(err => {
         console.error(err);
       });
+  }
+
+  toggleView() {
+    this.setState({settingsView: !settingsView});
   }
 
   render() {
