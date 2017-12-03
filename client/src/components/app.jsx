@@ -25,7 +25,7 @@ class App extends React.Component {
       newAllergy: '',
       newLike: '',
       newDislike: '',
-      settingsView: false,
+      settingsView: true,
       username: '',
     };
     this.addAllergy = this.addAllergy.bind(this);
@@ -46,11 +46,12 @@ class App extends React.Component {
 
   // Makes get request to get saved shopping lists when component mounts
   componentDidMount() {
-    this.getSettings();
+
     // if (this.state.isLoggedIn || true) { this.searchNewItem(); }
     // FIX FIX FIX
     this.setState({username: localStorage.getItem('email')});
     console.log(localStorage.getItem('email'), 'email called on app.jsx')
+    this.getSettings();
   }
 
   addNewItemToList(e) {
@@ -174,7 +175,8 @@ class App extends React.Component {
 
   addAllergy(event) {
     event.preventDefault();
-    axios.post(`/api/users/${username}/allergies`, {item: event.target.value})
+    console.log({item: this.state.newAllergy, user: this.state.username});
+    axios.post(`/api/users/${this.state.username}/allergies`, {item: this.state.newAllergy, user: this.state.username})
       .then(res => {
         this.setState({
           allergies: res.data,

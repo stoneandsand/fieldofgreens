@@ -109,9 +109,9 @@ app.get('/api/users/:username/settings', (req, res) => {
 });
 
 app.post('/api/users/:username/allergies', (req, res) => {
-  console.log(req.body.item);
+  console.log(req.body);
   // Expecting {item: 'apple'} item in POST request
-  db.addAllergies(req.params.username, req.body.item, (err, updatedAllergyList) => {
+  db.addAllergies(req.body, (err, updatedAllergyList) => {
     if (err) {
       res.send([]); //Error retrieving updated allergy list
     }
