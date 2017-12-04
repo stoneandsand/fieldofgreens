@@ -170,8 +170,6 @@ class App extends React.Component {
     axios.get(`/api/search/${this.state.location}/${item}`)
       .then(res => {
         // Should send back an array of objects (recalls);
-        console.log('RESPONSE FROM SEARCH-NEW-ITEM:');
-        console.log(res.data);
         let currentItems = this.state.currentItems;
         let newItem = {name: item, recalls: res.data};
 
@@ -180,7 +178,6 @@ class App extends React.Component {
       })
       .catch(err => {
         console.error(err);
-        // alert(`We're very sorry. There was an error searching for your item.`); FIX FIX FIX
       });
   }
 
