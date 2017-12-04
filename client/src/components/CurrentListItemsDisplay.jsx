@@ -9,7 +9,7 @@ const CurrentListItemsDisplay = props =>
           <p><b>Current Items: </b>
             {props.currentItems.map((item, i) => {
               return (
-                <span key={`currentItems-${i}`}>{item.name}{props.currentItems.length <= 1 ? '.' : i < props.currentItems.length - 1 ? ', ' : '.'}</span>
+                <span key={`currentItems-${i}`} onClick={props.deleteItem.bind(null, props.i)} >{item.name}{props.currentItems.length <= 1 ? '.' : i < props.currentItems.length - 1 ? ', ' : '.'}</span>
               );
             })}
         </p>

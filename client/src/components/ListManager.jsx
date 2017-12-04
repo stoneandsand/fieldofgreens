@@ -77,7 +77,7 @@ class ListManager extends React.Component {
             <div className="card-body">
               {this.state.savedLists.length > 0 && <SavedListsLoader getSavedListItems={this.props.getSavedListItems} savedLists={this.state.savedLists}/>}
               {this.state.savedLists.length > 0 && <hr/>}
-              <CurrentListItemsDisplay currentItems={this.props.currentItems}/>
+              <CurrentListItemsDisplay currentItems={this.props.currentItems} deleteItem={this.props.deleteItem}/>
               <CurrentListSaver newListName={this.newListName} updateNewListName={this.updateNewListName.bind(this)} saveNewList={this.saveNewList.bind(this)} />
             </div>
           </div>
