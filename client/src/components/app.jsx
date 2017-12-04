@@ -257,10 +257,18 @@ class App extends React.Component {
     this.setState({newDislike: ''});
   }
 
-  removeAllergy(index, e) {
-    let currentAllergies = this.state.allergies;
-    currentAllergies.splice(index, 1);
-    this.setState({ allergies: currentAllergies });
+  removeAllergy(allergy) {
+    console.log('removeAllergy e: ', allergy)
+    let body = {type: 'allergies', name: allergy};
+    axios.post(`/api/users/${this.state.username}/delete`, body)
+    .then(res => {
+      this.setState({
+        allergies: res.data,
+      })
+    })
+    .catch(err => {
+      console.error(err);
+    });
   }
 
   render() {
