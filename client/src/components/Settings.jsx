@@ -20,6 +20,7 @@ class Settings extends React.Component {
       newLike,
       newDislike,
       removeAllergy,
+      removeLike,
       selectLocation,
       settingsView,
       updateNewAllergy,
@@ -71,7 +72,7 @@ class Settings extends React.Component {
               <ol>
                 {
                   likes ? likes.map((like, i) => {
-                    return <li key={i}>{like}</li>
+                    return <li onClick={removeLike.bind(null, like)} key={i}>{like}</li>
                   }) : null
                 }
               </ol>
