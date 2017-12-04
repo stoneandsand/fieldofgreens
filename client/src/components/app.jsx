@@ -95,7 +95,8 @@ class App extends React.Component {
 
   // sets state for state(location) when item selected in dropdown
   selectLocation(e) {
-    this.setState({ location: e.target.value });
+    let location = e.target.name.toUpperCase();
+    this.setState({ location: location });
   }
 
   // sets state for newItemEntry when user inputs item name
