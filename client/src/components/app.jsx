@@ -293,7 +293,7 @@ class App extends React.Component {
     axios.post(`/api/users/${username}/delete`, body)
       .then(res => {
         this.setState({
-          likes: res.data,
+          dislikes: res.data,
         })
       })
       .catch(err => {
