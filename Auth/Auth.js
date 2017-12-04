@@ -44,7 +44,8 @@ export default class Auth {
 
   logout () {
     localStorage.removeItem('profile');
-    window.location.replace('https://field-of-greens.auth0.com/v2/logout?returnTo=http://localhost:5000');
+    window.location.replace('https://field-of-greens.auth0.com/v2/logout?returnTo=https://fieldofgreens.herokuapp.com/');
+    //http://localhost:5000
     console.log('logged out');
     // localStorage.removeItem('accessToken');
     // localStorage.removeItem('idToken');
