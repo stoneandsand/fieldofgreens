@@ -42,7 +42,7 @@ class Settings extends React.Component {
               <form className="form-group" onSubmit={addAllergy}>
                 <label>Allergies</label>
                 <div className="input-group">
-                  <input type="test" className="form-control" id="allergies" placeholder="peanuts" onChange={updateNewAllergy} />
+                  <input type="test" className="form-control" id="allergies" placeholder="peanuts" onChange={updateNewAllergy} value={newAllergy} />
                   <span className="input-group-btn">
                     <input type="submit" className="btn btn-success" value="Add Item" />
                   </span>
