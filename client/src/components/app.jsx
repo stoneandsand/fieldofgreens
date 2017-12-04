@@ -261,14 +261,14 @@ class App extends React.Component {
     console.log('removeAllergy e: ', allergy)
     let body = {type: 'allergies', name: allergy};
     axios.post(`/api/users/${this.state.username}/delete`, body)
-    .then(res => {
-      this.setState({
-        allergies: res.data,
+      .then(res => {
+        this.setState({
+          allergies: res.data,
+        })
       })
-    })
-    .catch(err => {
-      console.error(err);
-    });
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   render() {
