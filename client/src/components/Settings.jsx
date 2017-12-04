@@ -29,7 +29,7 @@ class Settings extends React.Component {
     return (
       settingsView &&
       <div className="container settingsView">
-        <button type="button" className="btn btn-primary" onClick={goToSearchView}>Search</button>
+        <button type="button" className="btn btn-primary" onClick={goToSearchView}>To List Manager</button>
         <div className="card-deck location">
           <div className="card">
             <div className="card-body">
