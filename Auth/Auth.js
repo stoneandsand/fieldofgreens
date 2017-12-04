@@ -1,9 +1,7 @@
-
 import Auth0Lock from 'auth0-lock';
 import auth0 from 'auth0-js';
 import { AUTH_SETTINGS } from './Auth0-settings.js';
 const lock = new Auth0Lock(AUTH_SETTINGS.clientId, AUTH_SETTINGS.domain, AUTH_SETTINGS.options);
-
 
 export default class Auth {
   constructor() {
@@ -18,13 +16,12 @@ export default class Auth {
     lock.show();
   }
 
-
   handleAuth () {
     lock.on('authenticated', this.setSession);
     lock.on('authorization_error', (err) => {
       console.log('error of: ',err);
       history.replace('/login');
-    })
+    });
   }
 
   setSession (authInfo) {
@@ -38,14 +35,12 @@ export default class Auth {
         localStorage.setItem('idToken', authInfo.idToken);
         console.log('profile');
         console.log(profile);
-      })
+      });
     }
   }
 
   logout () {
-
-    let isLocal = process.env.PORT;
-
+    const isLocal = !process.env.PORT;
     let callbackURL = isLocal ? 'http://localhost:5000' : 'https://fieldofgreens.herokuapp.com/';
 
     localStorage.removeItem('profile');
@@ -60,4 +55,4 @@ export default class Auth {
   }
 }
 
-module.exports.Lock = lock
+module.exports.Lock = lock;
