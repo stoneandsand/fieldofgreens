@@ -278,7 +278,6 @@ class App extends React.Component {
         this.setState({
           likes: res.data,
         })
-        console.log(this.state.likes)
       })
       .catch(err => {
         console.error(err);
