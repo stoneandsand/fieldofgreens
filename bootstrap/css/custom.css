@@ -24,6 +24,13 @@
   margin-top: 11px;
 }
 
+.settingsView .btn-danger {
+  margin-right: 10px;
+}
+
+.settingsEntry {
+  margin-bottom: 5px;
+}
 /*====== Each item in list ======*/
 .list-item {
   font-size: 20px;
