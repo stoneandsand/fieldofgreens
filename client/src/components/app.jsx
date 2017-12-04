@@ -38,6 +38,7 @@ class App extends React.Component {
     this.getSettings = this.getSettings.bind(this);
     this.goToSearchView = this.goToSearchView.bind(this);
     this.goToSettingsView = this.goToSettingsView.bind(this);
+    this.removeAllergy = this.removeAllergy.bind(this);
     this.resetNewAllergy = this.resetNewAllergy.bind(this);
     this.resetNewLike = this.resetNewLike.bind(this);
     this.resetNewDislike = this.resetNewDislike.bind(this);
@@ -256,6 +257,12 @@ class App extends React.Component {
     this.setState({newDislike: ''});
   }
 
+  removeAllergy(index, e) {
+    let currentAllergies = this.state.allergies;
+    currentAllergies.splice(index, 1);
+    this.setState({ allergies: currentAllergies });
+  }
+
   render() {
     const {
       allergies,
@@ -267,6 +274,7 @@ class App extends React.Component {
       newDislike,
       newItemEntry,
       newLike,
+      removeAllergy,
       settingsView,
       username,
     } = this.state;
@@ -300,6 +308,7 @@ class App extends React.Component {
           updateNewDislike={this.updateNewDislike}
           goToSearchView={this.goToSearchView}
           resetNewAllergy={this.resetNewAllergy}
+          removeAllergy={this.removeAllergy}
         />
         <SearchView
           currentItems={currentItems}
