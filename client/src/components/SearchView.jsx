@@ -6,6 +6,7 @@ const SearchView = props => (
   !props.settingsView &&
   <div className="container">
     <ListManager
+      username={props.username}
       currentItems={props.currentItems}
       getSavedListItems={props.getSavedListItems}
     />

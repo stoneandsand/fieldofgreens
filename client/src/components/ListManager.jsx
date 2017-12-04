@@ -12,13 +12,20 @@ class ListManager extends React.Component {
     super(props);
     this.state = {
       newListName: '',
-      savedLists: ['test'], // FIX FIX FIX
+      savedLists: [], // FIX FIX FIX
       // savedLists: [],
     };
+    this.getSavedLists = this.getSavedLists.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.username) {
+      this.getSavedLists();
+    }
   }
 
   getSavedLists() {
-    axios.get(`/api/users/${username}/lists`)
+    axios.get(`/api/users/${this.props.username}/lists`)
       .then(res => {
         this.setState({ savedLists: res.data });
       })
@@ -30,7 +37,7 @@ class ListManager extends React.Component {
 
   saveNewList(e) {
     e.preventDefault();
-    let username = 'j.tang17@gmail.com'; // FIX FIX FIX
+    let username = this.props.username; // FIX FIX FIX
     axios.post(`/api/users/${username}/lists`, {
       listName: this.state.newListName,
       items: this.props.currentItems,

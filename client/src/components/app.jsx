@@ -20,7 +20,7 @@ class App extends React.Component {
       allergies: [],
       likes: [],
       dislikes: [],
-      currentItems: [{name: 'apple', recalls:[]}, {name: 'banana', recalls:[]}],
+      currentItems: [],
       newItemEntry: '',
       newAllergy: '',
       newLike: '',
@@ -43,12 +43,10 @@ class App extends React.Component {
     this.updateNewAllergy = this.updateNewAllergy.bind(this);
     this.updateNewLike = this.updateNewLike.bind(this);
     this.updateNewDislike = this.updateNewDislike.bind(this);
-    this.getSavedLists = this.getSavedLists.bind(this);
   }
 
   // Makes get request to get saved shopping lists when component mounts
   componentDidMount() {
-
     // if (this.state.isLoggedIn || true) { this.searchNewItem(); }
     // FIX FIX FIX
     this.setState({username: localStorage.getItem('email')});
@@ -60,17 +58,6 @@ class App extends React.Component {
     e.preventDefault();
     this.setState({ newItemEntry: '' }, this.searchNewItem(this.state.newItemEntry));
   }
-
-  getSavedLists() {
-    axios.get(`/api/users/${this.state.username}/lists`)
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(err => {
-        console.error(err);
-        // alert(`We're very sorry, ${username}. There was an fetching your saved lists.`);
-      });
-  };
 
   // Updates currentItems with contents of selected saved list.
   getSavedListItems(listId) {
@@ -248,6 +235,7 @@ class App extends React.Component {
       newItemEntry,
       newLike,
       settingsView,
+      username,
     } = this.state;
     return (
       <div>
@@ -280,6 +268,7 @@ class App extends React.Component {
         />
         <SearchView
           currentItems={currentItems}
+          username={username}
           deleteItem={this.deleteItem}
           getSavedListItems={this.getSavedListItems}
         />
