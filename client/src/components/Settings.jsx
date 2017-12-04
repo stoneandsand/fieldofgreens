@@ -54,7 +54,7 @@ class Settings extends React.Component {
               <ol>
                 {
                   allergies.map((allergy, i) =>
-                    <SettingsEntry removeEntry={removeAllergy} key={i} entry={allergy} />
+                    <SettingsEntry className="settingsEntry" removeEntry={removeAllergy} key={i} entry={allergy} />
                   )
                 }
               </ol>
