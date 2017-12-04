@@ -190,6 +190,7 @@ class App extends React.Component {
         this.setState({
           allergies: res.data,
         });
+        this.resetNewAllergy();
       })
       .catch(err => {
         console.error(err);
