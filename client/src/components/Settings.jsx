@@ -34,7 +34,7 @@ class Settings extends React.Component {
           <div className="card">
             <div className="card-body">
               <label>Location</label>
-              <StateDropdown />
+              <StateDropdown location={this.props.location} selectLocation={this.props.selectLocation}/>
             </div>
           </div>
           <div className="card">
