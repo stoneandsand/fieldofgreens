@@ -37,7 +37,13 @@ class ListManager extends React.Component {
 
   saveNewList(e) {
     e.preventDefault();
+
     let username = this.props.username; // FIX FIX FIX
+    if (!username) {
+      // TODO: Use a better notification system than alerts
+      alert('Please sign up or log in to gain access to saved list functionality.');
+      return;
+    }
     axios.post(`/api/users/${username}/lists`, {
       listName: this.state.newListName,
       items: this.props.currentItems,
