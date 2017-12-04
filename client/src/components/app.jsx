@@ -188,6 +188,7 @@ class App extends React.Component {
         this.setState({
           likes: res.data,
         });
+        this.resetNewLike();
       })
       .catch(err => {
         console.error(err);
@@ -201,6 +202,7 @@ class App extends React.Component {
         this.setState({
           dislikes: res.data,
         });
+        this.resetNewDislike();
       })
       .catch(err => {
         console.error(err);
