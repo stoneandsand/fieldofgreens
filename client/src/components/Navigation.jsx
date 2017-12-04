@@ -20,7 +20,7 @@ class Navigation extends React.Component {
 
       Lock.getUserInfo(authStatus.accessToken, (err, profile)=> {
         console.log('err',err, 'profile',profile);
-        axios.post('http://localhost:5000/signup', profile)
+        axios.post('/signup', profile)
           .then( (success)=>{
             console.log('user data', success);
             localStorage.setItem('email', profile.email);
