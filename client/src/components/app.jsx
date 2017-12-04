@@ -161,7 +161,7 @@ class App extends React.Component {
     this.setState({
       currentItems: [],
     });
-    let location = this.state.location || 'CA';
+    let location = this.state.location;
     for (let item of currentItems) {
       this.searchNewItem(item.name);
     }
