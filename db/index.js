@@ -3,7 +3,7 @@ const DB_URI = process.env.MONGODB_URI ? `${process.env.MONGODB_URI}/fieldofgree
 
 const User = require('./schemas.js');
 
-mongoose.connect(DB_URI, {useMongoClient: true});
+mongoose.connect(DB_URI);
 
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
