@@ -48,11 +48,7 @@ class App extends React.Component {
 
   // Makes get request to get saved shopping lists when component mounts
   componentWillMount() {
-    // if (this.state.isLoggedIn || true) { this.searchNewItem(); }
-    // FIX FIX FIX
     this.setState({username: localStorage.getItem('email')});
-    console.log(localStorage.getItem('email'), 'email called on app.jsx');
-
   }
 
   componentDidMount() {
