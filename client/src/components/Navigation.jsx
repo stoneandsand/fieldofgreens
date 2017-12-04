@@ -56,7 +56,7 @@ class Navigation extends React.Component {
       <div className="container-fluid navigation">
         <div className="row top">
           <div className="col-md-4 loginOrOut">
-            <h1>The Grossery List</h1>
+            <h1 className="lobster text-danger">The Grossery List</h1>
           </div>
           <div className="col-md-4 search">
             <ItemInput addNewItemToList={this.props.addNewItemToList} newItemEntry={this.props.newItemEntry} updateNewItemEntry={this.props.updateNewItemEntry} />

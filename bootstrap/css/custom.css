@@ -1,5 +1,5 @@
 .navigation {
-  background-color: #d3d3d3;
+  background-color: #f2f2f2;
 }
 
 .loginOrOut {
@@ -74,4 +74,9 @@
 
 .item-input {
    background: rgba(255, 255, 255, .7);
+}
+
+/*====== Font ======*/
+.lobster {
+    font-family: 'Lobster', cursive;
 }
