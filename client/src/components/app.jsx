@@ -43,15 +43,23 @@ class App extends React.Component {
     this.updateNewAllergy = this.updateNewAllergy.bind(this);
     this.updateNewLike = this.updateNewLike.bind(this);
     this.updateNewDislike = this.updateNewDislike.bind(this);
+    this.getSavedLists = this.getSavedLists.bind(this);
   }
 
   // Makes get request to get saved shopping lists when component mounts
-  componentDidMount() {
+  componentWillMount() {
     // if (this.state.isLoggedIn || true) { this.searchNewItem(); }
     // FIX FIX FIX
     this.setState({username: localStorage.getItem('email')});
-    console.log(localStorage.getItem('email'), 'email called on app.jsx')
-    this.getSettings();
+    console.log(localStorage.getItem('email'), 'email called on app.jsx');
+
+  }
+
+  componentDidMount() {
+    if (this.state.username) {
+      this.getSavedLists();
+      this.getSettings();
+    }
   }
 
   addNewItemToList(e) {
@@ -59,11 +67,25 @@ class App extends React.Component {
     this.setState({ newItemEntry: '' }, this.searchNewItem(this.state.newItemEntry));
   }
 
+  getSavedLists() {
+    console.log(`hello ${this.state.username}`);
+    if (this.state.username) {
+      axios.get(`/api/users/${this.state.username}/lists`)
+        .then(res => {
+          console.log(res.data);
+          this.setState({ savedLists: res.data });
+        })
+        .catch(err => {
+          console.error(err);
+          // alert(`We're very sorry, ${username}. There was an fetching your saved lists.`);
+        });
+    }
+  }
+
   // Updates currentItems with contents of selected saved list.
   getSavedListItems(listId) {
     const savedListItems = [];
-    let username = this.state.username || 'j.tang17@gmail.com';
-    console.log(listId);
+    let username = this.state.username;
     let id = listId;
 
     axios.get(`/api/users/${username}/lists/${id}`)
@@ -114,7 +136,7 @@ class App extends React.Component {
   }
 
   getSettings() {
-    let username = this.state.username || 'j.tang17@gmail.com';
+    let username = this.state.username;
     axios.get(`api/users/${username}/settings`)
       .then(res => {
         console.log(res.data);
@@ -145,15 +167,15 @@ class App extends React.Component {
 
   searchNewItem(item) {
     // DEFAULTS FOR TESTING
-    if (!this.state.location) { this.state.location = 'CA'; } // FIX FIX FIX
-    if (!item) { item = 'kiwi'; } // FIX FIX FIX
+    if (!this.state.location) { this.state.location = 'CA'; }
     axios.get(`/api/search/${this.state.location}/${item}`)
       .then(res => {
         // Should send back an array of objects (recalls);
         console.log('RESPONSE FROM SEARCH-NEW-ITEM:');
         console.log(res.data);
         let currentItems = this.state.currentItems;
-        let newItem = {name: item, recalls: res.data}; // EXAMPLE: {name: 'bananas', recalls: []};
+        let newItem = {name: item, recalls: res.data};
+
         currentItems.unshift(newItem);
         this.setState({currentItems: currentItems});
       })
