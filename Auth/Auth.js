@@ -44,7 +44,7 @@ export default class Auth {
     let callbackURL = isLocal ? 'http://localhost:5000' : 'https://fieldofgreens.herokuapp.com/';
 
     localStorage.removeItem('profile');
-    window.location.replace(`https://field-of-greens.auth0.com/v2/logout?returnTo=${callbackURL}`);
+    window.location.replace('https://field-of-greens.auth0.com/v2/logout?returnTo=https://fieldofgreens.herokuapp.com/');
     console.log('logged out');
     // localStorage.removeItem('accessToken');
     // localStorage.removeItem('idToken');
