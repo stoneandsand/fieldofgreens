@@ -246,6 +246,7 @@ class App extends React.Component {
           newItemEntry={newItemEntry}
           selectLocation={this.selectLocation}
           updateNewItemEntry={this.updateNewItemEntry}
+          username={username}
           goToSettingsView={this.goToSettingsView}
         />
         <Settings
