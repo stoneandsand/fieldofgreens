@@ -25,7 +25,6 @@ class Settings extends React.Component {
       updateNewLike,
       updateNewDislike,
     } = this.props;
-    console.log(this.props)
     return (
       settingsView &&
       <div className="container settingsView">
