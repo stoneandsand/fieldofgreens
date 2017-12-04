@@ -1,5 +1,6 @@
 import React from 'react';
 import StateDropdown from './StateDropdown.jsx';
+import SettingsEntry from './SettingsEntry.jsx';
 
 class Settings extends React.Component {
   constructor(props) {
