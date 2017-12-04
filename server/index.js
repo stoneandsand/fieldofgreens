@@ -41,8 +41,6 @@ app.post('/signup', (req, res) => {
 // GET request for getting recall data from data.js
 app.get('/api/search/:location/:item', (req, res) => {
   // expecting {item: 'cheese cake', location: 'CA'}
-  console.log('REQUEST FROM CLIENT', req.params.item);
-  console.log(req.params.location);
 
   const keywords = req.params.item.split(' ');
   console.log(keywords);
