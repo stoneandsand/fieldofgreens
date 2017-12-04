@@ -31,6 +31,14 @@
 .settingsEntry {
   margin-bottom: 5px;
 }
+
+.location label {
+  float: left;
+}
+
+.location .dropdown{
+  margin-left: 30px;
+}
 /*====== Each item in list ======*/
 .list-item {
   font-size: 20px;
