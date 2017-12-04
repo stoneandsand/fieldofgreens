@@ -87,11 +87,11 @@ class Settings extends React.Component {
                   </span>
                 </div>
               </form>
-              {
-                dislikes ? dislikes.map((dislike, i) => {
-                  return <li onClick={removeDislike.bind(null, dislike)} key={i}>{dislike}</li>
-                }) : null
-              }
+                {
+                  dislikes.map((dislike, i) =>
+                    <SettingsEntry removeEntry={removeDislike} key={i} entry={dislike} />
+                  )
+                }
             </div>
           </div>
         </div>
