@@ -53,9 +53,9 @@ class Settings extends React.Component {
               </form>
               <ol>
                 {
-                  allergies ? allergies.map((allergy, i) => {
-                    return <li onClick={removeAllergy.bind(null, allergy)} key={i}>{allergy}</li>
-                  }) : null
+                  allergies.map((allergy, i) =>
+                    <SettingsEntry removeEntry={removeAllergy} key={i} entry={allergy} />
+                  )
                 }
               </ol>
             </div>
