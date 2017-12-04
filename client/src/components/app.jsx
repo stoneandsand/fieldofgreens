@@ -259,8 +259,9 @@ class App extends React.Component {
   }
 
   removeAllergy(allergy) {
+    let username = this.state.username;
     let body = {type: 'allergies', name: allergy};
-    axios.post(`/api/users/${this.state.username}/delete`, body)
+    axios.post(`/api/users/${username}/delete`, body)
       .then(res => {
         this.setState({
           allergies: res.data,
@@ -272,8 +273,9 @@ class App extends React.Component {
   }
 
   removeLike(like) {
+    let username = this.state.username;
     let body = {type: 'likes', name: like};
-    axios.post(`/api/users/${this.state.username}/delete`, body)
+    axios.post(`/api/users/${username}/delete`, body)
       .then(res => {
         this.setState({
           likes: res.data,
