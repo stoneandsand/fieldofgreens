@@ -290,6 +290,7 @@ class App extends React.Component {
           username={username}
           deleteItem={this.deleteItem}
           getSavedListItems={this.getSavedListItems}
+          settingsView={settingsView}
         />
       </div>
     );
