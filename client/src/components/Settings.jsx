@@ -62,7 +62,7 @@ class Settings extends React.Component {
               <form className="form-group" onSubmit={addLike}>
                 <label>Likes</label>
                 <div className="input-group">
-                  <input type="test" className="form-control" id="likes" placeholder="Kale" onChange={updateNewLike} />
+                  <input type="test" className="form-control" id="likes" placeholder="Kale" onChange={updateNewLike} value={newLike} />
                   <span className="input-group-btn">
                     <input type="submit" className="btn btn-success" value="Add Item" />
                   </span>
@@ -82,7 +82,7 @@ class Settings extends React.Component {
               <form className="form-group" onSubmit={addDislike}>
                 <label>Dislikes</label>
                 <div className="input-group">
-                  <input type="test" className="form-control" id="dislikes" placeholder="Chicken" onChange={updateNewDislike} />
+                  <input type="test" className="form-control" id="dislikes" placeholder="Chicken" onChange={updateNewDislike} value={newDislike} />
                   <span className="input-group-btn">
                     <input type="submit" className="btn btn-success" value="Add Item" />
                   </span>
