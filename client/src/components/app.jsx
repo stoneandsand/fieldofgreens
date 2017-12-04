@@ -40,6 +40,7 @@ class App extends React.Component {
     this.goToSettingsView = this.goToSettingsView.bind(this);
     this.removeAllergy = this.removeAllergy.bind(this);
     this.removeLike = this.removeLike.bind(this);
+    this.removeDislike = this.removeDislike.bind(this);
     this.resetNewAllergy = this.resetNewAllergy.bind(this);
     this.resetNewLike = this.resetNewLike.bind(this);
     this.resetNewDislike = this.resetNewDislike.bind(this);
@@ -286,6 +287,20 @@ class App extends React.Component {
       });
   }
 
+  removeDislike(dislike) {
+    let username = this.state.username;
+    let body = {type: 'dislikes', name: dislike};
+    axios.post(`/api/users/${username}/delete`, body)
+      .then(res => {
+        this.setState({
+          likes: res.data,
+        })
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   render() {
     const {
       allergies,
@@ -299,6 +314,7 @@ class App extends React.Component {
       newLike,
       removeAllergy,
       removeLike,
+      removeDislike,
       settingsView,
       username,
     } = this.state;
@@ -334,6 +350,7 @@ class App extends React.Component {
           resetNewAllergy={this.resetNewAllergy}
           removeAllergy={this.removeAllergy}
           removeLike={this.removeLike}
+          removeDislike={this.removeDislike}
         />
         <SearchView
           currentItems={currentItems}
