@@ -39,6 +39,8 @@ class App extends React.Component {
     this.goToSearchView = this.goToSearchView.bind(this);
     this.goToSettingsView = this.goToSettingsView.bind(this);
     this.resetNewAllergy = this.resetNewAllergy.bind(this);
+    this.resetNewLike = this.resetNewLike.bind(this);
+    this.resetNewDislike = this.resetNewDislike.bind(this);
     this.selectLocation = this.selectLocation.bind(this);
     this.updateNewItemEntry = this.updateNewItemEntry.bind(this);
     this.updateNewAllergy = this.updateNewAllergy.bind(this);
@@ -245,6 +247,14 @@ class App extends React.Component {
 
   resetNewAllergy() {
     this.setState({newAllergy: ''});
+  }
+
+  resetNewLike() {
+    this.setState({newLike: ''});
+  }
+
+  resetNewDislike() {
+    this.setState({newDislike: ''});
   }
 
   render() {
