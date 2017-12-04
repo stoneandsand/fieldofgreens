@@ -70,9 +70,9 @@ class Settings extends React.Component {
                 </div>
               </form>
                 {
-                  likes ? likes.map((like, i) => {
-                    return <li onClick={removeLike.bind(null, like)} key={i}>{like}</li>
-                  }) : null
+                  likes.map((like, i) =>
+                    <SettingsEntry removeEntry={removeLike} key={i} entry={like} />
+                  )
                 }
             </div>
           </div>
