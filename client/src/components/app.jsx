@@ -258,7 +258,6 @@ class App extends React.Component {
   }
 
   removeAllergy(allergy) {
-    console.log('removeAllergy e: ', allergy)
     let body = {type: 'allergies', name: allergy};
     axios.post(`/api/users/${this.state.username}/delete`, body)
       .then(res => {
