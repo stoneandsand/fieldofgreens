@@ -67,6 +67,7 @@ class App extends React.Component {
   addNewItemToList(e) {
     e.preventDefault();
     this.setState({ newItemEntry: '' }, this.searchNewItem(this.state.newItemEntry));
+    this.setState({settingsView: false});
   }
 
   getSavedLists() {
