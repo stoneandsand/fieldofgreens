@@ -51,7 +51,7 @@ class Settings extends React.Component {
               <ol>
                 {
                   allergies ? allergies.map((allergy, i) => {
-                    return <li key={i}>{allergy}</li>
+                    return <li onClick={removeAllergy} key={i}>{allergy}</li>
                   }) : null
                 }
               </ol>
