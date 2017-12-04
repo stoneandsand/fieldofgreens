@@ -51,13 +51,11 @@ class Settings extends React.Component {
                   </span>
                 </div>
               </form>
-              <ol>
                 {
                   allergies.map((allergy, i) =>
                     <SettingsEntry removeEntry={removeAllergy} key={i} entry={allergy} />
                   )
                 }
-              </ol>
             </div>
           </div>
           <div className="card">
@@ -71,13 +69,11 @@ class Settings extends React.Component {
                   </span>
                 </div>
               </form>
-              <ol>
                 {
                   likes ? likes.map((like, i) => {
                     return <li onClick={removeLike.bind(null, like)} key={i}>{like}</li>
                   }) : null
                 }
-              </ol>
             </div>
           </div>
           <div className="card">
@@ -91,13 +87,11 @@ class Settings extends React.Component {
                   </span>
                 </div>
               </form>
-              <ol>
               {
                 dislikes ? dislikes.map((dislike, i) => {
                   return <li onClick={removeDislike.bind(null, dislike)} key={i}>{dislike}</li>
                 }) : null
               }
-              </ol>
             </div>
           </div>
         </div>
