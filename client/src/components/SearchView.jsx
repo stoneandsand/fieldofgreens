@@ -9,6 +9,7 @@ const SearchView = props => (
       username={props.username}
       currentItems={props.currentItems}
       getSavedListItems={props.getSavedListItems}
+      deleteItem={props.deleteItem}
     />
     <RecallList
       deleteItem={props.deleteItem}
