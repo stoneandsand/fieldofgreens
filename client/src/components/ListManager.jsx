@@ -26,10 +26,10 @@ class ListManager extends React.Component {
 
   getSavedLists() {
     axios.get(`/api/users/${this.props.username}/lists`)
-      .then(res => {
+      .then((res) => {
         this.setState({ savedLists: res.data });
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
         // alert(`We're very sorry, ${username}. There was an fetching your saved lists.`);
       });
@@ -38,7 +38,7 @@ class ListManager extends React.Component {
   saveNewList(e) {
     e.preventDefault();
 
-    let username = this.props.username; // FIX FIX FIX
+    const username = this.props.username; // FIX FIX FIX
     if (!username) {
       // TODO: Use a better notification system than alerts
       alert('Please sign up or log in to gain access to saved list functionality.');
@@ -48,11 +48,11 @@ class ListManager extends React.Component {
       listName: this.state.newListName,
       items: this.props.currentItems,
     })
-      .then(res => {
-        this.setState({newListName: ''});
-        this.setState({savedLists: res.data});
+      .then((res) => {
+        this.setState({ newListName: '' });
+        this.setState({ savedLists: res.data });
         // this.props.getSavedLists();
-      }).catch(err => {
+      }).catch((err) => {
         console.error(err);
         // alert(`We're very sorry, ${username}. There was an error saving your list.`);
       });
@@ -65,8 +65,7 @@ class ListManager extends React.Component {
   render() {
     return (
       <div className="row justify-content-md-center">
-        <div className="col-1">
-        </div>
+        <div className="col-1" />
         <div className="col-10">
           <div className="card mt-4 mb-4">
             <div className="listManager">
@@ -75,15 +74,14 @@ class ListManager extends React.Component {
               </h4>
             </div>
             <div className="card-body">
-              {this.state.savedLists.length > 0 && <SavedListsLoader getSavedListItems={this.props.getSavedListItems} savedLists={this.state.savedLists}/>}
-              {this.state.savedLists.length > 0 && <hr/>}
-              <CurrentListItemsDisplay currentItems={this.props.currentItems} deleteItem={this.props.deleteItem}/>
+              {this.state.savedLists.length > 0 && <SavedListsLoader getSavedListItems={this.props.getSavedListItems} savedLists={this.state.savedLists} />}
+              {this.state.savedLists.length > 0 && <hr />}
+              <CurrentListItemsDisplay currentItems={this.props.currentItems} deleteItem={this.props.deleteItem} />
               <CurrentListSaver newListName={this.newListName} updateNewListName={this.updateNewListName.bind(this)} saveNewList={this.saveNewList.bind(this)} />
             </div>
           </div>
         </div>
-        <div className="col-1">
-        </div>
+        <div className="col-1" />
       </div>
     );
   }

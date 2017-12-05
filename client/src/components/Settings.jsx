@@ -37,7 +37,7 @@ class Settings extends React.Component {
           <div className="card">
             <div className="card-body">
               <label>Location</label>
-              <StateDropdown location={this.props.location} selectLocation={this.props.selectLocation}/>
+              <StateDropdown location={this.props.location} selectLocation={this.props.selectLocation} />
             </div>
           </div>
           <div className="card">
@@ -51,10 +51,9 @@ class Settings extends React.Component {
                   </span>
                 </div>
               </form>
-                {
+              {
                   allergies.map((allergy, i) =>
-                    <SettingsEntry removeEntry={removeAllergy} key={i} entry={allergy} />
-                  )
+                    <SettingsEntry removeEntry={removeAllergy} key={i} entry={allergy} />)
                 }
             </div>
           </div>
@@ -69,10 +68,9 @@ class Settings extends React.Component {
                   </span>
                 </div>
               </form>
-                {
+              {
                   likes.map((like, i) =>
-                    <SettingsEntry removeEntry={removeLike} key={i} entry={like} />
-                  )
+                    <SettingsEntry removeEntry={removeLike} key={i} entry={like} />)
                 }
             </div>
           </div>
@@ -87,10 +85,9 @@ class Settings extends React.Component {
                   </span>
                 </div>
               </form>
-                {
+              {
                   dislikes.map((dislike, i) =>
-                    <SettingsEntry removeEntry={removeDislike} key={i} entry={dislike} />
-                  )
+                    <SettingsEntry removeEntry={removeDislike} key={i} entry={dislike} />)
                 }
             </div>
           </div>

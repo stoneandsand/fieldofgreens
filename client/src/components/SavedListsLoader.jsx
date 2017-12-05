@@ -12,9 +12,9 @@ const SavedListsLoader = props => (
         {props.savedLists.map((listEntry, i) => (
           <a className="dropdown-item" href="#" key={i} onClick={props.getSavedListItems.bind(null, listEntry._id)}>{listEntry.name}</a>
         ))}
+      </div>
+    </div>
   </div>
-    </div>
-    </div>
 );
 
 export default SavedListsLoader;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RecallEntry = props => {
+const RecallEntry = (props) => {
   if (props.recall) {
     return (
       <div className="recall-entry">
@@ -20,12 +20,11 @@ const RecallEntry = props => {
         <p>
           {props.recall.reason_for_recall}
         </p>
-        {!props.last && <hr/>}
+        {!props.last && <hr />}
       </div>
     );
-  } else {
-    return null;
   }
+  return null;
 };
 
 export default RecallEntry;
