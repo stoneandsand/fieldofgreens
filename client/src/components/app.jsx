@@ -71,16 +71,15 @@ class App extends React.Component {
   }
 
   getSavedLists() {
-    console.log(`hello ${this.state.username}`);
-    if (this.state.username) {
-      axios.get(`/api/users/${this.state.username}/lists`)
+    let username = this.state.username;
+    if (username) {
+      axios.get(`/api/users/${username}/lists`)
         .then(res => {
-          console.log(res.data);
           this.setState({ savedLists: res.data });
         })
         .catch(err => {
           console.error(err);
-          // alert(`We're very sorry, ${username}. There was an fetching your saved lists.`);
+          alert(`We're very sorry, ${username}. There was an fetching your saved lists.`);
         });
     }
   }
@@ -93,11 +92,9 @@ class App extends React.Component {
 
     axios.get(`/api/users/${username}/lists/${id}`)
       .then(res => {
-        console.log(res.data);
         const mapped = res.data.items.map((item) => {
           savedListItems.push({ name: item, recalls: [] });
         });
-        console.log(mapped);
         this.setState({ currentItems: savedListItems }, this.searchAllItems);
       }).catch(err => {
         console.error(err);
@@ -105,28 +102,23 @@ class App extends React.Component {
       });
   }
 
-  // sets state for state(location) when item selected in dropdown
   selectLocation(e) {
     let location = e.target.name.toUpperCase();
     this.setState({ location: location });
   }
 
-  // sets state for newItemEntry when user inputs item name
   updateNewItemEntry(e) {
     this.setState({ newItemEntry: e.target.value });
   }
 
-  // sets state for newAllergy when user inputs item name
   updateNewAllergy(e) {
     this.setState({ newAllergy: e.target.value });
   }
 
-  // sets state for newLike when user inputs item name
   updateNewLike(e) {
     this.setState({ newLike: e.target.value });
   }
 
-  // sets state for newDislike when user inputs item name
   updateNewDislike(e) {
     this.setState({ newDislike: e.target.value });
   }
@@ -267,7 +259,7 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           allergies: res.data,
-        })
+        });
       })
       .catch(err => {
         console.error(err);
@@ -281,7 +273,7 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           likes: res.data,
-        })
+        });
       })
       .catch(err => {
         console.error(err);
@@ -295,7 +287,7 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           dislikes: res.data,
-        })
+        });
       })
       .catch(err => {
         console.error(err);
