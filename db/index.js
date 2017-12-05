@@ -1,70 +1,61 @@
 const mongoose = require('mongoose');
+
 const DB_URI = process.env.MONGODB_URI ? `${process.env.MONGODB_URI}/fieldofgreens` : 'mongodb://localhost/fieldofgreens';
 
 const User = require('./schemas.js');
 
 mongoose.connect(DB_URI);
 
-let db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 const signup = (user, callback) => {
-  console.log(typeof user);
-  User.findOne({username: user}, (err, userEntry) => {
-    if (err) {
-      console.error(err);
-      callback(err, null);
+  User.findOne({ username: user }, (findErr, userEntry) => {
+    if (findErr) {
+      callback(findErr, null);
+    } else if (!userEntry) {
+      const newUser = new User({
+        username: user,
+      });
+      newUser.save((saveErr, newUserEntry) => {
+        if (saveErr) {
+          callback(saveErr, null);
+        } else {
+          callback(null, newUserEntry.username);
+        }
+      });
     } else {
-      if (!userEntry) {
-        var newUser = new User({
-          username: user,
-        });
-        newUser.save((err, newUserEntry) => {
-          if (err) {
-            console.error(err);
-          } else {
-            callback(null, newUserEntry.username);
-          }
-        });
-      } else {
-        callback(null, null); //Username already exists
-      }
+      callback(null, null); // Username already exists
     }
   });
-}
+};
 
-//retrieve all lists for a given user
+// retrieve all lists for a given user
 const getUserLists = (user, callback) => {
-  User.findOne({username: user}, (err, userEntry) => {
+  User.findOne({ username: user }, (err, userEntry) => {
     if (err) {
-      console.error(err)
-      callback(err, []);
+      callback(err, null);
+    } else if (!userEntry) {
+      callback(null, []);
     } else {
-      if (!userEntry) {
-        console.log('no user found');
-        callback(null, []);
-      } else {
-        callback(null, userEntry.lists);
-      }
+      callback(null, userEntry.lists);
     }
   });
 };
 
 // Saves new list for user to database
 const saveList = (user, list, callback) => {
-  User.findOne({username: user}, (err, userEntry) => {
-    if (err) {
-      console.error(err);
+  User.findOne({ username: user }, (findErr, userEntry) => {
+    if (findErr) {
+      callback(findErr, null);
     } else {
-      console.log(userEntry);
       userEntry.lists.push({
         name: list.name,
         items: list.items,
       });
-      userEntry.save((err, updatedEntry) => {
-        if (err) {
-          console.error(err);
-          callback(err, []);
+      userEntry.save((saveErr, updatedEntry) => {
+        if (saveErr) {
+          callback(saveErr, null);
         } else {
           callback(null, updatedEntry.lists);
         }
@@ -75,12 +66,11 @@ const saveList = (user, list, callback) => {
 
 // Returns a list of a user and runs callback on its contents to the client
 const findList = (user, id, callback) => {
-  User.findOne({username: user}, (err, userEntry) => {
+  User.findOne({ username: user }, (err, userEntry) => {
     if (err) {
-      console.error(err);
-      callback(err, {});
+      callback(err, null);
     } else {
-      let targetList = userEntry.lists.filter(listEntry => listEntry._id.toString() === id).pop();
+      const targetList = userEntry.lists.filter(listEntry => listEntry._id.toString() === id).pop();
       if (targetList) {
         callback(null, targetList);
       } else {
@@ -90,22 +80,16 @@ const findList = (user, id, callback) => {
   });
 };
 
-//Add to user's allergies lists
+// Add to user's allergies lists
 const addAllergies = (item, callback) => {
-  console.log(item.user, 'allergy call');
-  User.findOne({username: item.user}, (err, userEntry) => {
-    if (err) {
-      console.error(err);
-      callback(err, []);
+  User.findOne({ username: item.user }, (findErr, userEntry) => {
+    if (findErr) {
+      callback(findErr, null);
     } else {
-      console.log(userEntry, 'userEntry');
-      console.log(item, 'item');
-
       userEntry.allergies.push(item.item);
-      userEntry.save((err, updatedEntry) => {
-        if (err) {
-          console.error(err);
-          callback(err, []);
+      userEntry.save((saveErr, updatedEntry) => {
+        if (saveErr) {
+          callback(saveErr, []);
         } else {
           callback(null, updatedEntry.allergies);
         }
@@ -114,18 +98,16 @@ const addAllergies = (item, callback) => {
   });
 };
 
-//Add to user's likes list
+// Add to user's likes list
 const addLikes = (item, callback) => {
-  User.findOne({username: item.user}, (err, userEntry) => {
-    if (err) {
-      console.error(err);
-      callback(err, []);
+  User.findOne({ username: item.user }, (findErr, userEntry) => {
+    if (findErr) {
+      callback(findErr, null);
     } else {
       userEntry.likes.push(item.item);
-      userEntry.save((err, updatedEntry) => {
-        if (err) {
-          console.error(err);
-          callback(err, []);
+      userEntry.save((saveErr, updatedEntry) => {
+        if (saveErr) {
+          callback(saveErr, null);
         } else {
           callback(null, updatedEntry.likes);
         }
@@ -134,18 +116,16 @@ const addLikes = (item, callback) => {
   });
 };
 
-//Add to user's dislikes list
+// Add to user's dislikes list
 const addDislikes = (item, callback) => {
-  User.findOne({username: item.user}, (err, userEntry) => {
-    if (err) {
-      console.error(err);
-      callback(err, []);
+  User.findOne({ username: item.user }, (findErr, userEntry) => {
+    if (findErr) {
+      callback(findErr, null);
     } else {
       userEntry.dislikes.push(item.item);
-      userEntry.save((err, updatedEntry) => {
-        if (err) {
-          console.error(err);
-          callback(err, []);
+      userEntry.save((saveErr, updatedEntry) => {
+        if (saveErr) {
+          callback(saveErr, null);
         } else {
           callback(null, updatedEntry.dislikes);
         }
@@ -156,16 +136,14 @@ const addDislikes = (item, callback) => {
 
 // Set user's location
 const addLocation = (user, location, callback) => {
-  User.findOne({username: user}, (err, userEntry) => {
-    if (err) {
-      console.error(err);
-      callback(err, '');
+  User.findOne({ username: user }, (findErr, userEntry) => {
+    if (findErr) {
+      callback(findErr, null);
     } else {
       userEntry.location = location;
-      userEntry.save((err, updatedEntry) => {
-        if (err) {
-          console.error(err);
-          callback(err, '');
+      userEntry.save((saveErr, updatedEntry) => {
+        if (saveErr) {
+          callback(saveErr, null);
         } else {
           callback(null, updatedEntry.location);
         }
@@ -176,23 +154,19 @@ const addLocation = (user, location, callback) => {
 
 // Retrieve user settings (allergies, likes, dislikes, location)
 const findSettings = (user, callback) => {
-  User.findOne({username: user}, (err, userEntry) => {
+  User.findOne({ username: user }, (err, userEntry) => {
     if (err) {
-      console.error(err);
-      callback(err, []);
+      callback(err, null);
+    } else if (!userEntry) {
+      callback(null, null);
     } else {
-      if (!userEntry) {
-        console.log('no user found');
-        callback(null, {});
-      } else {
-        let settings = {
-          allergies: userEntry.allergies,
-          likes: userEntry.likes,
-          dislikes: userEntry.dislikes,
-          location: userEntry.location,
-        }
-        callback(null, settings);
-      }
+      const settings = {
+        allergies: userEntry.allergies,
+        likes: userEntry.likes,
+        dislikes: userEntry.dislikes,
+        location: userEntry.location,
+      };
+      callback(null, settings);
     }
   });
 };
@@ -200,36 +174,30 @@ const findSettings = (user, callback) => {
 // Remove lists or items from user's profile
 const removeItem = (user, item, callback) => {
   console.log(item);
-  User.findOne({username: user}, (err, userEntry) => {
-    if (err) {
-      console.error(err);
-      callback(err, []);
-    } else {
-      if (item.type === 'lists') { //lists
-        userEntry[item.type] = userEntry[item.type].filter(entry => entry.name !== item.name);
-        userEntry.save((err, updatedEntry) => {
-          if (err) {
-            console.error(err);
-            callback(err, []);
-          } else {
-            callback(null, updatedEntry[item.type]);
-          }
-        });
-      } else { // allergies, likes, dislikes
-        userEntry[item.type] = userEntry[item.type].filter(entry => entry !== item.name);
-        // TODO: Investigate Error: MongoError: E11000 duplicate key error collection: fieldofgreens.users index: allergies_1 dup key: { : undefined }
-        userEntry.save((err, updatedEntry) => {
-          if (err) {
-            console.error(err);
-            callback(err, []);
-          } else {
-            callback(null, updatedEntry[item.type]);
-          }
-        });
-      }
+  User.findOne({ username: user }, (findErr, userEntry) => {
+    if (findErr) {
+      callback(findErr, null);
+    } else if (item.type === 'lists') { // lists
+      userEntry[item.type] = userEntry[item.type].filter(entry => entry.name !== item.name);
+      userEntry.save((saveErr, updatedEntry) => {
+        if (saveErr) {
+          callback(saveErr, null);
+        } else {
+          callback(null, updatedEntry[item.type]);
+        }
+      });
+    } else { // allergies, likes, dislikes
+      userEntry[item.type] = userEntry[item.type].filter(entry => entry !== item.name);
+      userEntry.save((saveErr, updatedEntry) => {
+        if (saveErr) {
+          callback(saveErr, null);
+        } else {
+          callback(null, updatedEntry[item.type]);
+        }
+      });
     }
-  })
-}
+  });
+};
 
 module.exports.signup = signup;
 module.exports.getUserLists = getUserLists;
