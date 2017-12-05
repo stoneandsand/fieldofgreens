@@ -4,19 +4,18 @@
 import React from 'react';
 
 const CurrentListItemsDisplay = props =>
-      (
-        <div>
-          <p><b>Current Items: </b>
-            {props.currentItems.map((item, i) => {
-              return (
-                <span key={`currentItems-${i}`}  >
-                <span className="text-danger" onClick={props.deleteItem.bind(null, i)}>[x]
-                </span>{' '}
-      {item.name}{props.currentItems.length <= 1 ? ' ' : i < props.currentItems.length - 1 ? ', ' : ' '}</span>
-              );
-            })}
-        </p>
-          </div>
-      );
+  (
+    <div>
+      <p><b>Current Items: </b>
+        {props.currentItems.map((item, i) => (
+          <span key={`currentItems-${i}`} >
+            <span className="text-danger" onClick={props.deleteItem.bind(null, i)}>[x]
+            </span>{' '}
+            {item.name}{props.currentItems.length <= 1 ? ' ' : i < props.currentItems.length - 1 ? ', ' : ' '}
+          </span>
+              ))}
+      </p>
+    </div>
+  );
 
 export default CurrentListItemsDisplay;

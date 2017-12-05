@@ -54,7 +54,7 @@ class App extends React.Component {
 
   // Makes get request to get saved shopping lists when component mounts
   componentWillMount() {
-    this.setState({username: localStorage.getItem('email')});
+    this.setState({ username: localStorage.getItem('email') });
   }
 
   componentDidMount() {
@@ -67,17 +67,17 @@ class App extends React.Component {
   addNewItemToList(e) {
     e.preventDefault();
     this.setState({ newItemEntry: '' }, this.searchNewItem(this.state.newItemEntry));
-    this.setState({settingsView: false});
+    this.setState({ settingsView: false });
   }
 
   getSavedLists() {
-    let username = this.state.username;
+    const username = this.state.username;
     if (username) {
       axios.get(`/api/users/${username}/lists`)
-        .then(res => {
+        .then((res) => {
           this.setState({ savedLists: res.data });
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(err);
           alert(`We're very sorry, ${username}. There was an fetching your saved lists.`);
         });
@@ -87,24 +87,24 @@ class App extends React.Component {
   // Updates currentItems with contents of selected saved list.
   getSavedListItems(listId) {
     const savedListItems = [];
-    let username = this.state.username;
-    let id = listId;
+    const username = this.state.username;
+    const id = listId;
 
     axios.get(`/api/users/${username}/lists/${id}`)
-      .then(res => {
+      .then((res) => {
         const mapped = res.data.items.map((item) => {
           savedListItems.push({ name: item, recalls: [] });
         });
         this.setState({ currentItems: savedListItems }, this.searchAllItems);
-      }).catch(err => {
+      }).catch((err) => {
         console.error(err);
         alert(`We're very sorry, ${username}. There was an error fetching your list.`);
       });
   }
 
   selectLocation(e) {
-    let location = e.target.name.toUpperCase();
-    this.setState({ location: location });
+    const location = e.target.name.toUpperCase();
+    this.setState({ location });
   }
 
   updateNewItemEntry(e) {
@@ -123,17 +123,16 @@ class App extends React.Component {
     this.setState({ newDislike: e.target.value });
   }
 
-  // deletes item from list when "delete" is clicked next to item
   deleteItem(index, e) {
-    let currentItems = this.state.currentItems;
+    const currentItems = this.state.currentItems;
     currentItems.splice(index, 1);
-    this.setState({ currentItems: currentItems });
+    this.setState({ currentItems });
   }
 
   getSettings() {
-    let username = this.state.username;
+    const username = this.state.username;
     axios.get(`api/users/${username}/settings`)
-      .then(res => {
+      .then((res) => {
         console.log(res.data);
         this.setState({
           allergies: res.data.allergies,
@@ -142,154 +141,151 @@ class App extends React.Component {
           location: res.data.location,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }
 
-  // called when new items are added to the list, whether by user input or retreival of existent list from database
-  // makes get request for each item to '/searchNewList' API endpoint
+  // Called when user loads saved list
   searchAllItems() {
-    let currentItems = this.state.currentItems;
+    const currentItems = this.state.currentItems;
     this.setState({
       currentItems: [],
     });
-    let location = this.state.location;
-    for (let item of currentItems) {
+    const location = this.state.location;
+    for (const item of currentItems) {
       this.searchNewItem(item.name);
     }
-  };
+  }
 
   searchNewItem(item) {
-    // DEFAULTS FOR TESTING
+    // MUST HAVE DEFAULT OR SEARCH WILL FAIL
     if (!this.state.location) { this.state.location = 'CA'; }
     axios.get(`/api/search/${this.state.location}/${item}`)
-      .then(res => {
-        // Should send back an array of objects (recalls);
-        let currentItems = this.state.currentItems;
-        let newItem = {name: item, recalls: res.data};
-
+      .then((res) => {
+        const currentItems = this.state.currentItems;
+        const newItem = { name: item, recalls: res.data };
         currentItems.unshift(newItem);
-        this.setState({currentItems: currentItems});
+        this.setState({ currentItems });
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }
 
   addAllergy(event) {
     event.preventDefault();
-    console.log({item: this.state.newAllergy, user: this.state.username});
-    axios.post(`/api/users/${this.state.username}/allergies`, {item: this.state.newAllergy, user: this.state.username})
-      .then(res => {
+    console.log({ item: this.state.newAllergy, user: this.state.username });
+    axios.post(`/api/users/${this.state.username}/allergies`, { item: this.state.newAllergy, user: this.state.username })
+      .then((res) => {
         this.setState({
           allergies: res.data,
         });
         this.resetNewAllergy();
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }
 
   addLike(event) {
     event.preventDefault();
-    axios.post(`/api/users/${this.state.username}/likes`, {item: this.state.newLike, user: this.state.username})
-      .then(res => {
+    axios.post(`/api/users/${this.state.username}/likes`, { item: this.state.newLike, user: this.state.username })
+      .then((res) => {
         this.setState({
           likes: res.data,
         });
         this.resetNewLike();
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }
 
   addDislike(event) {
     event.preventDefault();
-    axios.post(`/api/users/${this.state.username}/dislikes`, {item: this.state.newDislike, user:this.state.username})
-      .then(res => {
+    axios.post(`/api/users/${this.state.username}/dislikes`, { item: this.state.newDislike, user: this.state.username })
+      .then((res) => {
         this.setState({
           dislikes: res.data,
         });
         this.resetNewDislike();
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }
 
   addLocation() {
     axios.post(`/api/users/${username}/location`, this.state.location)
-      .then(res => {
+      .then((res) => {
         this.setState({
           location: res.data,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }
 
   goToSettingsView() {
-    this.setState({settingsView: true});
+    this.setState({ settingsView: true });
   }
 
   goToSearchView() {
-    this.setState({settingsView: false});
+    this.setState({ settingsView: false });
   }
 
   resetNewAllergy() {
-    this.setState({newAllergy: ''});
+    this.setState({ newAllergy: '' });
   }
 
   resetNewLike() {
-    this.setState({newLike: ''});
+    this.setState({ newLike: '' });
   }
 
   resetNewDislike() {
-    this.setState({newDislike: ''});
+    this.setState({ newDislike: '' });
   }
 
   removeAllergy(allergy) {
-    let username = this.state.username;
-    let body = {type: 'allergies', name: allergy};
+    const username = this.state.username;
+    const body = { type: 'allergies', name: allergy };
     axios.post(`/api/users/${username}/delete`, body)
-      .then(res => {
+      .then((res) => {
         this.setState({
           allergies: res.data,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }
 
   removeLike(like) {
-    let username = this.state.username;
-    let body = {type: 'likes', name: like};
+    const username = this.state.username;
+    const body = { type: 'likes', name: like };
     axios.post(`/api/users/${username}/delete`, body)
-      .then(res => {
+      .then((res) => {
         this.setState({
           likes: res.data,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }
 
   removeDislike(dislike) {
-    let username = this.state.username;
-    let body = {type: 'dislikes', name: dislike};
+    const username = this.state.username;
+    const body = { type: 'dislikes', name: dislike };
     axios.post(`/api/users/${username}/delete`, body)
-      .then(res => {
+      .then((res) => {
         this.setState({
           dislikes: res.data,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }

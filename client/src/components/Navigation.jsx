@@ -3,6 +3,7 @@ import ItemInput from './ItemInput.jsx';
 import StateDropdown from './StateDropdown.jsx';
 import Auth0Lock from 'auth0-lock';
 import axios from 'axios';
+
 const Lock = require('../../../Auth/Auth.js').Lock;
 
 class Navigation extends React.Component {
@@ -13,29 +14,29 @@ class Navigation extends React.Component {
 
   componentWillMount() {
     this.props.auth.handleAuth();
-    Lock.on('authenticated', (authStatus)=> {
+    Lock.on('authenticated', (authStatus) => {
       console.log('auth status: ', authStatus);
 
-      if (!authStatus.accessToken) {return};
+      if (!authStatus.accessToken) { return; }
 
-      Lock.getUserInfo(authStatus.accessToken, (err, profile)=> {
-        console.log('err',err, 'profile',profile);
+      Lock.getUserInfo(authStatus.accessToken, (err, profile) => {
+        console.log('err', err, 'profile', profile);
         axios.post('/signup', profile)
-          .then( (success)=>{
+          .then((success) => {
             console.log('user data', success);
             localStorage.setItem('email', profile.email);
             console.log(localStorage.getItem('email'), 'email');
             localStorage.setItem('authenticated', true);
             location.reload();
           })
-          .catch((err)=>{
-            console.log('error',err);
+          .catch((err) => {
+            console.log('error', err);
             localStorage.removeItem('authenticated');
           });
       });
     });
 
-    Lock.on('authorization_error', (err)=>{
+    Lock.on('authorization_error', (err) => {
       console.log('auth error found: ', err);
     });
     console.log(localStorage.getItem('authenticated'));
@@ -50,7 +51,7 @@ class Navigation extends React.Component {
 
 
   render() {
-    const isLoggedIn = <span>   <button type="button" className="btn btn-info" onClick={this.props.goToSettingsView}><i className="fa fa-cog fa-1x" aria-hidden="true"></i></button>    <button type="button" className="btn btn-warning" onClick={this.logoutFunc}>Logout</button></span>;
+    const isLoggedIn = <span>   <button type="button" className="btn btn-info" onClick={this.props.goToSettingsView}><i className="fa fa-cog fa-1x" aria-hidden="true" /></button>    <button type="button" className="btn btn-warning" onClick={this.logoutFunc}>Logout</button></span>;
     const isNotLoggedIn = <span> <button type="button" className="btn btn-primary" onClick={this.props.auth.login}>Login / Sign-Up</button></span>;
     return (
       <div className="container-fluid navigation">
@@ -62,8 +63,8 @@ class Navigation extends React.Component {
             <ItemInput addNewItemToList={this.props.addNewItemToList} newItemEntry={this.props.newItemEntry} updateNewItemEntry={this.props.updateNewItemEntry} />
           </div>
           <div className="col-md-4 signUpOrSettings">
-            {!this.props.username && <StateDropdown location={this.props.location} selectLocation={this.props.selectLocation}/>}
- {
+            {!this.props.username && <StateDropdown location={this.props.location} selectLocation={this.props.selectLocation} />}
+            {
   localStorage.getItem('authenticated') ? isLoggedIn : isNotLoggedIn
  }
           </div>

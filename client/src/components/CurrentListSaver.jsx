@@ -6,8 +6,8 @@ const CurrentListSaver = props => (
       <div className="input-group">
         <input type="text" className="form-control" placeholder="List Name" value={props.inputListName} onChange={props.updateNewListName} />
         <span className="input-group-btn">
-        <input type="submit" className="btn btn-success" value="Save List" />
-      </span>
+          <input type="submit" className="btn btn-success" value="Save List" />
+        </span>
       </div>
     </form>
   </div>

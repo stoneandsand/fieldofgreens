@@ -4,8 +4,7 @@ import RecallListItem from './RecallListItem.jsx';
 const RecallList = props => (
   props.currentItems.length > 0 &&
   <div className="row justify-content-md-center">
-    <div className="col-1">
-    </div>
+    <div className="col-1" />
     <div className="col-10">
       <div className="card mb-4">
         <div className="recallList">
@@ -16,21 +15,19 @@ const RecallList = props => (
         <div className="card-body">
           <ul className="list-group list-group-flush">
             {props.currentItems.map((item, i) =>
-                                    <li className="list-group-item" key={`recallListItem-${i}`}>
-                                        <RecallListItem
-                                            deleteItem={props.deleteItem}
-                                            i={i}
-                                            item={item}
-                                        />
-                                      </li>
-                                   )}
-  </ul>
+              (<li className="list-group-item" key={`recallListItem-${i}`}>
+                <RecallListItem
+                  deleteItem={props.deleteItem}
+                  i={i}
+                  item={item}
+                />
+              </li>))}
+          </ul>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    <div className="col-1">
-    </div>
-    </div>
+    <div className="col-1" />
+  </div>
 );
 
 export default RecallList;

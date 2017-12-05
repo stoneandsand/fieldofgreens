@@ -66,6 +66,6 @@ class StateDropdown extends React.Component {
       </span>
     );
   }
-};
+}
 
 export default StateDropdown;
